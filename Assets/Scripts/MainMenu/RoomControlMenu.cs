@@ -5,6 +5,8 @@ using TMPro;
 
 using Photon.Realtime;
 using Photon.Pun;
+using Hashtable = ExitGames.Client.Photon.Hashtable;
+
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
@@ -14,6 +16,9 @@ namespace Com.WhiteSwan.OpheliaDigital
         private TMP_InputField _createRoomName;
 
         [SerializeField]
+        private Button createRoomButton;
+
+        [SerializeField]
         public GameObject connectingLabel;
         public GameObject menuInput;
 
@@ -21,16 +26,22 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void Awake()
         {
+            // todo: separate out system setting stuffs
+            if (!PhotonNetwork.IsConnected)
+            {
+                Debug.Log("Attempting to connect");
+                Screen.SetResolution(1024, 768, false);
 
-            // todo: separate out system setting stuff
-            Screen.SetResolution(1024, 768, false);
+                PhotonNetwork.AutomaticallySyncScene = true;
+                //isConnecting = 
+                PhotonNetwork.ConnectUsingSettings();
+                PhotonNetwork.GameVersion = gameVersion;
+            }
+        }
 
-            PhotonNetwork.AutomaticallySyncScene = true;
-            //isConnecting = 
-            PhotonNetwork.ConnectUsingSettings();
-            PhotonNetwork.GameVersion = gameVersion;
-
-
+        public void Start()
+        {
+            createRoomButton.interactable = false;
             connectingLabel.SetActive(false);
             menuInput.SetActive(true);
 
@@ -38,7 +49,11 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public override void OnConnectedToMaster()
         {
-            PhotonNetwork.JoinLobby(); // does this lobby show me room lists
+            PhotonNetwork.JoinLobby();
+        }
+        public override void OnJoinedLobby()
+        {
+            createRoomButton.interactable = true;
         }
 
         public void CreateRoom()
@@ -49,7 +64,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                 return;
             }
 
-            //connectingLabel.SetActive(true);
+            connectingLabel.SetActive(true);
             // this is only good if we're going to move somwehere else after - presently only working in menu
 
             RoomOptions roomOptions = new RoomOptions();
@@ -70,13 +85,22 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public override void OnJoinedRoom()
         {
-            Debug.Log("Joined Room", this);
+            Debug.LogFormat("Joined Room: {0}", PhotonNetwork.CurrentRoom.Name);
+
+            PhotonNetwork.LoadLevel("DraftScene");
         }
 
         public override void OnJoinRoomFailed(short returnCode, string message)
         {
             Debug.LogError("Failed To Join Room", this);
         }
-    }
-}
 
+        public override void OnDisconnected(DisconnectCause cause)
+        {
+            connectingLabel.SetActive(false);
+            Debug.LogWarningFormat("disconnected for reason {0}", cause);
+        }
+
+    }
+
+}

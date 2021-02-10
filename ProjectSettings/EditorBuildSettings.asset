@@ -9,9 +9,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Launcher.unity
     guid: 9cba47a01b618a7498825fa0ad877bde
   - enabled: 1
+    path: Assets/Scenes/DraftScene.unity
+    guid: 55ce6a4447dfc9d40a4c591f9c9bacda
+  - enabled: 1
+    path: Assets/Scenes/GameScene.unity
+    guid: 617b7d3162ca5e64f86880bb63fc073d
+  - enabled: 0
     path: Assets/Scenes/Room for 1.unity
     guid: 924b220d4edb61245a7023dc223a84e1
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Room for 2.unity
     guid: 45ec0f51b16e8fa4c9d8351e9197211a
   - enabled: 0

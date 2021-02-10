@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 using Photon.Pun;
 using Photon.Realtime;
@@ -18,7 +19,18 @@ namespace Com.WhiteSwan.OpheliaDigital
         [SerializeField]
         private RoomListItem _roomListItemPrefab;
 
+        [SerializeField]
+        private JoinRoomButton joinRoomButton;
+
         private List<RoomListItem> _currentRoomList = new List<RoomListItem>();
+
+        public void ResetSelection()
+        {
+            foreach(RoomListItem roomListItem in _currentRoomList)
+            {
+                roomListItem.ResetColor();
+            }
+        }
 
         public override void OnRoomListUpdate(List<RoomInfo> roomList)
         {
@@ -35,13 +47,24 @@ namespace Com.WhiteSwan.OpheliaDigital
                     }
 
                 }   
-                else
+                else 
                 {
-                    RoomListItem roomListItem = Instantiate(_roomListItemPrefab, _content);
-                    if (roomListItem != null)
+                    int index = _currentRoomList.FindIndex(x => x.RoomInfo.Name == info.Name);
+                    if (index == -1)
                     {
-                        roomListItem.SetRoomInfo(info);
-                        _currentRoomList.Add(roomListItem);
+                        RoomListItem roomListItem = Instantiate(_roomListItemPrefab, _content);
+                        if (roomListItem != null)
+                        {
+                            roomListItem.SetRoomInfo(info);
+                            _currentRoomList.Add(roomListItem);
+
+                            roomListItem.joinRoomButton = joinRoomButton;
+                            roomListItem.parentLister = this;
+                        }
+                    }
+                    else
+                    {
+                        // modify list ? player val change etc
                     }
                 }
                 
