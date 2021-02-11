@@ -1,0 +1,30 @@
+{
+	"version": "0.0.1",
+	"basepath": "Resources/Cards/",
+	"decks": [
+		{
+			"yucatec": {
+				"cardlistjson": "yucatec.json",
+				"foldername": "Yucatec",
+				"set": 1,
+				"longname": "Yucatec Scale-Clan"
+			}
+		},
+		{
+			"mechanicus": {
+				"cardlistjson": "mechanicus.json",
+				"foldername": "Mechanicus",
+				"set": 1,
+				"longname": "Animae Mechanicus"
+			}
+		},
+		{
+			"mattervoid": {
+				"cardlistjson": "mattervoid.json",
+				"foldername": "Mattervoid",
+				"set": 1,
+				"longname": "Mattervoid"
+			}
+		}
+	]
+}

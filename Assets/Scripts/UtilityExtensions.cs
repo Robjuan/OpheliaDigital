@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-public static class MyExtensions
+public static class UtilityExtensions
 {
     private static Random rng = new Random();
     public static void Shuffle<T>(this IList<T> list)
