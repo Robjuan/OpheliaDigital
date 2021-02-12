@@ -7,10 +7,10 @@ namespace Com.WhiteSwan.OpheliaDigital
         #region player properties
 
         public const string Ready = "ready";
-        public const string TurnOrder = "turnorder";
         public const string ActivePlayer = "activeplayer"; // maybe room property too?
 
         public const string ChosenDeck = "chosendeck";
+        public const string CardList = "cardlist";
 
         #endregion
 
@@ -26,7 +26,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         #endregion
 
-        #region ophelia properties - consider moving out?
+        #region ophelia properties - TODO: these should come from json 
 
         public const string Mattervoid = "Mattervoid";
         public const string Mechanicus = "Mechanicus";

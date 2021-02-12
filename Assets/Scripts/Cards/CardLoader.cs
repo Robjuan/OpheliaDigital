@@ -2,20 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-// this class will grab specified decks and load them into either a draft card pool or player decks
+// this class will take in a list of strings (cardnames), go and get the data about those cards 
 // this means it will instantiate the required prefabs and attach the appropriate attributes and abilities
 
-public class CardLoader : MonoBehaviour
-{
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+// used in the GameScene on entry
 
-    // Update is called once per frame
-    void Update()
+
+namespace Com.WhiteSwan.OpheliaDigital
+{
+    public class CardLoader : MonoBehaviour
     {
-        
+
+
     }
 }

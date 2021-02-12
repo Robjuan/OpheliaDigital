@@ -9,6 +9,7 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class BaseCard : ScriptableObject
     { 
         public string cardName;
+
         public enum SlotType { TurningPoint, Historic, Unsung }; 
 
         public int cost;

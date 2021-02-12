@@ -19,6 +19,9 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class DraftTurnManager : MonoBehaviourPunCallbacks
     {
         [SerializeField]
+        private CardStringLoader cardStringLoader;
+
+        [SerializeField]
         private GameObject deckSelectionPlace;
         [SerializeField]
         private GameObject deckSelectionButtonPrefab;
@@ -145,12 +148,15 @@ namespace Com.WhiteSwan.OpheliaDigital
                 return;
             }
 
-            
-
             // the last player finished their turn
             if (activeTurnPlayer + 1 > turnOrderPlayers.Count - 1) // 0 based list
             {
-                PhotonNetwork.LoadLevel("GameScene");
+                // set cardlist for each player
+                foreach(Player player in turnOrderPlayers)
+                {
+                    cardStringLoader.SetCardList(player);
+                }
+
             } else
             {
                 activeTurnPlayer += 1;
@@ -158,6 +164,8 @@ namespace Com.WhiteSwan.OpheliaDigital
                 SetActiveTurnPlayer(activeTurnPlayer);
             }
         }
+
+
 
         [PunRPC]
         public void StartTurn()
@@ -253,6 +261,27 @@ namespace Com.WhiteSwan.OpheliaDigital
             if (changedProps.ContainsKey(KeyStrings.ActivePlayer) && targetPlayer == PhotonNetwork.LocalPlayer)
             {
                 // something
+            }
+
+            // if player cardlist set
+            if (changedProps.ContainsKey(KeyStrings.CardList) && changedProps[KeyStrings.CardList] != null)
+            {
+                bool everyoneReady = true;
+                foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                {
+                    // if any player does not have their cardlist set
+                    if (!player.CustomProperties.ContainsKey(KeyStrings.CardList) || player.CustomProperties[KeyStrings.CardList] == null) 
+                    {
+                        everyoneReady = false;
+                        break;
+                    }
+                }
+
+                if (everyoneReady)
+                {                    
+                    PhotonNetwork.LoadLevel("GameScene");
+                }
+
             }
         }
 

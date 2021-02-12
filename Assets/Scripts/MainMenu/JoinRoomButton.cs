@@ -12,7 +12,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private Color startingColor;
 
-        public void Awake()
+        void Awake()
         {
             // will be set interactible when a room is selected
             this.interactable = false;

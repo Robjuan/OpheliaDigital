@@ -1,0 +1,9 @@
+1) go to notion and export the appropriate "Cards" page as CSV
+2) go to any csv to json converter (https://www.convertcsv.com/csv-to-json.htm)
+3) IMPORTANT: use the setting "Add Top Level Property Name" and enter "cards" 
+ - this is crucial and case sensitive etc
+4) download and save in Assets/Resources/Cards/<factionname>
+5) rename to cards.json
+
+
+(these paths are defined in PathStrings.cs)

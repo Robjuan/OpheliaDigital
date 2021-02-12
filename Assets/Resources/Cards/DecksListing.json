@@ -3,15 +3,16 @@
 	"basepath": "Resources/Cards/",
 	"decks": [
 		{
-			"yucatec": {
+			"Yucatec": {
 				"cardlistjson": "yucatec.json",
 				"foldername": "Yucatec",
 				"set": 1,
 				"longname": "Yucatec Scale-Clan"
+				"preconlistpath": "<PRECONPATHHERE>"
 			}
 		},
 		{
-			"mechanicus": {
+			"Mechanicus": {
 				"cardlistjson": "mechanicus.json",
 				"foldername": "Mechanicus",
 				"set": 1,
@@ -19,7 +20,7 @@
 			}
 		},
 		{
-			"mattervoid": {
+			"Mattervoid": {
 				"cardlistjson": "mattervoid.json",
 				"foldername": "Mattervoid",
 				"set": 1,
