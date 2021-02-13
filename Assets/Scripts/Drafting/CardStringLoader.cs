@@ -54,7 +54,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             Dictionary<string, int> cardListQuantity = new Dictionary<string, int>();
             foreach (CardStringHolder card in cardStringCollection.cards)
             {
-                cardListQuantity[card.Name] = 1; // TODO: set quantities somehow
+                cardListQuantity[card.Name] = 2; // TODO: set quantities somehow
                 //Debug.Log(card.Name);
             }
 
@@ -70,6 +70,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
     }
 
+
+    // little classes to help unity's terrible json loader
     [System.Serializable]
 
     public class CardStringHolder
