@@ -135,6 +135,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         
         public void EndCurrentTurn()
         {
+            // this is firing way too many times
             DeactivatePreconSelection();
             base.photonView.RPC(RPCStrings.EndTurn, RpcTarget.MasterClient);
         }
@@ -149,11 +150,12 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             // the last player finished their turn
-            if (activeTurnPlayer + 1 > turnOrderPlayers.Count - 1) // 0 based list
+            if (activeTurnPlayer + 1 > turnOrderPlayers.Count - 1) // zero based list
             {
                 // set cardlist for each player
                 foreach(Player player in turnOrderPlayers)
                 {
+
                     cardStringLoader.SetCardList(player);
                 }
 
@@ -257,12 +259,6 @@ namespace Com.WhiteSwan.OpheliaDigital
                 }
             }
 
-            // if it's my turn
-            if (changedProps.ContainsKey(KeyStrings.ActivePlayer) && targetPlayer == PhotonNetwork.LocalPlayer)
-            {
-                // something
-            }
-
             // if player cardlist set
             if (changedProps.ContainsKey(KeyStrings.CardList) && changedProps[KeyStrings.CardList] != null)
             {
@@ -283,6 +279,14 @@ namespace Com.WhiteSwan.OpheliaDigital
                 }
 
             }
+
+            // if i've chosen my deck
+            if (targetPlayer == PhotonNetwork.LocalPlayer && changedProps.ContainsKey(KeyStrings.ChosenDeck))
+            {
+                // this will end my turn also
+                GameEvents.current.DeckSelected();
+            }
+
         }
 
         public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)

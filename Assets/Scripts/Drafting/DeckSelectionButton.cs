@@ -47,18 +47,6 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         }
 
-        public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
-        {
-            // don't fire the deck selected event until the player property is set (and only care about local)
-            if(targetPlayer == PhotonNetwork.LocalPlayer && changedProps.ContainsKey(KeyStrings.ChosenDeck))
-            {
-                // fire the onDeckSelected event for my local draftTurnManager
-                // this will end my turn also
-                GameEvents.current.DeckSelected();
-            }
-
-        }
-
     }
 
 }

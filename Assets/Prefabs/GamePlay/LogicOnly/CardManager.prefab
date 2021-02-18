@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2582681108890332896}
   - component: {fileID: 6459732378961531790}
   m_Layer: 0
-  m_Name: CardLoader
+  m_Name: CardManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -45,3 +45,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cardPrefab: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
+  selfDeckPlace: {fileID: 0}
+  oppDeckPlace: {fileID: 0}
