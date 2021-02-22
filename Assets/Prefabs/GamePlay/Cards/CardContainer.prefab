@@ -44,9 +44,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a724b0a265e04ca5609672064aed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  displayLocation: {fileID: 1849897633223577049}
-  isPublicKnowledge: 0
   description: base_container
+  startingLocation: {fileID: 0}
+  stackingOffset: {x: 0, y: 0, z: 0}
+  moveOnContainerAdd: 1
+  containedCardProperties:
+    isPublicKnowledge: 0
+    isVisible: 0
+    isClickable: 0
 --- !u!1 &1849897633223577049
 GameObject:
   m_ObjectHideFlags: 0

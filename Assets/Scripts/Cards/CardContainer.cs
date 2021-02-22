@@ -27,7 +27,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             public bool isPublicKnowledge;
             public bool isVisible;
-
+            public bool isClickable;
         }
 
 

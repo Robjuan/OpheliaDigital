@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2582681108890332896}
   - component: {fileID: 6459732378961531790}
+  - component: {fileID: 603618703685952349}
   m_Layer: 0
   m_Name: CardManager
   m_TagString: Untagged
@@ -43,7 +44,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50e1f3aee2373134a894f36b0bd3ec63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardPrefab: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  selfDeckPlace: {fileID: 0}
-  oppDeckPlace: {fileID: 0}
+  selfDeckManager: {fileID: 0}
+  oppDeckManager: {fileID: 0}
+--- !u!114 &603618703685952349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8942251098022119410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0aff95a5f0458c4b9942d4848618adb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  raw_prefabMaps:
+  - prefabNameKey: "Aguateca, Blood of Yucat\xE1n"
+    prefab: {fileID: 4905391737072681548, guid: f45e4c37956fde54e959f55e17faa2a9,
+      type: 3}
+  - prefabNameKey: Prophet of Cuchumaquic
+    prefab: {fileID: 417238830875016655, guid: c21af4855b9b06e40ba458fc4e8d1b88, type: 3}
+  - prefabNameKey: 
+    prefab: {fileID: 0}
+  - prefabNameKey: 
+    prefab: {fileID: 0}
+  - prefabNameKey: 
+    prefab: {fileID: 0}

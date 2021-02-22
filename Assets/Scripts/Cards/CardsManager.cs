@@ -12,10 +12,11 @@ using Photon.Realtime;
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
-    public class CardManager : MonoBehaviour
+    [RequireComponent(typeof(CardsPrefabLibrary))]
+    public class CardsManager : MonoBehaviour
     {
 
-        public GameObject cardPrefab;
+        private CardsPrefabLibrary prefabLibrary;
 
         [SerializeField]
         private GameObject selfDeckManager;
@@ -27,6 +28,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         private void Awake()
         {
             selfDeckCardContainer = selfDeckManager.GetComponent<CardContainer>();
+            prefabLibrary = GetComponent<CardsPrefabLibrary>();
         }
 
         private void Start()
@@ -35,7 +37,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             {
                 LoadDeck();
             }
-            
+
         }
 
         private void LoadDeck()
@@ -46,18 +48,11 @@ namespace Com.WhiteSwan.OpheliaDigital
                 return;
             }
 
-            float yOffset = 0f;
-            float xOffset = 0f;
-            float zOffset = 0f;
             Dictionary<string, int> cardList = (Dictionary<string, int>)(PhotonNetwork.LocalPlayer.CustomProperties[KeyStrings.CardList]);
             if (cardList != null)
             {
                 foreach (string cardName in cardList.Keys)
                 {
-                   // Vector3 spawnLoc = new Vector3(xOffset + selfDeckPlace.transform.position.x, yOffset + selfDeckPlace.transform.position.y, zOffset + selfDeckPlace.transform.position.z);
-                    yOffset += -3f; // down to up
-                    xOffset += 0.5f; // left to right
-                    zOffset += -1.1f; // near to far
                     selfDeckCardContainer.cards.Add(CreateFullCardFromName(cardName, Vector3.zero, Quaternion.identity));
                 }
             }
@@ -70,10 +65,13 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private GameObject CreateFullCardFromName(string cardName, Vector3 position, Quaternion rotation)
         {
-            // todo: go and get all the other values of the card from the json and load them into the CardController
-            // 
+            // todo: decide if we should load all values from the json here
+            // or if we should have them set in the prefabs
 
-            GameObject newCard = PhotonNetwork.Instantiate(cardPrefab.name, position, rotation);
+            // abilities will have to be set on the prefab because their functions will need to be coded in
+
+            var prefab = prefabLibrary.prefabMapDict[cardName];
+            GameObject newCard = PhotonNetwork.Instantiate(prefab.name, position, rotation);
             newCard.GetComponent<CardController>().SetCardText(cardName);
 
 
