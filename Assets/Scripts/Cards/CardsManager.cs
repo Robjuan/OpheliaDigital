@@ -48,12 +48,12 @@ namespace Com.WhiteSwan.OpheliaDigital
                 return;
             }
 
-            Dictionary<string, int> cardList = (Dictionary<string, int>)(PhotonNetwork.LocalPlayer.CustomProperties[KeyStrings.CardList]);
-            if (cardList != null)
+            Dictionary<string, int> cardDict_FullPath_Quant = (Dictionary<string, int>)(PhotonNetwork.LocalPlayer.CustomProperties[KeyStrings.CardList]);
+            if (cardDict_FullPath_Quant != null)
             {
-                foreach (string cardName in cardList.Keys)
+                foreach (string cardFullpath in cardDict_FullPath_Quant.Keys)
                 {
-                    selfDeckCardContainer.cards.Add(CreateFullCardFromName(cardName, Vector3.zero, Quaternion.identity));
+                    selfDeckCardContainer.cards.Add(CreateFullCardFromName(cardFullpath, Vector3.zero, Quaternion.identity));
                 }
             }
             else

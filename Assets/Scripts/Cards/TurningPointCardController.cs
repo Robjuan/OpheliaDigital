@@ -7,8 +7,9 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class TurningPointCardController : MonoBehaviour
     {
 
-        public int characterCountPlayRequirement;
+        public int characterCountRequirement;
 
+        public string effectText;
 
     }
 }

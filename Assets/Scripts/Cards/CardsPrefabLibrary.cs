@@ -32,7 +32,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                     prefabMapDict.Add(map.prefabNameKey, map.prefab);
                 } else
                 {
-                    Debug.LogErrorFormat("duplicate prefab string key {0}, not loaded", map.prefabNameKey);
+                    Debug.LogErrorFormat("invalid prefab string key '{0}', not loaded", map.prefabNameKey);
                 }
             }
         }

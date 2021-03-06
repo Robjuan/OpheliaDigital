@@ -1,0 +1,133 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3191195300304244198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3750529315635542655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseLevel: 0
+  basePower: 8
+  baseInitiative: 2
+  baseArmour: 2
+  baseLife: 16
+  slotType: 1
+  level: 0
+  power: 0
+  initiative: 0
+  armour: 0
+  life: 0
+  currentDamage: 0
+  claimText: 
+  specialText: 'Firewall Finale (Special): Detach all cards from Splitfire Colossus:
+    Deal 3 damage to each enemy character for each card detached this way.'
+  passiveText: 'Barrage (Passive): When Splitfire Colossus attacks, for each card
+    equipped to Splitfire Colossus; deal 2 damage to each enemy character adjacent
+    to the character Splitfire Colossus is attacking.'
+  devName: 039_splitfire
+--- !u!1001 &8930902129171561307
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: displayName
+      value: Splitfire Colossus
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_Name
+      value: 039_splitfire
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 293.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
+--- !u!1 &3750529315635542655 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+    type: 3}
+  m_PrefabInstance: {fileID: 8930902129171561307}
+  m_PrefabAsset: {fileID: 0}

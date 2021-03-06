@@ -25,8 +25,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             // todo: this will need to get data quite differently when we build the full draft
             // eventually players should be able to save their drafted decks and play again with those
 
-            //List<BaseCard> cardList = new List<BaseCard>();
-            // it's not finding BaseCard
             string targetPath = "";
             switch ((string)player.CustomProperties[KeyStrings.ChosenDeck])
             {
@@ -46,42 +44,54 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             // get the json of all the cards
             var jsonString = Resources.Load<TextAsset>(targetPath).ToString();
-
-            // save just the name as per CardStringHolder
-            CardStringCollection cardStringCollection = JsonUtility.FromJson<CardStringCollection>(jsonString);
+            /*
+            // save data as per CardDataHolder
+            CardDataCollection cardDataCollection = JsonUtility.FromJson<CardDataCollection>(jsonString);
 
             //create dictionary
-            Dictionary<string, int> cardListQuantity = new Dictionary<string, int>();
-            foreach (CardStringHolder card in cardStringCollection.cards)
+            Dictionary<string, int> cardDict_FullPath_Quant = new Dictionary<string, int>();
+            foreach (CardDataHolder card in cardDataCollection.cards)
             {
-                cardListQuantity[card.Name] = 2; // TODO: set quantities somehow
+                cardDict_FullPath_Quant[card.Name] = 2; // TODO: set quantities somehow
                 //Debug.Log(card.Name);
             }
 
 
             // set the playerproperty
             Hashtable ht = new Hashtable();
-            ht.Add(KeyStrings.CardList, cardListQuantity);
+            ht.Add(KeyStrings.CardList, cardDict_FullPath_Quant);
             player.SetCustomProperties(ht);
-
+            */
             
 
         }
 
     }
 
+    /*
 
     // little classes to help unity's terrible json loader
     [System.Serializable]
 
-    public class CardStringHolder
+    public class CardDataHolder
     {
         public string Name;
+        public int Armour;
+        public string Claim;
+        public int Cost;
+        public string Effect;
+        public int Initiative;
+        public int Life;
+        public string Passive;
+        public string SlotType;
+        public string Special;
+        public string devName; // in form "xxx_name" where xxx is unique number
     }
 
     [System.Serializable]
-    public class CardStringCollection
+    public class CardDataCollection
     {
-        public CardStringHolder[] cards;
+        public CardDataHolder[] cards;
     }
+    */
 }

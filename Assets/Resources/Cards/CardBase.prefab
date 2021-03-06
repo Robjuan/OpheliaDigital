@@ -217,8 +217,8 @@ GameObject:
   - component: {fileID: 8349303579635310816}
   - component: {fileID: 2646514180766273962}
   - component: {fileID: 2574209712891892463}
-  - component: {fileID: 1441429967673235503}
   - component: {fileID: 1559346657999101695}
+  - component: {fileID: -9138941550739007292}
   m_Layer: 0
   m_Name: CardBase
   m_TagString: Untagged
@@ -301,19 +301,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &1441429967673235503
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5763620856289411364}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4fa961d17c4df7645bf7ac8dbdf84046, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  cardName: {fileID: 3989570896418321838}
 --- !u!114 &1559346657999101695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -336,3 +323,21 @@ MonoBehaviour:
   viewIdField: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
+--- !u!114 &-9138941550739007292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5763620856289411364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fa961d17c4df7645bf7ac8dbdf84046, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardNameTMP: {fileID: 3989570896418321838}
+  displayName: 
+  externallySetProperties:
+    isPublicKnowledge: 0
+    isVisible: 0
+    isClickable: 0

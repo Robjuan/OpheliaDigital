@@ -1,0 +1,134 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &4511809832080277742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7228199688439864611}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseLevel: 2
+  basePower: 6
+  baseInitiative: 6
+  baseArmour: 2
+  baseLife: 12
+  slotType: 1
+  level: 0
+  power: 0
+  initiative: 0
+  armour: 0
+  life: 0
+  currentDamage: 0
+  claimText: 'Backstabber (Claim): Choose a non-Mechanicus character: Until the end
+    of the turn, the chosen character loses all abilities and has its Power, Initiative
+    and Armour reduced to 0.'
+  specialText: 'Development (Special): Name a Mechanicus card: Reveal the top card
+    of your deck. If you reveal the named card, equip it to JBL-3S, Greystar''s Agent.'
+  passiveText: 'Chicken Feed (Passive): JBL-3S, Greystar''s Agent can be played at
+    any time you could play a Turning Point.'
+  devName: 027_jeremy
+--- !u!1001 &3149080399479954439
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: displayName
+      value: JBL-3S, Greystar's Agent
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_Name
+      value: 027_jeremy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 293.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
+--- !u!1 &7228199688439864611 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+    type: 3}
+  m_PrefabInstance: {fileID: 3149080399479954439}
+  m_PrefabAsset: {fileID: 0}

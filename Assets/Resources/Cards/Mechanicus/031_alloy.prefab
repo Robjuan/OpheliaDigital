@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &3101889447023782861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7675916063737330853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  baseLevel: 0
+  basePower: 5
+  baseInitiative: 1
+  baseArmour: 1
+  baseLife: 10
+  slotType: 1
+  level: 0
+  power: 0
+  initiative: 0
+  armour: 0
+  life: 0
+  currentDamage: 0
+  claimText: 
+  specialText: 'Thermoelectric (Special): Alloy of Greystar gains Power or Initiative
+    equal to the amount of damage on it until the end of the turn.'
+  passiveText: 'Supernova (Passive): When The Alloy of Greystar is defeated; deal
+    5 damage to each other character. Increase the damage by 3 for each card that
+    was equipped to Alloy of Greystar.
+
+
+    Unstable (Passive): At the end of each
+    turn; deal 2 damage to each character.'
+  devName: 031_alloy
+--- !u!1001 &2700517503333760385
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: displayName
+      value: Alloy of Greystar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_Name
+      value: 031_alloy
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 293.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
+--- !u!1 &7675916063737330853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+    type: 3}
+  m_PrefabInstance: {fileID: 2700517503333760385}
+  m_PrefabAsset: {fileID: 0}

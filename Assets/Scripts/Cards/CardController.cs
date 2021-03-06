@@ -11,7 +11,10 @@ namespace Com.WhiteSwan.OpheliaDigital
     {
 
         [SerializeField]
-        private TMP_Text cardName;
+        private TMP_Text cardNameTMP;
+
+        public string displayName;
+
 
         // this is a struct defined in cardcontainer
         // this struct is a number of properties that are set based on the card's current container
@@ -25,12 +28,20 @@ namespace Com.WhiteSwan.OpheliaDigital
         // each unique card will be represented by a card id
         // each unique card will be a prefab variant of cardbase
             
+        public void ResetCardNameText()
+        {
+            cardNameTMP.text = displayName;
+        }
 
         public void SetCardText(string text)
         {
-            cardName.text = text;
+            cardNameTMP.text = text;
         }
 
+        private void OnMouseDown()
+        {
+            Debug.Log("clicked");
+        }
 
     }
 

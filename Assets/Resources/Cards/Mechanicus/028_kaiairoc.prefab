@@ -1,45 +1,64 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1380487589386824064
+--- !u!114 &818737081439248843
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 417238830875016655}
+  m_GameObject: {fileID: 2839806356830742843}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1001 &5347507925346958571
+  baseLevel: 2
+  basePower: 2
+  baseInitiative: 1
+  baseArmour: 3
+  baseLife: 4
+  slotType: 0
+  level: 0
+  power: 0
+  initiative: 0
+  armour: 0
+  life: 0
+  currentDamage: 0
+  claimText: 'Embed (Claim): Search your deck for an Unsung * character and equip
+    it to a friendly Mechanicus character. '
+  specialText: 'Order 99 (Claim): Add a Mechanicus Turning Point from your deck to
+    your hand.'
+  passiveText: 'Defense Matrix (Passive): At the beginning of each contest phase;
+    choose a Mechanicus character. It attacks first during this contest phase.'
+  devName: 028_kaiairoc
+--- !u!1001 &7536064191566915615
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
-      propertyPath: viewIdField
-      value: 0
+      propertyPath: displayName
+      value: Kai & Airoc
       objectReference: {fileID: 0}
-    - target: {fileID: 5325912003098874172, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.lineCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5325912003098874172, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5325912003098874172, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.wordCount
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5325912003098874172, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.characterCount
       value: 0
@@ -47,17 +66,7 @@ PrefabInstance:
     - target: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_Name
-      value: Prophet of Cuchumaquic
-      objectReference: {fileID: 0}
-    - target: {fileID: 6479863815536163693, guid: b23e5dc862d8d494985081daff480bf6,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536578337016445729, guid: b23e5dc862d8d494985081daff480bf6,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
+      value: 028_kaiairoc
       objectReference: {fileID: 0}
     - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -67,17 +76,17 @@ PrefabInstance:
     - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -93.9
+      value: 3.6025
       objectReference: {fileID: 0}
     - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 80.3
+      value: 293.77
       objectReference: {fileID: 0}
     - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -7
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -99,11 +108,26 @@ PrefabInstance:
       propertyPath: m_LocalRotation.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &417238830875016655 stripped
+--- !u!1 &2839806356830742843 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 5347507925346958571}
+  m_PrefabInstance: {fileID: 7536064191566915615}
   m_PrefabAsset: {fileID: 0}

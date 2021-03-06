@@ -1,0 +1,126 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &8073312241515811838
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6626703787428899383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da10d0a572d45a14d8b0c1a730a1e6fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  characterCountRequirement: 3
+  effectText: 'Until the end of the round, replace the effects of the poison token
+    with the following:
+
+
+    - This character''s Initiative and Armour becomes 0.
+
+    -
+    This character cannot be moved, except by another card''s effect.
+
+    - At the
+    end of each turn; place 2 damage on this character.'
+--- !u!1001 &1444170442264193811
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: displayName
+      value: "N\xE1ajal's Gaze"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_Name
+      value: 019_tp_gaze
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.6025
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 293.77
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
+--- !u!1 &6626703787428899383 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1444170442264193811}
+  m_PrefabAsset: {fileID: 0}
