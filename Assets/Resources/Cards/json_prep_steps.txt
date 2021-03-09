@@ -4,6 +4,4 @@
  - this is crucial and case sensitive etc
 4) download and save in Assets/Resources/Cards/<factionname>
 5) rename to cards.json
-
-
-(these paths are defined in PathStrings.cs)
+6) run the Ophelia Card Prefab Generator (in Window menu)

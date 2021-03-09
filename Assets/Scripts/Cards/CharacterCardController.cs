@@ -10,6 +10,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             Unsung
             ,Historic
+            ,Fabled
         }
 
         // Game Stats (should these be public vars? better to expose via method?)

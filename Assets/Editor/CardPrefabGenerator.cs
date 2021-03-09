@@ -1,4 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.IO;
+using System;
+
+
+using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 
@@ -7,9 +13,9 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class CardPrefabGenerator : EditorWindow
     {
         
-        private Object cardsJson;
+        private UnityEngine.Object cardsJson;
         private GameObject cardPrefab;
-        private string targetPath = "";
+        private string targetPathInput = "";
         private bool overwrite = false;
 
         [MenuItem("Window/Ophelia Card Prefab Generator")]
@@ -30,32 +36,32 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             if (GUILayout.Button("Select Target Folder (with cards json)"))
             {
-                targetPath = EditorUtility.OpenFolderPanel("Folder to store prefabs", "", "");
-                // make the path relative to the project
-                if(targetPath.StartsWith(Application.dataPath))
-                {
-                    targetPath = "Assets" + targetPath.Substring(Application.dataPath.Length) + '/';
-                }
+                targetPathInput = EditorUtility.OpenFolderPanel("Folder to store prefabs", Application.dataPath + "/Resources/Cards", "");
             }
             EditorStyles.label.wordWrap = true;
-            EditorGUILayout.LabelField(targetPath);
 
+            string pathLabel = "";
+            if (targetPathInput != "")
+            {
+                pathLabel = "Assets" + targetPathInput.Substring(Application.dataPath.Length);
+            }
+            EditorGUILayout.LabelField(pathLabel);
 
             EditorGUILayout.Space();
             overwrite = GUILayout.Toggle(overwrite, "Overwrite Existing Prefabs");
 
             if (GUILayout.Button("Generate Prefabs"))
             {
-                GeneratePrefabs();
+                GeneratePrefabs(targetPathInput);
             }
         }
 
 
 
         
-        private void GeneratePrefabs()
+        private void GeneratePrefabs(string targetPath)
         {
-
+            // confirmation dialog
             if(overwrite)
             {
                 bool check = EditorUtility.DisplayDialog("Overwrite Prefabs?", "Are you sure you want to overwrite existing prefabs? This is permanent.", "Proceed", "Cancel");
@@ -65,6 +71,29 @@ namespace Com.WhiteSwan.OpheliaDigital
                 }
             }
 
+            CardController.Faction faction;
+            // make the path relative to the project
+            if (targetPath.StartsWith(Application.dataPath))
+            {
+                // get faction name based on folder name
+                string factionName = targetPath.Substring(Application.dataPath.Length).Substring("/Resources/Cards/".Length);
+
+                var result = System.Enum.TryParse<CardController.Faction>(factionName, out faction);
+                if(!result)
+                {
+                    Debug.LogError("could not parse faction folder name to CardController enum");
+                    return;
+                }
+                Debug.Log("Matched as faction: " + faction);
+                targetPath = "Assets" + targetPath.Substring(Application.dataPath.Length) + "/";
+            }
+            else
+            {
+                Debug.LogError("invalid folder selected");
+                return;
+            }
+            
+            // resources.load expects a different relative path, prep that
             string assetPathPrefix = "Assets/Resources/";
 
             string resourcesLoadPath = targetPath;
@@ -91,13 +120,17 @@ namespace Com.WhiteSwan.OpheliaDigital
             int generatedCount = 0;
             int destroyedCount = 0;
             int skippedCount = 0;
+            int errorCount = 0;
+
+            List<string> devNameList = new List<string>();
+
             foreach (CardDataHolder card in cardDataCollection.cards)
             {
 
                 if(card.devName == "")
                 {
                     Debug.LogWarning("empty devName, likely incomplete card, skipping");
-                    skippedCount += 1;
+                    errorCount += 1;
                     continue;
                 }
 
@@ -112,8 +145,10 @@ namespace Com.WhiteSwan.OpheliaDigital
                 }
                 
                 if (!overwrite && prefabExists)
-                {
-                    //Debug.LogWarning("Prefab already exists, not overwriting, skipping");
+                {                   
+                    // we'll need to add these ones to the list of cards to make sure we get all
+                    devNameList.Add(existingPrefab.name);
+
                     skippedCount += 1;
                     continue;
                 } else if (overwrite && prefabExists)
@@ -127,9 +162,12 @@ namespace Com.WhiteSwan.OpheliaDigital
 
                 GameObject newCard = (GameObject)PrefabUtility.InstantiatePrefab(cardPrefab);
                 newCard.name = card.devName;
-
+                
                 CardController newCardCardController = newCard.GetComponent<CardController>();
                 newCardCardController.displayName = card.Name;
+                newCardCardController.faction = faction;
+
+                CharacterCardController.SlotType newCardSlot;
 
                 if (card.SlotType == "Turning Point")
                 {
@@ -139,7 +177,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                     newCardTPC.characterCountRequirement = card.Cost;
 
 
-                } else if (card.SlotType == "Historic" || card.SlotType == "Unsung")
+                } else if (System.Enum.TryParse<CharacterCardController.SlotType>(card.SlotType, out newCardSlot))
                 {
                     CharacterCardController newCardCC = newCard.AddComponent<CharacterCardController>();
 
@@ -156,18 +194,12 @@ namespace Com.WhiteSwan.OpheliaDigital
                     // do we need to store this?
                     newCardCC.devName = card.devName;
 
-                    if (card.SlotType == "Historic")
-                    {
-                        newCardCC.slotType = CharacterCardController.SlotType.Historic;
-                    } else
-                    {
-                        newCardCC.slotType = CharacterCardController.SlotType.Unsung;
-                    }
+                    newCardCC.slotType = newCardSlot;
 
                 } else
                 {
                     Debug.LogError("Invalid slottype, skipping");
-                    skippedCount += 1; // mb report errors separately
+                    errorCount += 1;
                     continue;
                 }
 
@@ -176,18 +208,53 @@ namespace Com.WhiteSwan.OpheliaDigital
                 string localPath = targetPath + newCard.name + ".prefab";
                 PrefabUtility.SaveAsPrefabAsset(newCard, localPath);
 
+                // add the devName to list of devnames
+                devNameList.Add(newCard.name);
+
                 // destory the gameobject we created in the scene
                 DestroyImmediate(newCard);
 
                 generatedCount += 1;
-
             }
 
-            Debug.Log("Finished. Generated " + generatedCount + ", Destroyed " + destroyedCount + ", Skipped " + skippedCount );
+            // save all the devnames
+            SaveCardList(devNameList, faction);
+
+            Debug.Log("Finished. Generated " + generatedCount + ", Destroyed " + destroyedCount + ", Skipped " + skippedCount + ", Errored " + errorCount );
+        }
+
+        public void SaveCardList(List<string> cardList, CardController.Faction faction)
+        {
+            string saveFilePath = Application.dataPath + "/Resources/Cards/" + faction + "_generated_card_list"; // + DateTime.UtcNow.ToString("yyyyMMddHHmm");
+
+            if(File.Exists(saveFilePath))
+            {
+                File.Delete(saveFilePath);
+            }
+            FileStream fs = new FileStream(saveFilePath, FileMode.Create);
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            try
+            {
+                formatter.Serialize(fs, cardList);
+            } 
+            catch (SerializationException e)
+            {
+                Debug.LogError("Serialisation failed bc : " + e.Message);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
         }
 
 
     }
+
+
+    
 
 
     // little classes to help unity's terrible json loader

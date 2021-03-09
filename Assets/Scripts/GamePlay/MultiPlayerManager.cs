@@ -50,6 +50,9 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void SetupPlayerManager(Player player)
         {
+
+            Debug.Log(player.CustomProperties[KeyStrings.CardList]);
+
             GameObject _pm = Instantiate(playerPrefab);
             if (player == PhotonNetwork.LocalPlayer)
             {

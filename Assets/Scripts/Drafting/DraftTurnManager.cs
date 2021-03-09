@@ -1,4 +1,6 @@
-﻿using System;
+﻿using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.IO;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -18,8 +20,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 {
     public class DraftTurnManager : MonoBehaviourPunCallbacks
     {
-        [SerializeField]
-        private CardStringLoader cardStringLoader;
+        //[SerializeField]
+        //private CardStringLoader cardStringLoader;
 
         [SerializeField]
         private GameObject deckSelectionPlace;
@@ -155,8 +157,18 @@ namespace Com.WhiteSwan.OpheliaDigital
                 // set cardlist for each player
                 foreach(Player player in turnOrderPlayers)
                 {
+                    string selectedDeck = (string)player.CustomProperties[KeyStrings.ChosenDeck];
 
-                    cardStringLoader.SetCardList(player);
+                    // https://doc.photonengine.com/en/realtime/current/reference/serialization-in-photon
+                    // can't use lists for customproperties
+                    var cardList = GetPreconCardList(selectedDeck).ToArray();
+
+                    Debug.Log(cardList);
+
+                    Hashtable ht = new Hashtable();
+                    ht.Add(KeyStrings.CardList, cardList);
+                    player.SetCustomProperties(ht);
+
                 }
 
             } else
@@ -165,6 +177,30 @@ namespace Com.WhiteSwan.OpheliaDigital
                 Debug.LogFormat("Progressing to next player: {0}", activeTurnPlayer);
                 SetActiveTurnPlayer(activeTurnPlayer);
             }
+        }
+
+        public List<string> GetPreconCardList(string factionName)
+        {
+            List<string> cardList;
+            string filePath = Application.dataPath + "/Resources/Cards/" + factionName + "_generated_card_list";
+            FileStream fs = new FileStream(filePath, FileMode.Open);
+            try
+            {
+                BinaryFormatter formatter = new BinaryFormatter();
+                cardList = (List<string>)formatter.Deserialize(fs);
+            }
+            catch (SerializationException e)
+            {
+                Debug.LogError(e);
+                throw;
+            }
+            finally
+            {
+                fs.Close();
+            }
+
+            return cardList;
+            
         }
 
 

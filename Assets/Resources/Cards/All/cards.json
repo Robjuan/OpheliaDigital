@@ -1,0 +1,22 @@
+{
+"cards": [
+ {
+   "Name": "Ophelia, All of Creation",
+   "Armour": 0,
+   "Assign": "",
+   "Claim": "",
+   "Cost": 3,
+   "Effect": "",
+   "Image": "Cards%20952d1fe45fa54b2dab30be5707dba0a0/DA6F7A3D-E8EC-4681-A1A0-FA5C0AC8FCC0.jpeg",
+   "Initiative": 0,
+   "Life": 1,
+   "Passive": "Omnipotent: (Passive): At the end of the round, your other characters are not sent to the forgotten zone. All damage and status effects persist.\n\nOmnipotent (Passive): Characters in your hand, forgottzen zone, and on your side of the field count as being all faction types.\n\nOmnipotent (Passive): If this card is in your drafted pool, you may add this card to the current pack: Draft an additional card from the current pack.",
+   "Power": 0,
+   "Restriction": "",
+   "SlotType": "Fabled",
+   "Special": "",
+   "Status": "",
+   "devName": "064_ophelia"
+ }
+]
+}

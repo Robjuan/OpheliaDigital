@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 using TMPro;
 
@@ -10,16 +11,28 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class CardController : MonoBehaviour
     {
 
+        [Flags]
+        public enum Faction
+        {
+            None = 0
+            ,Yucatec = 1
+            ,Mattervoid = 2
+            ,Mechanicus = 4
+            ,All = ~0
+        }
+
         [SerializeField]
         private TMP_Text cardNameTMP;
 
         public string displayName;
 
+        public Faction faction;
 
-        // this is a struct defined in cardcontainer
+
+        // this is a struct defined in cardscontainer
         // this struct is a number of properties that are set based on the card's current container
         // todo: this must support no container
-        public CardContainer.ExternallySetCardProperties externallySetProperties;
+        public CardsContainer.ExternallySetCardProperties externallySetProperties;
     
         // will build these cards out by composition
         // each card type will be it's own component (CharacterCardController / TurningPointCardController)

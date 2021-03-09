@@ -12,6 +12,7 @@ using Photon.Realtime;
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
+    /*
     [RequireComponent(typeof(CardsPrefabLibrary))]
     public class CardsManager : MonoBehaviour
     {
@@ -23,11 +24,11 @@ namespace Com.WhiteSwan.OpheliaDigital
         [SerializeField]
         private GameObject oppDeckManager;
 
-        private CardContainer selfDeckCardContainer;
+        private CardsContainer selfDeckCardsContainer;
 
         private void Awake()
         {
-            selfDeckCardContainer = selfDeckManager.GetComponent<CardContainer>();
+            selfDeckCardsContainer = selfDeckManager.GetComponent<CardsContainer>();
             prefabLibrary = GetComponent<CardsPrefabLibrary>();
         }
 
@@ -53,7 +54,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             {
                 foreach (string cardFullpath in cardDict_FullPath_Quant.Keys)
                 {
-                    selfDeckCardContainer.cards.Add(CreateFullCardFromName(cardFullpath, Vector3.zero, Quaternion.identity));
+                    selfDeckCardsContainer.cards.Add(CreateFullCardFromName(cardFullpath, Vector3.zero, Quaternion.identity));
                 }
             }
             else
@@ -79,4 +80,5 @@ namespace Com.WhiteSwan.OpheliaDigital
         }
 
     }
+    */
 }

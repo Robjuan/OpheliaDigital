@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Com.WhiteSwan.OpheliaDigital
 {
 
-    public class CardContainer : MonoBehaviour
+    public class CardsContainer : MonoBehaviour
     {
         public string description;
 

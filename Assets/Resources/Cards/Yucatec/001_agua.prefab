@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4670902688204659191
+--- !u!114 &6395318601933056821
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3267623485963893706}
+  m_GameObject: {fileID: 5652138338131341627}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
   passiveText: 'Shared Destiny (Passive): Damage that would be done to friendly Yucatec
     characters may be allocated between friendly Yucatec characters instead.'
   devName: 001_agua
---- !u!1001 &7107965123594042094
+--- !u!1001 &111485526800248863
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -41,38 +41,38 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: "Aguateca, Blood of Yucat\xE1n"
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 10
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_Name
       value: 001_agua
-      objectReference: {fileID: 0}
-    - target: {fileID: 7536578337016445729, guid: b23e5dc862d8d494985081daff480bf6,
-        type: 3}
-      propertyPath: m_Mesh
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 8393105710681672550, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -131,9 +131,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &3267623485963893706 stripped
+--- !u!1 &5652138338131341627 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 7107965123594042094}
+  m_PrefabInstance: {fileID: 111485526800248863}
   m_PrefabAsset: {fileID: 0}
