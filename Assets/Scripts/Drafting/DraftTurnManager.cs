@@ -53,7 +53,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
 
             // todo: get available decks and set in room properties
-            // todo: where are we getting these from
+            // todo: where are we getting these from / how are we deciding this
 
             Dictionary<string, bool> availDecks = new Dictionary<string, bool>();
             availDecks.Add(KeyStrings.Yucatec, true);
@@ -106,7 +106,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             // todo: more visual feedback
         }
 
-
         private void SetSelectionOrder()
         {
             // only called by the masterclient
@@ -116,13 +115,6 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             // shuffle the list
             turnOrderPlayers.Shuffle();
-
-            // TODO: does this need to be a room property or can this class just manage it?
-            // store the order of players in the room properties
-            // current player is index of turnOrderPlayers list
-            /*Hashtable ht = new Hashtable();
-            ht.Add(KeyStrings.ActivePlayer, activeTurnPlayer);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);*/
 
             // set the active turn player
             SetActiveTurnPlayer(activeTurnPlayer); // init at 0
@@ -134,10 +126,9 @@ namespace Com.WhiteSwan.OpheliaDigital
             base.photonView.RPC(RPCStrings.StartTurn, turnOrderPlayers[turnOrder]);
         }
 
-        
         public void EndCurrentTurn()
         {
-            // this is firing way too many times
+            // called by onDeckSelected event
             DeactivatePreconSelection();
             base.photonView.RPC(RPCStrings.EndTurn, RpcTarget.MasterClient);
         }
@@ -203,13 +194,10 @@ namespace Com.WhiteSwan.OpheliaDigital
             
         }
 
-
-
         [PunRPC]
         public void StartTurn()
         {
             // only activate those that are available
-
             Dictionary<string, bool> decks = (Dictionary<string, bool>)PhotonNetwork.CurrentRoom.CustomProperties[KeyStrings.AvailableDecks];
             foreach (string deck in decks.Keys)
             {
@@ -228,11 +216,9 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
-
         private void ShowPreconSelectionUI()
         {
             // present all buttons
-
             Dictionary<string, bool> decks = (Dictionary<string, bool>)PhotonNetwork.CurrentRoom.CustomProperties[KeyStrings.AvailableDecks];
             foreach (string deck in decks.Keys)
             {
@@ -251,8 +237,6 @@ namespace Com.WhiteSwan.OpheliaDigital
                 button.GetComponent<Button>().interactable = false;
             }
         }
-
-
 
         public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
         {
@@ -298,18 +282,18 @@ namespace Com.WhiteSwan.OpheliaDigital
             // if player cardlist set
             if (changedProps.ContainsKey(KeyStrings.CardList) && changedProps[KeyStrings.CardList] != null)
             {
-                bool everyoneReady = true;
+                bool everyoneCardListSet = true;
                 foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
                 {
                     // if any player does not have their cardlist set
                     if (!player.CustomProperties.ContainsKey(KeyStrings.CardList) || player.CustomProperties[KeyStrings.CardList] == null) 
                     {
-                        everyoneReady = false;
+                        everyoneCardListSet = false;
                         break;
                     }
                 }
 
-                if (everyoneReady)
+                if (everyoneCardListSet)
                 {                    
                     PhotonNetwork.LoadLevel("GameScene");
                 }

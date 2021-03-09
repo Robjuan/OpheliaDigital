@@ -2099,6 +2099,12 @@ PrefabInstance:
       objectReference: {fileID: 1909189206}
     - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
         type: 3}
+      propertyPath: playerDisplayPrefab
+      value: 
+      objectReference: {fileID: 861786010391903599, guid: 30314f6ddd094a147823978ebc0a8912,
+        type: 3}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
       propertyPath: opponentDisplayPlace
       value: 
       objectReference: {fileID: 299889935}

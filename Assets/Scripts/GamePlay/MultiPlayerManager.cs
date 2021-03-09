@@ -16,14 +16,13 @@ namespace Com.WhiteSwan.OpheliaDigital
     {
 
         public static MultiPlayerManager Instance;
-        public GameObject playerPrefab;
+        public GameObject playerDisplayPrefab;
 
         public RectTransform playerDisplayPlace;
         public RectTransform opponentDisplayPlace;
 
-        private PlayerManager localPlayer;
-        private PlayerManager oppPlayer;
-
+        private PlayerDisplay localPlayerDisplay;
+        private PlayerDisplay oppPlayerDisplay;
 
         [SerializeField]
         private TMP_Text currentRoomDisplay;
@@ -42,61 +41,29 @@ namespace Com.WhiteSwan.OpheliaDigital
             // if the only one here, it'll do me, otherwise will do everyone
             foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
             {
-                SetupPlayerManager(player);
+                SetupPlayerDisplay(player);
             }
 
         }
 
 
-        private void SetupPlayerManager(Player player)
+        private void SetupPlayerDisplay(Player player)
         {
-
-            Debug.Log(player.CustomProperties[KeyStrings.CardList]);
-
-            GameObject _pm = Instantiate(playerPrefab);
+            
             if (player == PhotonNetwork.LocalPlayer)
             {
-                localPlayer = _pm.GetComponent<PlayerManager>();
-                localPlayer.displayParent = playerDisplayPlace;
-                localPlayer.punPlayer = player;
+                GameObject _pm = Instantiate(playerDisplayPrefab, playerDisplayPlace);
+                localPlayerDisplay = _pm.GetComponent<PlayerDisplay>();
+                localPlayerDisplay.displayParent = playerDisplayPlace;
+                localPlayerDisplay.punPlayer = player;
             } else
             {
-                oppPlayer = _pm.GetComponent<PlayerManager>();
-                oppPlayer.displayParent = opponentDisplayPlace;
-                oppPlayer.punPlayer = player;
+                GameObject _pm = Instantiate(playerDisplayPrefab, opponentDisplayPlace);
+                oppPlayerDisplay = _pm.GetComponent<PlayerDisplay>();
+                oppPlayerDisplay.displayParent = opponentDisplayPlace;
+                oppPlayerDisplay.punPlayer = player;
             }
         }
-
-        public void SetLocalPlayerReady()
-        {
-            localPlayer.SetReady();
-            readyButton.SetActive(false);
-        }
-
-
-        #region photon callbacks
-
-        public override void OnLeftRoom()
-        {
-            SceneManager.LoadScene(0); // send us back to the lobby - using scenemanager here because we are not syncing with other players
-        }
-
-        /* this won't fire - players won't enter the room straight into MPM area, they'll go to draft area
-        public override void OnPlayerEnteredRoom(Player other)
-        {
-            SetupPlayerManager(other);
-        }
-        */
-        #endregion
-
-        #region public methods
-
-        public void LeaveRoom()
-        {
-            PhotonNetwork.LeaveRoom();
-        }
-
-        #endregion
 
     }
 }

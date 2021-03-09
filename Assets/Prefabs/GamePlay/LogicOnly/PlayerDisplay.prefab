@@ -37,7 +37,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -289.7, y: 162.4}
+  m_AnchoredPosition: {x: -278.69, y: 170}
   m_SizeDelta: {x: 158.62613, y: 136.17935}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &339454751553153164
@@ -55,6 +55,7 @@ MonoBehaviour:
   playerNameDisplay: {fileID: 7968936258358458302}
   currentPointsDisplay: {fileID: 5158706553894051006}
   playerIcon: {fileID: 7947793362436130033}
+  displayParent: {fileID: 0}
 --- !u!1 &5365221625891821188
 GameObject:
   m_ObjectHideFlags: 0

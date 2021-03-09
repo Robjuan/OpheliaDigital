@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.SceneManagement;
 
 using Photon.Pun;
-using Photon.Realtime;
 
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
@@ -23,10 +19,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void Start()
         {
-            // go and get image based on targetDeck string
-            // load from resources folder
-            
-            
+            // todo: visual improvements
         }
 
         public void SelectDeck()
