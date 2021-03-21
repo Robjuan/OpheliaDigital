@@ -152,9 +152,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
                     // https://doc.photonengine.com/en/realtime/current/reference/serialization-in-photon
                     // can't use lists for customproperties
-                    var cardList = GetPreconCardList(selectedDeck).ToArray();
-
-                    Debug.Log(cardList);
+                    string[] cardList = GetPreconCardList(selectedDeck).ToArray();
 
                     Hashtable ht = new Hashtable();
                     ht.Add(KeyStrings.CardList, cardList);

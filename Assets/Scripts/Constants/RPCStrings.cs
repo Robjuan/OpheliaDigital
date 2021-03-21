@@ -7,6 +7,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string StartTurn = "StartTurn";
         public const string EndTurn = "EndCurrentTurn_MasterClient";
         public const string DeactivateReadyButton = "DeactivateReadyButton";
+        public const string SetupLocalCards = "SetupLocalCards";
     }
     
 }

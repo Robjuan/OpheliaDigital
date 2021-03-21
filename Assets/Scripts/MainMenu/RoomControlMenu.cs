@@ -29,7 +29,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             // todo: separate out system setting stuffs
             if (!PhotonNetwork.IsConnected)
             {
-                Debug.Log("Attempting to connect");
                 Screen.SetResolution(1024, 768, false);
 
                 PhotonNetwork.AutomaticallySyncScene = true;

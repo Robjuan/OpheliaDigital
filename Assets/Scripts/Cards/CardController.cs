@@ -28,11 +28,14 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public Faction faction;
 
+        public PlayerController owner;
 
-        // this is a struct defined in cardscontainer
-        // this struct is a number of properties that are set based on the card's current container
-        // todo: this must support no container
-        public CardsContainer.ExternallySetCardProperties externallySetProperties;
+        public CardsZone currentZone;
+
+        // this is a struct defined in cardszone
+        // this struct is a number of properties that are set based on the card's current zone
+        // todo: this must support no zone
+        public CardsZone.ExternallySetCardProperties externallySetProperties;
     
         // will build these cards out by composition
         // each card type will be it's own component (CharacterCardController / TurningPointCardController)
@@ -54,6 +57,23 @@ namespace Com.WhiteSwan.OpheliaDigital
         private void OnMouseDown()
         {
             Debug.Log("clicked");
+        }
+
+        public bool MoveTo(CardsZone targetZone)
+        {
+            if (true) // TODO: rules check if this is allowed
+            {
+                currentZone.RemoveCard(this);
+
+                currentZone = targetZone;
+                targetZone.AddCard(this);
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
     }

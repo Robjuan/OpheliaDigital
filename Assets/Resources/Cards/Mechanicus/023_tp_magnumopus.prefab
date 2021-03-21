@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5451999533082026180
+--- !u!114 &8400335359301706994
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4676572987479025592}
+  m_GameObject: {fileID: 1907863059413216201}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da10d0a572d45a14d8b0c1a730a1e6fc, type: 3}
@@ -20,7 +20,7 @@ MonoBehaviour:
     2 Armour until the end of the turn; \n- Remove 2 damage from this character;
     \n- Draw a card, then return a card from your hand to the top or bottom of your
     deck."
---- !u!1001 &1088456018963605148
+--- !u!1001 &6162729660942904045
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -119,9 +119,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &4676572987479025592 stripped
+--- !u!1 &1907863059413216201 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 1088456018963605148}
+  m_PrefabInstance: {fileID: 6162729660942904045}
   m_PrefabAsset: {fileID: 0}

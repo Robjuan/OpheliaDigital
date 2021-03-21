@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7291002764527251328
+--- !u!114 &1402611319422931017
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1002995985534358049}
+  m_GameObject: {fileID: 511967831971140896}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
     characters from your forgotten zone to open slots.'
   passiveText: 
   devName: 009_xibalba
---- !u!1001 &4762315990530970373
+--- !u!1001 &5253060452891022340
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -130,9 +130,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &1002995985534358049 stripped
+--- !u!1 &511967831971140896 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 4762315990530970373}
+  m_PrefabInstance: {fileID: 5253060452891022340}
   m_PrefabAsset: {fileID: 0}

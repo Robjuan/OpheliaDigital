@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6936095595756359667}
   - component: {fileID: -8008754494851543004}
+  - component: {fileID: 5106754437245524573}
   m_Layer: 0
-  m_Name: GameFlowManager
+  m_Name: GameRulesManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -43,3 +44,30 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f5093380aee1be48a41e7ea276019fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  localGameManager: {fileID: 0}
+  initialCardCount: 9
+  roundCardDrawMax: 3
+  labelledZones: []
+  playerControllers: []
+--- !u!114 &5106754437245524573
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2299719408610292892}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0

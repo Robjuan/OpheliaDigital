@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8595269688427173569
+--- !u!1001 &9173001767881736050
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 675566330418747945, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
       propertyPath: m_Name
-      value: SelfDeck
+      value: CZ_SelfDeck
       objectReference: {fileID: 0}
     - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
@@ -19,14 +19,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
-      propertyPath: stackingOffset.z
-      value: -1
+      propertyPath: containedCardProperties.isClickable
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
-        type: 3}
-      propertyPath: startingLocation
-      value: 
-      objectReference: {fileID: 1364429028861063607}
     - target: {fileID: 7288948375080754663, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
       propertyPath: m_RootOrder
@@ -35,17 +30,17 @@ PrefabInstance:
     - target: {fileID: 7288948375080754663, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 202
       objectReference: {fileID: 0}
     - target: {fileID: 7288948375080754663, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -106
       objectReference: {fileID: 0}
     - target: {fileID: 7288948375080754663, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -3
       objectReference: {fileID: 0}
     - target: {fileID: 7288948375080754663, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
@@ -84,9 +79,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6203de94420d198458d2e9f001ecc49c, type: 3}
---- !u!4 &1364429028861063607 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 7325074853384218486, guid: 6203de94420d198458d2e9f001ecc49c,
-    type: 3}
-  m_PrefabInstance: {fileID: 8595269688427173569}
-  m_PrefabAsset: {fileID: 0}

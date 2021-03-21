@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7288948375080754663}
   - component: {fileID: 3679294302675074422}
   m_Layer: 0
-  m_Name: CardContainer
+  m_Name: CardsZone_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44,13 +44,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a724b0a265e04ca5609672064aed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: base_container
+  description: base_zone
   startingLocation: {fileID: 0}
   stackingOffset: {x: 0, y: 0, z: 0}
-  moveOnContainerAdd: 1
+  moveOnZoneAdd: 1
   containedCardProperties:
     isPublicKnowledge: 0
-    isVisible: 0
+    isVisible: 1
     isClickable: 0
 --- !u!1 &1849897633223577049
 GameObject:

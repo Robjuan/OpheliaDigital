@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3176618675946582561
+--- !u!114 &3581745628229053367
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3958134687890728298}
+  m_GameObject: {fileID: 3110961551133571123}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
     the Eternal Flame defeats a character that was haunted; you may add a card named
     Malek's Faithful from your deck or forgotten zone to your hand."
   devName: 048_malek
---- !u!1001 &8724141147511399502
+--- !u!1001 &7264347627836094743
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -132,9 +132,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &3958134687890728298 stripped
+--- !u!1 &3110961551133571123 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 8724141147511399502}
+  m_PrefabInstance: {fileID: 7264347627836094743}
   m_PrefabAsset: {fileID: 0}

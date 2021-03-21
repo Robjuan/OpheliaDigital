@@ -12,10 +12,13 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string ChosenDeck = "chosendeck";
         public const string CardList = "cardlist";
 
+        public const string UnityInstanceID = "unityinstanceid";
+
         #endregion
 
         #region room properties
 
+        // draft and other properties
         public const string AllReady = "allready";
 
         public const string DraftType = "draftype";
@@ -23,6 +26,14 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string FullDraft = "fulldraft";
 
         public const string AvailableDecks = "availabledecks";
+
+        // bytecodes for customtypes
+        public const byte RP_Player = (byte)'L';
+        public const byte RP_Card = (byte)'C';
+
+        // gameplay state management
+        public const string CardLoadComplete = "cardloadcomplete";
+
 
         #endregion
 

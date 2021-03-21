@@ -17,13 +17,13 @@ namespace Com.WhiteSwan.OpheliaDigital
         public Image playerIcon;
 
         [HideInInspector]
-        // both set by MultiPlayerManager on instantiation
+        // both set by LocalGameManager on instantiation
         public RectTransform displayParent;
-        public Player punPlayer;
+        public PlayerController playerController;
 
         private void Start()
         {
-            playerNameDisplay.text = punPlayer.NickName;
+            playerNameDisplay.text = playerController.GetName();
             currentPointsDisplay.text = "0";
 
             this.GetComponent<RectTransform>().SetParent(displayParent);

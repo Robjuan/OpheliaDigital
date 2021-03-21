@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &925530684205136271
+--- !u!114 &5961295988239928570
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7847664008852761965}
+  m_GameObject: {fileID: 2746793925964261900}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da10d0a572d45a14d8b0c1a730a1e6fc, type: 3}
@@ -24,7 +24,7 @@ MonoBehaviour:
     - Detach 1 card equipped to
     a Mechanicus character you control: Play a * Animae Mechanicus character from
     your deck or forgotten zone into an open slot, and equip  Crisis Call to it.'
---- !u!1001 &2527925081731017801
+--- !u!1001 &7629920360152247080
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -123,9 +123,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &7847664008852761965 stripped
+--- !u!1 &2746793925964261900 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 2527925081731017801}
+  m_PrefabInstance: {fileID: 7629920360152247080}
   m_PrefabAsset: {fileID: 0}

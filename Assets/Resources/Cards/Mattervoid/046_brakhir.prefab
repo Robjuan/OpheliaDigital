@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4385628027941065735
+--- !u!114 &9203935542360442920
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3188551855245584035}
+  m_GameObject: {fileID: 6547560782304144982}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
   passiveText: 'Keeper of the Tome (Passive): At the end of the round; you may add
     a card named Tome of Brak''hir from your forgotten zone to your hand.'
   devName: 046_brakhir
---- !u!1001 &7186757255029237639
+--- !u!1001 &1522750448051531634
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -131,9 +131,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &3188551855245584035 stripped
+--- !u!1 &6547560782304144982 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 7186757255029237639}
+  m_PrefabInstance: {fileID: 1522750448051531634}
   m_PrefabAsset: {fileID: 0}

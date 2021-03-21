@@ -208,8 +208,8 @@ namespace Com.WhiteSwan.OpheliaDigital
                 string localPath = targetPath + newCard.name + ".prefab";
                 PrefabUtility.SaveAsPrefabAsset(newCard, localPath);
 
-                // add the devName to list of devnames
-                devNameList.Add(newCard.name);
+                // add the devName to list of devnames, with prefix for loading
+                devNameList.Add("Cards/"+faction+"/"+newCard.name); 
 
                 // destory the gameobject we created in the scene
                 DestroyImmediate(newCard);

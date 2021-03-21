@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6681255364275672715
+--- !u!114 &6395052439881569674
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4045440951126621259}
+  m_GameObject: {fileID: 8838459392462136989}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
   passiveText: 'Revelation (Passive): When an enemy character defeats or begins contesting
     Curse of Prescience; you may have Curse of Prescience haunt that character.'
   devName: 054_prescience
---- !u!1001 &8635711372364201327
+--- !u!1001 &3842974957898459065
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -130,9 +130,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &4045440951126621259 stripped
+--- !u!1 &8838459392462136989 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 8635711372364201327}
+  m_PrefabInstance: {fileID: 3842974957898459065}
   m_PrefabAsset: {fileID: 0}
