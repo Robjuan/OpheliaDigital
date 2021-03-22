@@ -23,6 +23,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
+        // for storing custom classes as RoomProperties
         public static object Deserialize(byte[] data)
         {
             using (var memStream = new MemoryStream())
@@ -34,7 +35,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                 return obj;
             }
         }
-
+        // as above
         public static byte[] Serialize(object obj)
         {
             BinaryFormatter bf = new BinaryFormatter();

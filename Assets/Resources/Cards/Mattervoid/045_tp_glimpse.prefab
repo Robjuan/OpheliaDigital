@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8917327542426225891
+--- !u!114 &8437843549557245247
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3519142969080470897}
+  m_GameObject: {fileID: 1875912985402626787}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: da10d0a572d45a14d8b0c1a730a1e6fc, type: 3}
@@ -16,7 +16,7 @@ MonoBehaviour:
   effectText: Place all enemy characters under friendly Mattervoid characters. When
     a Mattervoid character leaves the field; return characters under it to their
     owner's hand.
---- !u!1001 &9163417055720053845
+--- !u!1001 &6193832992891114439
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -115,9 +115,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &3519142969080470897 stripped
+--- !u!1 &1875912985402626787 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 9163417055720053845}
+  m_PrefabInstance: {fileID: 6193832992891114439}
   m_PrefabAsset: {fileID: 0}

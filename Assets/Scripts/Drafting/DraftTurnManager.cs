@@ -170,26 +170,10 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public List<string> GetPreconCardList(string factionName)
         {
-            List<string> cardList;
-            string filePath = Application.dataPath + "/Resources/Cards/" + factionName + "_generated_card_list";
-            FileStream fs = new FileStream(filePath, FileMode.Open);
-            try
-            {
-                BinaryFormatter formatter = new BinaryFormatter();
-                cardList = (List<string>)formatter.Deserialize(fs);
-            }
-            catch (SerializationException e)
-            {
-                Debug.LogError(e);
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-            }
+            var file = Resources.Load("Cards/" + factionName + "_generated_card_list") as TextAsset;
+            List<string> cardList = new List<string>(file.text.Split(','));
 
             return cardList;
-            
         }
 
         [PunRPC]

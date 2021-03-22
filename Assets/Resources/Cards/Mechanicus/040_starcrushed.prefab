@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7433344113925644529
+--- !u!114 &3625104536452703747
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2234112078460264330}
+  m_GameObject: {fileID: 80853392741756735}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
     character; you may move Starcrushed Overdrive to an open slot. It may attack
     a second time this contest phase.'
   devName: 040_starcrushed
---- !u!1001 &5835917142177963694
+--- !u!1001 &5684458737925369371
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -131,9 +131,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &2234112078460264330 stripped
+--- !u!1 &80853392741756735 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 5835917142177963694}
+  m_PrefabInstance: {fileID: 5684458737925369371}
   m_PrefabAsset: {fileID: 0}

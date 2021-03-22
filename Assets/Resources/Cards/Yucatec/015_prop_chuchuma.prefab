@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7525127105995632059
+--- !u!114 &2514560580905465137
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8298181650878617832}
+  m_GameObject: {fileID: 5886856728414936885}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
   passiveText: 'Red Rivers (Passive): At the end of each turn; you may move 1 damage
     from any character to another.'
   devName: 015_prop_chuchuma
---- !u!1001 &4383531442859219404
+--- !u!1001 &2183735236043709969
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -129,9 +129,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &8298181650878617832 stripped
+--- !u!1 &5886856728414936885 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 4383531442859219404}
+  m_PrefabInstance: {fileID: 2183735236043709969}
   m_PrefabAsset: {fileID: 0}

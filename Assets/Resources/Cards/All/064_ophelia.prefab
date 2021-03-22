@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8356352807722691983
+--- !u!114 &3835178184642993686
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4439674744981094910}
+  m_GameObject: {fileID: 2876526263452853071}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -39,7 +39,7 @@ MonoBehaviour:
     is in your drafted pool, you may add this card to the current pack: Draft an
     additional card from the current pack.'
   devName: 064_ophelia
---- !u!1001 &8241756684821119194
+--- !u!1001 &7500472246412616299
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -138,9 +138,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &4439674744981094910 stripped
+--- !u!1 &2876526263452853071 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 8241756684821119194}
+  m_PrefabInstance: {fileID: 7500472246412616299}
   m_PrefabAsset: {fileID: 0}

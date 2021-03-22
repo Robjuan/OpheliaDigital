@@ -26,6 +26,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         [HideInInspector]
         public List<PlayerController> playerControllers = new List<PlayerController>();
 
+        private List<GameObject> allCards = new List<GameObject>();
 
         [Header("Display Controls")]
         public RectTransform playerDisplayPlace;
@@ -93,7 +94,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                 if(key.Contains(cardIdentPrefix))
                 {
                     RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
-                    Instantiate(Resources.Load(rpCard.devName));
+                    allCards.Add((GameObject)Instantiate(Resources.Load(rpCard.devName)));
 
                 }
             }

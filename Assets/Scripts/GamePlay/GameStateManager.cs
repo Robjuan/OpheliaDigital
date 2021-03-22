@@ -133,8 +133,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             ht.Add(KeyStrings.CardLoadComplete, true);
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
 
-            // current todo: fire off the RPC to tell every to setup local when this room property hits
-
         }
 
 

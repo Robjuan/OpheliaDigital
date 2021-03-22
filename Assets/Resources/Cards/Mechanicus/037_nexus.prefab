@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2266307513023277980
+--- !u!114 &857872591594291723
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6875827889525619831}
+  m_GameObject: {fileID: 6747146704594224019}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -30,7 +30,7 @@ MonoBehaviour:
   passiveText: 'Docking Bay (Passive): Machina Nexus gains twice the amount of Power
     and Life from cards equipped to it.'
   devName: 037_nexus
---- !u!1001 &1195608568582913363
+--- !u!1001 &1323724656076686007
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -129,9 +129,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &6875827889525619831 stripped
+--- !u!1 &6747146704594224019 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 1195608568582913363}
+  m_PrefabInstance: {fileID: 1323724656076686007}
   m_PrefabAsset: {fileID: 0}

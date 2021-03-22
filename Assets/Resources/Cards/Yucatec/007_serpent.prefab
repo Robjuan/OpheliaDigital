@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7757603469661631860
+--- !u!114 &2196512590838300568
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1051701601407311893}
+  m_GameObject: {fileID: 1036171614478142648}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
   passiveText: 'Revered (Passive): Move a friendly Prophet character to an uncontested
     open slot.'
   devName: 007_serpent
---- !u!1001 &4711921524791992625
+--- !u!1001 &4728012382901226908
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -131,9 +131,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &1051701601407311893 stripped
+--- !u!1 &1036171614478142648 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 4711921524791992625}
+  m_PrefabInstance: {fileID: 4728012382901226908}
   m_PrefabAsset: {fileID: 0}

@@ -225,28 +225,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void SaveCardList(List<string> cardList, CardController.Faction faction)
         {
-            string saveFilePath = Application.dataPath + "/Resources/Cards/" + faction + "_generated_card_list"; // + DateTime.UtcNow.ToString("yyyyMMddHHmm");
-
-            if(File.Exists(saveFilePath))
-            {
-                File.Delete(saveFilePath);
-            }
-            FileStream fs = new FileStream(saveFilePath, FileMode.Create);
-            BinaryFormatter formatter = new BinaryFormatter();
-
-            try
-            {
-                formatter.Serialize(fs, cardList);
-            } 
-            catch (SerializationException e)
-            {
-                Debug.LogError("Serialisation failed bc : " + e.Message);
-                throw;
-            }
-            finally
-            {
-                fs.Close();
-            }
+            TextAsset generatedAsset = new TextAsset(cardList.ToString());
+            AssetDatabase.CreateAsset(generatedAsset, "Assets/Resources/Cards/"+faction+"_generated_card_list.asset");
 
         }
 

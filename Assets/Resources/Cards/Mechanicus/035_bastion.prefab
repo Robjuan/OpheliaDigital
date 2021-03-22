@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &6346070210112851628
+--- !u!114 &6501206414006057899
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7978536633499556512}
+  m_GameObject: {fileID: 1876725897497844914}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -31,7 +31,7 @@ MonoBehaviour:
   passiveText: 'Piercing Rounds (Passive): When Hallowed Bastion defeats an enemy
     character with Liquifier Blast; deal 3 damage to an enemy character.'
   devName: 035_bastion
---- !u!1001 &2397333828974107524
+--- !u!1001 &6194427384801484182
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -130,9 +130,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &7978536633499556512 stripped
+--- !u!1 &1876725897497844914 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 2397333828974107524}
+  m_PrefabInstance: {fileID: 6194427384801484182}
   m_PrefabAsset: {fileID: 0}
