@@ -172,7 +172,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             var file = Resources.Load("Cards/" + factionName + "_generated_card_list") as TextAsset;
             List<string> cardList = new List<string>(file.text.Split(','));
-
             return cardList;
         }
 

@@ -259,7 +259,7 @@ PrefabInstance:
     - target: {fileID: 6970916040603889542, guid: 444e946952ca7994f8e113ab440a4676,
         type: 3}
       propertyPath: m_Name
-      value: CZ_SelfHand
+      value: CZ_myHand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 444e946952ca7994f8e113ab440a4676, type: 3}
@@ -469,8 +469,8 @@ Transform:
   m_LocalPosition: {x: -185.81943, y: 41.824635, z: 22.108856}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 5180211780974780450}
   - {fileID: 1573088861}
+  - {fileID: 5180211780974780450}
   - {fileID: 1552494116}
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -1335,7 +1335,7 @@ PrefabInstance:
     - target: {fileID: 6936095595756359667, guid: 378afd248ca0c3b49889a08eb38f7451,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6936095595756359667, guid: 378afd248ca0c3b49889a08eb38f7451,
         type: 3}
@@ -1617,7 +1617,7 @@ PrefabInstance:
     - target: {fileID: 8515492699754472795, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
         type: 3}
       propertyPath: m_Name
-      value: CZ_SelfDeck
+      value: CZ_myDeck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17c0f2a582bd1184e8d5b1e6d0805060, type: 3}
@@ -2131,7 +2131,7 @@ PrefabInstance:
     - target: {fileID: 4370345420697137511, guid: 2bb1acef6abc11f438dd8a6bb6752bb7,
         type: 3}
       propertyPath: m_Name
-      value: CZ_OppHand
+      value: CZ_oppHand
       objectReference: {fileID: 0}
     - target: {fileID: 5827950471568160425, guid: 2bb1acef6abc11f438dd8a6bb6752bb7,
         type: 3}
@@ -2141,12 +2141,12 @@ PrefabInstance:
     - target: {fileID: 5827950471568160425, guid: 2bb1acef6abc11f438dd8a6bb6752bb7,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -362
+      value: -172.3
       objectReference: {fileID: 0}
     - target: {fileID: 5827950471568160425, guid: 2bb1acef6abc11f438dd8a6bb6752bb7,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 174
+      value: 204.7
       objectReference: {fileID: 0}
     - target: {fileID: 5827950471568160425, guid: 2bb1acef6abc11f438dd8a6bb6752bb7,
         type: 3}
@@ -2292,7 +2292,7 @@ PrefabInstance:
     - target: {fileID: 5180211781330714288, guid: 33ab382b92bcfce44b12924995745ad3,
         type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5180211781330714288, guid: 33ab382b92bcfce44b12924995745ad3,
         type: 3}
@@ -2382,15 +2382,54 @@ PrefabInstance:
         type: 3}
     - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
         type: 3}
+      propertyPath: zones.Array.data[0]
+      value: 
+      objectReference: {fileID: 1669527190}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
+      propertyPath: zones.Array.data[1]
+      value: 
+      objectReference: {fileID: 417321697}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
+      propertyPath: zones.Array.data[2]
+      value: 
+      objectReference: {fileID: 8296204851856606826}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
+      propertyPath: zones.Array.data[3]
+      value: 
+      objectReference: {fileID: 245402656276783808}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
       propertyPath: opponentDisplayPlace
       value: 
       objectReference: {fileID: 299889935}
     - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
         type: 3}
-      propertyPath: playerControllerPrefab
-      value: 
-      objectReference: {fileID: 5992565077839887847, guid: 7ee824540254fb84a847f8a4cb9260f1,
+      propertyPath: labelledZones.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
         type: 3}
+      propertyPath: labelledZones.Array.data[0]
+      value: 
+      objectReference: {fileID: 1669527190}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
+      propertyPath: labelledZones.Array.data[1]
+      value: 
+      objectReference: {fileID: 417321697}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
+      propertyPath: labelledZones.Array.data[2]
+      value: 
+      objectReference: {fileID: 8296204851856606826}
+    - target: {fileID: 6784946528466698991, guid: 33ab382b92bcfce44b12924995745ad3,
+        type: 3}
+      propertyPath: labelledZones.Array.data[3]
+      value: 
+      objectReference: {fileID: 245402656276783808}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33ab382b92bcfce44b12924995745ad3, type: 3}
 --- !u!114 &5180211780974780449 stripped
@@ -2476,7 +2515,7 @@ PrefabInstance:
     - target: {fileID: 5567581314226394641, guid: bab9d494c6b081b439bb244840cc2601,
         type: 3}
       propertyPath: m_Name
-      value: CZ_OppDeck
+      value: CZ_oppDeck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bab9d494c6b081b439bb244840cc2601, type: 3}

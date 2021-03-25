@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8516120611679505598
+--- !u!114 &4943165019302478397
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5043064192403411356}
+  m_GameObject: {fileID: 4303128867045754795}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -32,7 +32,7 @@ MonoBehaviour:
   passiveText: 'Shared Destiny (Passive): Damage that would be done to friendly Yucatec
     characters may be allocated between friendly Yucatec characters instead.'
   devName: 001_agua
---- !u!1001 &720838209748816056
+--- !u!1001 &8379991945192408719
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -131,9 +131,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &5043064192403411356 stripped
+--- !u!1 &4303128867045754795 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 720838209748816056}
+  m_PrefabInstance: {fileID: 8379991945192408719}
   m_PrefabAsset: {fileID: 0}

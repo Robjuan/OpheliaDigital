@@ -20,8 +20,13 @@ namespace Com.WhiteSwan.OpheliaDigital
         public static LocalGameManager Instance;
 
         public GameStateManager gameStateManager;
+        public List<CardsZone> zones = new List<CardsZone>();
 
+
+        [Header("Prefab Refs")]
         public GameObject playerControllerPrefab;
+        [SerializeField]
+        private GameObject readyButton;
 
         [HideInInspector]
         public List<PlayerController> playerControllers = new List<PlayerController>();
@@ -34,8 +39,8 @@ namespace Com.WhiteSwan.OpheliaDigital
         [SerializeField]
         private TMP_Text currentRoomDisplay;
 
-        [SerializeField]
-        private GameObject readyButton;
+
+        private string lastSetPhase;
 
         private void Start()
         {
@@ -71,7 +76,60 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         }
 
-        
+        // this will catch any updates to the gamestate from the GameStateManager
+        public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+        {
+            // if my player thingo changed
+            if (propertiesThatChanged.ContainsKey(KeyStrings.ActorPrefix + PhotonNetwork.LocalPlayer.ActorNumber))
+            {
+                Debug.Log("my rp_player changed");
+            }
+
+            if (propertiesThatChanged.ContainsKey(KeyStrings.RP_Board))
+            {
+                RP_Board board = (RP_Board)propertiesThatChanged[KeyStrings.RP_Board];
+                var retval = ChangePhase(board.currentPhase);
+                if(!retval)
+                {
+                    Debug.LogError("unable to change phase to :" + board.currentPhase);
+                }
+            }
+
+        }
+
+        private CardsZone ResolveRPZoneToLocal((string label, int actorNumber) RPZone)
+        {
+            foreach(CardsZone zone in zones)
+            {
+                // one of my zones
+                if(RPZone.actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                {
+                    if (RPZone.label == KeyStrings.Zone_Deck && zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
+                    {
+                        return zone;
+                    }
+                    else if (RPZone.label == KeyStrings.Zone_Hand && zone.localZoneType == CardsZone.LocalZoneType.MyHand)
+                    {
+                        return zone;
+                    }
+                } 
+                else // opp or neutral zone
+                {
+                    if (RPZone.label == KeyStrings.Zone_Deck && zone.localZoneType == CardsZone.LocalZoneType.OppDeck)
+                    {
+                        return zone;
+                    }
+                    else if (RPZone.label == KeyStrings.Zone_Hand && zone.localZoneType == CardsZone.LocalZoneType.OppHand)
+                    {
+                        return zone;
+                    }
+                }
+
+                
+            }
+            Debug.LogError("unable to resolve RPZone to local zone");
+            return null;
+        }
 
         private PlayerController SetupPlayerController(Player punPlayer)
         {
@@ -88,29 +146,44 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void PrepareCards()
         {
-            string cardIdentPrefix = "card_uid_";
             foreach (string key in PhotonNetwork.CurrentRoom.CustomProperties.Keys)
             {
-                if(key.Contains(cardIdentPrefix))
+                if(key.Contains(KeyStrings.CardIdentPrefix))
                 {
                     RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
-                    allCards.Add((GameObject)Instantiate(Resources.Load(rpCard.devName)));
-
+                    GameObject localCard = (GameObject)Instantiate(Resources.Load(rpCard.devName));
+                    var localZone = ResolveRPZoneToLocal(rpCard.zoneLocation);
+                    Debug.Log("resolving from " + rpCard.zoneLocation + " to : " + localZone);
+                    localCard.GetComponent<CardController>().currentZone = localZone;
+                    allCards.Add(localCard);
                 }
             }
 
         }
         
-        // this will catch any updates to the gamestate from the GameStateManager
-        public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
+        public bool ChangePhase(string phaseKey)
         {
-            // if my player thingo changed
-            if(propertiesThatChanged.ContainsKey(PhotonNetwork.LocalPlayer.ActorNumber))
+            if (phaseKey == lastSetPhase)
             {
-                Debug.Log("local player thing changed");
+                // don't restart the current phase
+                return false;
             }
+            if(phaseKey == KeyStrings.PreGameSetupPhase)
+            {
+                lastSetPhase = phaseKey;
+                DoPreGameSetupPhase();
+                return true;
+            }
+            return false;
         }
 
+        private void DoPreGameSetupPhase()
+        {
+            // deal cards to me and to opponent
+
+
+
+        }
     }
 }
 

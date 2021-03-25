@@ -43,5 +43,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 310ca1c655332b44a986e80222a1ffd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 1047508360017248537, guid: 507bd43d97506d94fa8d36c9ce39db14,
+  gameStateManager: {fileID: 0}
+  zones:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  playerControllerPrefab: {fileID: 5992565077839887847, guid: 7ee824540254fb84a847f8a4cb9260f1,
     type: 3}
+  readyButton: {fileID: 0}
+  playerControllers: []
+  playerDisplayPlace: {fileID: 0}
+  opponentDisplayPlace: {fileID: 0}
+  currentRoomDisplay: {fileID: 0}

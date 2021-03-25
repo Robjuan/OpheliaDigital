@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Yucatec_generated_card_list
-  m_Script: System.Collections.Generic.List`1[System.String]
+  m_Script: Cards/Yucatec/001_agua,Cards/Yucatec/002_moon,Cards/Yucatec/010_ganador,Cards/Yucatec/003_sun,Cards/Yucatec/006_ocelotl,Cards/Yucatec/011_owl,Cards/Yucatec/015_prop_chuchuma,Cards/Yucatec/014_prop_chaac,Cards/Yucatec/017_prop_itzamna,Cards/Yucatec/012_temple,Cards/Yucatec/004_blood,Cards/Yucatec/007_serpent,Cards/Yucatec/008_deceiver,Cards/Yucatec/005_exiled,Cards/Yucatec/021_tp_bloodpact,Cards/Yucatec/019_tp_gaze,Cards/Yucatec/013_acan,Cards/Yucatec/016_prop_huracan,Cards/Yucatec/018_prop_kisin,Cards/Yucatec/009_xibalba,Cards/Yucatec/020_tp_immolation

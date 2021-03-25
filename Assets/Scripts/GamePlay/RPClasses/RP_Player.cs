@@ -12,5 +12,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public int points;
 
+        public int turnOrder; // -1 means not yet assigned
+
     }
 }

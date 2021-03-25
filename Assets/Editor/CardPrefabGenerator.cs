@@ -225,11 +225,10 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void SaveCardList(List<string> cardList, CardController.Faction faction)
         {
-            TextAsset generatedAsset = new TextAsset(cardList.ToString());
+            TextAsset generatedAsset = new TextAsset(string.Join(",",cardList));
             AssetDatabase.CreateAsset(generatedAsset, "Assets/Resources/Cards/"+faction+"_generated_card_list.asset");
 
         }
-
 
     }
 

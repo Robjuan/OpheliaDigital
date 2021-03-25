@@ -14,8 +14,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}
+      propertyPath: label
+      value: mydeck
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
+        type: 3}
       propertyPath: description
       value: SelfDeck
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
+        type: 3}
+      propertyPath: localZoneType
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679294302675074422, guid: 6203de94420d198458d2e9f001ecc49c,
         type: 3}

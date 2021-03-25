@@ -62,10 +62,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
+        type: 3}
+      propertyPath: label
+      value: myhand
+      objectReference: {fileID: 0}
+    - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
+        type: 3}
+      propertyPath: localZoneType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8515492699754472795, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
         type: 3}
       propertyPath: m_Name
-      value: CardsZone_Base
+      value: CZ_SelfHand
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17c0f2a582bd1184e8d5b1e6d0805060, type: 3}

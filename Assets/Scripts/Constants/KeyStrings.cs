@@ -17,6 +17,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         #endregion
 
         #region room properties
+        // these must all be unique VALUES
 
         // draft and other properties
         public const string AllReady = "allready";
@@ -28,20 +29,40 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string AvailableDecks = "availabledecks";
 
         // bytecodes for customtypes
+        // RESERVED BY PHOTON: W, V, Q, P
         public const byte RP_Player = (byte)'L';
         public const byte RP_Card = (byte)'C';
+        public const byte RP_Board = (byte)'B';
 
         // gameplay state management
         public const string CardLoadComplete = "cardloadcomplete";
+        public const string CurrentPhase = "currentphase";
+        public const string ActorPrefix = "actor_";
+        public const string CardIdentPrefix = "card_uid_";
 
 
         #endregion
 
-        #region ophelia properties - TODO: these should come from json 
+        #region ophelia properties 
+        // todo: maybe move these to their own file
 
+
+        //TODO: these should come from json 
         public const string Mattervoid = "Mattervoid";
         public const string Mechanicus = "Mechanicus";
         public const string Yucatec = "Yucatec";
+
+        public const string PreGameSetupPhase = "pgsp";
+
+        public const string RP_Zone_Hand = "rpz_hand";
+        public const string RP_Zone_Deck = "rpz_deck";
+
+        public const string Zone_Hand = "hand";
+        public const string Zone_OppHand = "opphand";
+
+        public const string Zone_Deck = "deck";
+        public const string Zone_OppDeck = "oppdeck";
+
 
         #endregion
     }

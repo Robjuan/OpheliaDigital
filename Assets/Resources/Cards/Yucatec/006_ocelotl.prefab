@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &2204294604830561461
+--- !u!114 &6773303996525418588
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6672156147615946350}
+  m_GameObject: {fileID: 449718359374414837}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
     gains 2 Power and Life for each character under it. Characters under friendly
     Yucatec characters may be sacrificed when activating an Honor the Gods ability.'
   devName: 006_ocelotl
---- !u!1001 &1397307805953660746
+--- !u!1001 &5314747660590252753
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -132,9 +132,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &6672156147615946350 stripped
+--- !u!1 &449718359374414837 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 1397307805953660746}
+  m_PrefabInstance: {fileID: 5314747660590252753}
   m_PrefabAsset: {fileID: 0}

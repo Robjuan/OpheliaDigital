@@ -65,7 +65,17 @@ PrefabInstance:
     - target: {fileID: 5567581314226394641, guid: bab9d494c6b081b439bb244840cc2601,
         type: 3}
       propertyPath: m_Name
-      value: CZ_OppDeck (1)
+      value: CZ_OppHand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587072459504824654, guid: bab9d494c6b081b439bb244840cc2601,
+        type: 3}
+      propertyPath: label
+      value: opphand
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587072459504824654, guid: bab9d494c6b081b439bb244840cc2601,
+        type: 3}
+      propertyPath: localZoneType
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bab9d494c6b081b439bb244840cc2601, type: 3}

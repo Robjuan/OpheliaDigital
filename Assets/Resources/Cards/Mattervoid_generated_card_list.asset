@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mattervoid_generated_card_list
-  m_Script: System.Collections.Generic.List`1[System.String]
+  m_Script: Cards/Mattervoid/044_beelzelbul,Cards/Mattervoid/043_baal,Cards/Mattervoid/049_cavalier,Cards/Mattervoid/048_malek,Cards/Mattervoid/046_brakhir,Cards/Mattervoid/047_apprentice,Cards/Mattervoid/063_widowmaker,Cards/Mattervoid/057_connor,Cards/Mattervoid/054_prescience,Cards/Mattervoid/052_abomination,Cards/Mattervoid/060_succubus,Cards/Mattervoid/053_wanderer,Cards/Mattervoid/056_nekomancer,Cards/Mattervoid/055_maleksfaithful,Cards/Mattervoid/045_tp_glimpse,Cards/Mattervoid/051_tp_feasting,Cards/Mattervoid/058_riddlerimp,Cards/Mattervoid/059_spectre,Cards/Mattervoid/061_thoughtfiend,Cards/Mattervoid/050_tp_tome,Cards/Mattervoid/062_valkyrie

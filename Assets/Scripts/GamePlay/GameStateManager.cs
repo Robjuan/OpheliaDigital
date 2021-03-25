@@ -27,15 +27,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         public int initialCardCount = 9;
         public int roundCardDrawMax = 3;
 
-        [Serializable]
-        public struct LabelledZone
-        {
-            public string name;
-            public CardsZone zone;
-        }
-
-        public List<LabelledZone> labelledZones = new List<LabelledZone>();
-
         // filled by LocalGameManager in Start()
         [HideInInspector]
         public List<PlayerController> playerControllers = new List<PlayerController>();
@@ -44,7 +35,8 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             bool regP = PhotonPeer.RegisterType(typeof(RP_Player), KeyStrings.RP_Player, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
             bool regC = PhotonPeer.RegisterType(typeof(RP_Card), KeyStrings.RP_Card, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
-            if(!(regC&&regP))
+            bool regB = PhotonPeer.RegisterType(typeof(RP_Board), KeyStrings.RP_Board, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
+            if (!(regC&&regP&&regB))
             {
                 Debug.LogError("custom types could not be registered");
             }
@@ -60,12 +52,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
         
-        [PunRPC]
-        public void SetupLocalCards()
-        {
-            localGameManager.PrepareCards();
-        }
-
         private void SetupGameStateRoomProperties()
         {
             if(!PhotonNetwork.IsMasterClient)
@@ -75,28 +61,38 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             Hashtable ht = new Hashtable();
+
             int uniqueInstanceID = 0;
 
-            // for duplicate checking
-            //List<string> allCards = new List<string>();
+            var turnSeq = Enumerable.Range(0, PhotonNetwork.CurrentRoom.PlayerCount).ToList();
+            turnSeq.Shuffle();
 
             foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
             {
+
                 RP_Player rp_player = new RP_Player();
                 rp_player.points = 0;
                 rp_player.punActorID = player.ActorNumber; // todo: do we need this?
                 
+                rp_player.turnOrder = turnSeq[0];
+                turnSeq.RemoveAt(0);
+
+
                 ht = new Hashtable();
-                ht.Add(player.ActorNumber.ToString(), rp_player);
+                ht.Add(KeyStrings.ActorPrefix + player.ActorNumber.ToString(), rp_player);
                 PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
 
                 var cardArray = (string[])player.CustomProperties[KeyStrings.CardList];
                 List<string> cardList = cardArray.ToList();
+                
 
                 foreach(string card in cardList)
                 {
                     RP_Card newCard = new RP_Card();
                     GameObject prefabRef = (GameObject)Resources.Load(card);
+
+                    // need to put card in particular player's deck
+                    newCard.zoneLocation = (KeyStrings.Zone_Deck, player.ActorNumber);
 
                     newCard.instanceID = uniqueInstanceID;
                     uniqueInstanceID++;
@@ -122,12 +118,21 @@ namespace Com.WhiteSwan.OpheliaDigital
                     }
 
                     ht = new Hashtable();
-                    ht.Add("card_uid_" + uniqueInstanceID.ToString(), newCard);
+                    ht.Add(KeyStrings.CardIdentPrefix + uniqueInstanceID.ToString(), newCard);
                     PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
 
                 }
 
             }
+
+
+            RP_Board board = new RP_Board();
+            board.currentPhase = KeyStrings.PreGameSetupPhase;
+            board.currentRound = 0;
+            ht = new Hashtable();
+            ht.Add(KeyStrings.RP_Board, board);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+
 
             ht = new Hashtable();
             ht.Add(KeyStrings.CardLoadComplete, true);
@@ -153,7 +158,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             if (propertiesThatChanged.ContainsKey(KeyStrings.CardLoadComplete))
             {
-                base.photonView.RPC(RPCStrings.SetupLocalCards, RpcTarget.All);
+                localGameManager.PrepareCards();
             }
         }
 

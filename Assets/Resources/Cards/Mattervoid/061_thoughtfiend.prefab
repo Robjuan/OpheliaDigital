@@ -1,12 +1,12 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7005337292309208439
+--- !u!114 &2097591253580978345
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1213190053291349276}
+  m_GameObject: {fileID: 7818530815137441042}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
@@ -33,7 +33,7 @@ MonoBehaviour:
     character; you may convert and play a * character from your opponent''s forgotten
     zone into an open slot.'
   devName: 061_thoughtfiend
---- !u!1001 &6857402566135649336
+--- !u!1001 &2557339782646572086
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -132,9 +132,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &1213190053291349276 stripped
+--- !u!1 &7818530815137441042 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
     type: 3}
-  m_PrefabInstance: {fileID: 6857402566135649336}
+  m_PrefabInstance: {fileID: 2557339782646572086}
   m_PrefabAsset: {fileID: 0}

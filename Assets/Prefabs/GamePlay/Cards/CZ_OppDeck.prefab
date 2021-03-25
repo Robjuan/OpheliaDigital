@@ -64,13 +64,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
         type: 3}
+      propertyPath: label
+      value: oppdeck
+      objectReference: {fileID: 0}
+    - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
+        type: 3}
+      propertyPath: localZoneType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
+        type: 3}
       propertyPath: containedCardProperties.isVisible
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8515492699754472795, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
         type: 3}
       propertyPath: m_Name
-      value: CZ_OppDeck Variant
+      value: CZ_OppDeck
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 17c0f2a582bd1184e8d5b1e6d0805060, type: 3}

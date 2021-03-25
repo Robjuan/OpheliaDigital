@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Mechanicus_generated_card_list
-  m_Script: System.Collections.Generic.List`1[System.String]
+  m_Script: Cards/Mechanicus/022_cora,Cards/Mechanicus/024_vortek,Cards/Mechanicus/025_diabolical,Cards/Mechanicus/028_kaiairoc,Cards/Mechanicus/026_satellite,Cards/Mechanicus/032_apache,Cards/Mechanicus/033_spidermine,Cards/Mechanicus/034_cryosmith,Cards/Mechanicus/036_guardian,Cards/Mechanicus/031_alloy,Cards/Mechanicus/027_jeremy,Cards/Mechanicus/041_wings,Cards/Mechanicus/037_nexus,Cards/Mechanicus/035_bastion,Cards/Mechanicus/038_notironman,Cards/Mechanicus/039_splitfire,Cards/Mechanicus/042_wolfram,Cards/Mechanicus/040_starcrushed,Cards/Mechanicus/030_tp_crisiscall,Cards/Mechanicus/023_tp_magnumopus,Cards/Mechanicus/029_tp_willway

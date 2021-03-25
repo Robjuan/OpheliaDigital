@@ -7,7 +7,18 @@ namespace Com.WhiteSwan.OpheliaDigital
 
     public class CardsZone : MonoBehaviour
     {
-        public string label;
+        [System.Serializable]
+        public enum LocalZoneType
+        {
+            MyHand
+            ,MyDeck
+            ,OppHand
+            ,OppDeck
+        }
+        public LocalZoneType localZoneType;
+
+        [HideInInspector]
+        public int owner; // will match PUN ActorNumber, or -1 if not owned
 
         [Header("Display Properties")]
         public Transform startingLocation;
@@ -74,8 +85,6 @@ namespace Com.WhiteSwan.OpheliaDigital
                 return null;
             }
         }
-
-
 
     }
 

@@ -7,4 +7,4 @@ TextAsset:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: All_generated_card_list
-  m_Script: System.Collections.Generic.List`1[System.String]
+  m_Script: Cards/All/064_ophelia
