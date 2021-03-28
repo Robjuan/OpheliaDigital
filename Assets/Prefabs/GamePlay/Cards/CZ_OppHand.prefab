@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8587072459504824654, guid: bab9d494c6b081b439bb244840cc2601,
         type: 3}
+      propertyPath: rpZoneType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8587072459504824654, guid: bab9d494c6b081b439bb244840cc2601,
+        type: 3}
       propertyPath: localZoneType
       value: 2
       objectReference: {fileID: 0}

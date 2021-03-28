@@ -43,20 +43,5 @@ namespace Com.WhiteSwan.OpheliaDigital
             selfDisplay.playerController = this;
         }
 
-        public void DrawCards(int numCards)
-        {
-            for (int i = 0; i < numCards; i++)
-            {
-                bool result = deck.GetTopCard().MoveTo(hand);
-                if(!result)
-                {
-                    Debug.Log("could not draw card from deck");
-                    break;
-                }
-            }
-            
-        }
-
-
     }
 }

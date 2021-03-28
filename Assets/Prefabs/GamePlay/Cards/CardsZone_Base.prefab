@@ -44,8 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a724b0a265e04ca5609672064aed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  description: base_zone
-  startingLocation: {fileID: 0}
+  localZoneType: 0
+  rpZoneType: 0
+  owner: 0
+  startingLocation: {fileID: 7325074853384218486}
   stackingOffset: {x: 0, y: 0, z: 0}
   moveOnZoneAdd: 1
   containedCardProperties:

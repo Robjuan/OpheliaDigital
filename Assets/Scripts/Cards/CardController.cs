@@ -30,6 +30,9 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public PlayerController owner;
 
+        public int RP_instanceID; // set by GSM, allows resolution of card <-> RP_Card
+        /// </summary>
+
         public CardsZone currentZone;
 
         // this is a struct defined in cardszone
@@ -41,8 +44,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         // each card type will be it's own component (CharacterCardController / TurningPointCardController)
         // each effect will be it's own component 
         
-        // each unique card will be represented by a card id
-        // each unique card will be a prefab variant of cardbase
             
         public void ResetCardNameText()
         {

@@ -54,14 +54,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public const string PreGameSetupPhase = "pgsp";
 
-        public const string RP_Zone_Hand = "rpz_hand";
-        public const string RP_Zone_Deck = "rpz_deck";
-
         public const string Zone_Hand = "hand";
-        public const string Zone_OppHand = "opphand";
-
         public const string Zone_Deck = "deck";
-        public const string Zone_OppDeck = "oppdeck";
 
 
         #endregion

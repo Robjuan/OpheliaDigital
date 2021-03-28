@@ -92,7 +92,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                     GameObject prefabRef = (GameObject)Resources.Load(card);
 
                     // need to put card in particular player's deck
-                    newCard.zoneLocation = (KeyStrings.Zone_Deck, player.ActorNumber);
+                    newCard.zoneLocation = (CardsZone.RP_ZoneType.Deck, player.ActorNumber);
 
                     newCard.instanceID = uniqueInstanceID;
                     uniqueInstanceID++;
@@ -146,13 +146,17 @@ namespace Com.WhiteSwan.OpheliaDigital
             //DealCards(initialCardCount);
         }
 
-        private void DealCards(int numCards)
+        public bool UpdateCardLocation(CardController cardToMove, CardsZone source, CardsZone destination)
         {
-            foreach(PlayerController player in playerControllers)
-            {
-                player.DrawCards(numCards);
-            }
+            /*Hashtable ht = new Hashtable();
+            ht.Add(KeyStrings.CardIdentPrefix + cardToMove.RP_instanceID);
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht, expected_ht);
+            */
+            return true;
+
         }
+
+
 
         public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
         {

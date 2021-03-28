@@ -9,7 +9,7 @@ namespace Com.WhiteSwan.OpheliaDigital
     {
         public CardController.Faction faction;
 
-        public (string label, int actorNumber) zoneLocation;
+        public (CardsZone.RP_ZoneType remoteZoneType, int actorNumber) zoneLocation;
 
         public int ownerActorID;
 

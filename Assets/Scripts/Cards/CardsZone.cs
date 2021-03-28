@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Com.WhiteSwan.OpheliaDigital
 {
 
@@ -16,6 +17,14 @@ namespace Com.WhiteSwan.OpheliaDigital
             ,OppDeck
         }
         public LocalZoneType localZoneType;
+
+        public enum RP_ZoneType
+        {
+            Deck
+            ,Hand
+        }
+        [SerializeField]
+        private RP_ZoneType rpZoneType;
 
         [HideInInspector]
         public int owner; // will match PUN ActorNumber, or -1 if not owned
@@ -46,10 +55,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         public void AddCard(CardController thisCard)
         {
 
-            if(thisCard.currentZone != this)
-            {
-                Debug.LogWarning("currentzone not set before adding card, bad data potential");
-            }
+            thisCard.currentZone = this;
 
             thisCard.externallySetProperties = containedCardProperties; // todo: reference or copy here?
             thisCard.currentZone = this;

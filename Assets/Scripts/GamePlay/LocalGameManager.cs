@@ -22,6 +22,9 @@ namespace Com.WhiteSwan.OpheliaDigital
         public GameStateManager gameStateManager;
         public List<CardsZone> zones = new List<CardsZone>();
 
+        // these are just for convenience internally here
+        private CardsZone myDeck;
+        private CardsZone myHand;
 
         [Header("Prefab Refs")]
         public GameObject playerControllerPrefab;
@@ -72,7 +75,19 @@ namespace Com.WhiteSwan.OpheliaDigital
                 gameStateManager.playerControllers.Add(newPlayer);
             }
 
-            gameStateManager.SetupGame();
+           
+            // initialise convenience methods
+            foreach (CardsZone zone in zones)
+            {
+                if (zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
+                {
+                    myDeck = zone;
+                }
+                if (zone.localZoneType == CardsZone.LocalZoneType.MyHand)
+                {
+                    myHand = zone;
+                }
+            }
 
         }
 
@@ -97,29 +112,30 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         }
 
-        private CardsZone ResolveRPZoneToLocal((string label, int actorNumber) RPZone)
+        private CardsZone ResolveRPZoneToLocal((CardsZone.RP_ZoneType remoteZoneType, int actorNumber) RPZone)
         {
             foreach(CardsZone zone in zones)
             {
                 // one of my zones
                 if(RPZone.actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
                 {
-                    if (RPZone.label == KeyStrings.Zone_Deck && zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
+                    //if (RPZone.label == KeyStrings.Zone_Deck && zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
+                    if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Deck && zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
                     {
                         return zone;
                     }
-                    else if (RPZone.label == KeyStrings.Zone_Hand && zone.localZoneType == CardsZone.LocalZoneType.MyHand)
+                    else if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Hand && zone.localZoneType == CardsZone.LocalZoneType.MyHand)
                     {
                         return zone;
                     }
                 } 
                 else // opp or neutral zone
                 {
-                    if (RPZone.label == KeyStrings.Zone_Deck && zone.localZoneType == CardsZone.LocalZoneType.OppDeck)
+                    if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Deck && zone.localZoneType == CardsZone.LocalZoneType.OppDeck)
                     {
                         return zone;
                     }
-                    else if (RPZone.label == KeyStrings.Zone_Hand && zone.localZoneType == CardsZone.LocalZoneType.OppHand)
+                    else if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Hand && zone.localZoneType == CardsZone.LocalZoneType.OppHand)
                     {
                         return zone;
                     }
@@ -144,6 +160,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             return newPlayer;
         }
 
+        // called by GSM OnRoomPropertiesUpdate
         public void PrepareCards()
         {
             foreach (string key in PhotonNetwork.CurrentRoom.CustomProperties.Keys)
@@ -152,10 +169,13 @@ namespace Com.WhiteSwan.OpheliaDigital
                 {
                     RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
                     GameObject localCard = (GameObject)Instantiate(Resources.Load(rpCard.devName));
-                    var localZone = ResolveRPZoneToLocal(rpCard.zoneLocation);
-                    Debug.Log("resolving from " + rpCard.zoneLocation + " to : " + localZone);
-                    localCard.GetComponent<CardController>().currentZone = localZone;
+                    localCard.GetComponent<CardController>().RP_instanceID = rpCard.instanceID;
                     allCards.Add(localCard);
+
+                    var localZone = ResolveRPZoneToLocal(rpCard.zoneLocation);
+
+                    localZone.AddCard(localCard.GetComponent<CardController>());
+                    
                 }
             }
 
@@ -179,9 +199,27 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void DoPreGameSetupPhase()
         {
-            // deal cards to me and to opponent
+            // draw cards 
+            // aka request GSM to move 6 cards
+            for (int i = 0; i < GamePlayConstants.InitialDrawCount; i++)
+            {
+                DrawCard();
+            }
 
+        }
 
+        private bool DrawCard()
+        {
+            if(myDeck.GetTopCard() != null)
+            {
+                gameStateManager.UpdateCardLocation(myDeck.GetTopCard(), myDeck, myHand);
+                return true;
+            }
+            else
+            {
+                Debug.LogWarning("tried to draw with no cards in deck");
+                return false;
+            }
 
         }
     }
