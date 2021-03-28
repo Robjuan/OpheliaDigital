@@ -44,6 +44,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
 
         private string lastSetPhase;
+        private bool loaded = false;
 
         private void Start()
         {
@@ -100,13 +101,40 @@ namespace Com.WhiteSwan.OpheliaDigital
                 Debug.Log("my rp_player changed");
             }
 
-            if (propertiesThatChanged.ContainsKey(KeyStrings.RP_Board))
+            if (propertiesThatChanged.ContainsKey(KeyStrings.RP_BoardString))
             {
-                RP_Board board = (RP_Board)propertiesThatChanged[KeyStrings.RP_Board];
+                RP_Board board = (RP_Board)propertiesThatChanged[KeyStrings.RP_BoardString];
                 var retval = ChangePhase(board.currentPhase);
-                if(!retval)
+                if (!retval)
                 {
-                    Debug.LogError("unable to change phase to :" + board.currentPhase);
+                    Debug.LogWarning("unable to local change phase to :" + board.currentPhase);
+                }
+            }
+
+            // todo: do this loop better?
+            // this will update any card from any card update
+            // need to ensure cards are ready to be updated tho
+            if(loaded)
+            {
+                foreach (string key in propertiesThatChanged.Keys)
+                {
+                    if (key.Contains(KeyStrings.CardIdentPrefix))
+                    {
+                        RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
+                        //Debug.Log(rpCard.ToString());
+                        foreach (GameObject card in allCards)
+                        {
+                            Debug.Log(card.GetComponent<CardController>().RP_instanceID);
+                        }
+                        GameObject localCardCont = allCards.Find(x => x.GetComponent<CardController>().RP_instanceID == rpCard.instanceID);
+                        Debug.Log(localCardCont);
+                        var localCardCC = localCardCont.GetComponent<CardController>();
+                        if (localCardCC != null)
+                        {
+                            localCardCC.UpdateFromRP_Card(rpCard, ResolveRPZoneToLocal(rpCard.zoneLocation));
+                        }
+
+                    }
                 }
             }
 
@@ -169,15 +197,22 @@ namespace Com.WhiteSwan.OpheliaDigital
                 {
                     RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
                     GameObject localCard = (GameObject)Instantiate(Resources.Load(rpCard.devName));
-                    localCard.GetComponent<CardController>().RP_instanceID = rpCard.instanceID;
+                    var localCardCC = localCard.GetComponent<CardController>();
+
+                    localCardCC.ownerActorNumber = rpCard.ownerActorID;
+                    localCardCC.RP_instanceID = rpCard.instanceID;
                     allCards.Add(localCard);
 
                     var localZone = ResolveRPZoneToLocal(rpCard.zoneLocation);
 
-                    localZone.AddCard(localCard.GetComponent<CardController>());
+                    localZone.AddCard(localCardCC);
                     
                 }
             }
+
+            Hashtable ht = new Hashtable();
+            ht.Add(KeyStrings.PhaseReady, true);
+            PhotonNetwork.LocalPlayer.SetCustomProperties(ht);
 
         }
         
@@ -199,6 +234,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void DoPreGameSetupPhase()
         {
+            Debug.Log("doing pregame");
             // draw cards 
             // aka request GSM to move 6 cards
             for (int i = 0; i < GamePlayConstants.InitialDrawCount; i++)

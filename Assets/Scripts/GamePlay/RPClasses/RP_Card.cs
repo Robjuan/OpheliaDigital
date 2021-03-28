@@ -21,5 +21,10 @@ namespace Com.WhiteSwan.OpheliaDigital
         public int initiative;
         public int armour;
         public int life;
+
+        public override string ToString()
+        {
+            return devName + "_" + instanceID + " oid:" + ownerActorID + " rzt" + zoneLocation.remoteZoneType; 
+        }
     }
 }

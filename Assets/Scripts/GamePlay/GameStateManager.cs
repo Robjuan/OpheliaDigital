@@ -127,10 +127,11 @@ namespace Com.WhiteSwan.OpheliaDigital
 
 
             RP_Board board = new RP_Board();
-            board.currentPhase = KeyStrings.PreGameSetupPhase;
+            board.currentPhase = KeyStrings.LoadPhase;
             board.currentRound = 0;
+            Debug.Log(board);
             ht = new Hashtable();
-            ht.Add(KeyStrings.RP_Board, board);
+            ht.Add(KeyStrings.RP_BoardString, board);
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
 
 
@@ -148,12 +149,20 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public bool UpdateCardLocation(CardController cardToMove, CardsZone source, CardsZone destination)
         {
-            /*Hashtable ht = new Hashtable();
-            ht.Add(KeyStrings.CardIdentPrefix + cardToMove.RP_instanceID);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht, expected_ht);
-            */
-            return true;
 
+            RP_Card existingLocalCard = cardToMove.GetRP_Card();
+
+            Hashtable expected_ht = new Hashtable();
+            expected_ht.Add(KeyStrings.CardIdentPrefix + cardToMove.RP_instanceID, existingLocalCard);
+
+            destination.AddCard(cardToMove);
+
+            Hashtable ht = new Hashtable();
+            ht.Add(KeyStrings.CardIdentPrefix + cardToMove.RP_instanceID,cardToMove.GetRP_Card());
+
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht, expected_ht);
+            
+            return true;
         }
 
 
@@ -166,5 +175,55 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
+        public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
+        {
+            if (PhotonNetwork.IsMasterClient)
+            {
+                if (changedProps.ContainsKey(KeyStrings.PhaseReady))
+                {
+                    bool everyoneReady = true;
+                    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                    {
+                        if (player.CustomProperties.ContainsKey(KeyStrings.PhaseReady) && (bool)player.CustomProperties[KeyStrings.PhaseReady] == false) // if any player is not ready
+                        {
+                            everyoneReady = false;
+                            break;
+                        }
+                    }
+                    if(everyoneReady)
+                    {
+                        // go to the next phase
+                        RP_Board board = (RP_Board)PhotonNetwork.CurrentRoom.CustomProperties[KeyStrings.RP_BoardString]; // everything else is the same
+                        board.currentPhase = KeyStrings.PreGameSetupPhase; // todo: dynamic next-phasing
+                        Hashtable ht = new Hashtable();
+                        ht.Add(KeyStrings.RP_BoardString, board);
+                        PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                    }
+
+                }
+            }
+        }
+
+        public override void OnEnable()
+        {
+            base.OnEnable();
+            PhotonNetwork.NetworkingClient.OpResponseReceived += NetworkingClientOnOpResponseReceived;
+        }
+
+        public override void OnDisable()
+        {
+            base.OnDisable();
+            PhotonNetwork.NetworkingClient.OpResponseReceived -= NetworkingClientOnOpResponseReceived;
+        }
+
+        private void NetworkingClientOnOpResponseReceived(OperationResponse opResponse)
+        {
+            if (opResponse.OperationCode == OperationCode.SetProperties &&
+                opResponse.ReturnCode == ErrorCode.InvalidOperation)
+            {
+                // CAS failure
+                Debug.LogError("failed to check and set customproperties");
+            }
+        }
     }
 }

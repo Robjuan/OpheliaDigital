@@ -23,11 +23,10 @@ namespace Com.WhiteSwan.OpheliaDigital
             Deck
             ,Hand
         }
-        [SerializeField]
-        private RP_ZoneType rpZoneType;
+        public RP_ZoneType rpZoneType;
 
         [HideInInspector]
-        public int owner; // will match PUN ActorNumber, or -1 if not owned
+        public int ownerActorNumber; // will match PUN ActorNumber, or -1 if not owned
 
         [Header("Display Properties")]
         public Transform startingLocation;
@@ -55,10 +54,12 @@ namespace Com.WhiteSwan.OpheliaDigital
         public void AddCard(CardController thisCard)
         {
 
-            thisCard.currentZone = this;
+            //thisCard.GetCurrentZone().RemoveCard(thisCard);
 
             thisCard.externallySetProperties = containedCardProperties; // todo: reference or copy here?
-            thisCard.currentZone = this;
+            thisCard.SetCurrentZone(this);
+
+            cards.Add(thisCard);
 
             if (moveOnZoneAdd)
             {

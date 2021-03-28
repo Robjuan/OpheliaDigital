@@ -14,6 +14,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public const string UnityInstanceID = "unityinstanceid";
 
+        public const string PhaseReady = "phaseready";
+
         #endregion
 
         #region room properties
@@ -34,6 +36,8 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const byte RP_Card = (byte)'C';
         public const byte RP_Board = (byte)'B';
 
+        public const string RP_BoardString = "rpboard";
+
         // gameplay state management
         public const string CardLoadComplete = "cardloadcomplete";
         public const string CurrentPhase = "currentphase";
@@ -52,6 +56,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string Mechanicus = "Mechanicus";
         public const string Yucatec = "Yucatec";
 
+        public const string LoadPhase = "np";
         public const string PreGameSetupPhase = "pgsp";
 
         public const string Zone_Hand = "hand";

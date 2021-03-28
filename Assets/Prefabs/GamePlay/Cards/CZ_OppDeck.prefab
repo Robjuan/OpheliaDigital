@@ -74,6 +74,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
         type: 3}
+      propertyPath: stackingOffset.z
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5495084432963273220, guid: 17c0f2a582bd1184e8d5b1e6d0805060,
+        type: 3}
       propertyPath: containedCardProperties.isVisible
       value: 0
       objectReference: {fileID: 0}

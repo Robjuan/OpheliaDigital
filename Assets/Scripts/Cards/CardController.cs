@@ -28,12 +28,13 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public Faction faction;
 
-        public PlayerController owner;
+        //public PlayerController owner;
+        public int ownerActorNumber;
 
         public int RP_instanceID; // set by GSM, allows resolution of card <-> RP_Card
         /// </summary>
 
-        public CardsZone currentZone;
+        private CardsZone currentZone;
 
         // this is a struct defined in cardszone
         // this struct is a number of properties that are set based on the card's current zone
@@ -55,27 +56,63 @@ namespace Com.WhiteSwan.OpheliaDigital
             cardNameTMP.text = text;
         }
 
+        // this should only be called from CardsZone.AddCard
+        public void SetCurrentZone(CardsZone newZone)
+        {
+            //Debug.Log(this + "setcurrentzone: " + newZone);
+            this.currentZone = newZone;
+        }
+        public CardsZone GetCurrentZone()
+        {
+            return this.currentZone;
+        }
+
         private void OnMouseDown()
         {
             Debug.Log("clicked");
         }
 
-        public bool MoveTo(CardsZone targetZone)
+        public RP_Card GetRP_Card()
         {
-            if (true) // TODO: rules check if this is allowed
+            RP_Card rpCard = new RP_Card();
+            rpCard.faction = faction;
+            rpCard.zoneLocation = (currentZone.rpZoneType, ownerActorNumber);
+            rpCard.ownerActorID = ownerActorNumber;
+            rpCard.instanceID = RP_instanceID;
+            rpCard.devName = gameObject.name; // dunno about this
+
+            var ccc = gameObject.GetComponent<CharacterCardController>();
+            if (ccc != null)
             {
-                currentZone.RemoveCard(this);
-
-                currentZone = targetZone;
-                targetZone.AddCard(this);
-
-                return true;
+                rpCard.power = ccc.power;
+                rpCard.initiative = ccc.initiative;
+                rpCard.armour = ccc.armour;
+                rpCard.life = ccc.life;
             }
-            else
+
+            return rpCard;
+            
+        }
+
+        public void UpdateFromRP_Card(RP_Card rpCard, CardsZone localZone)
+        {
+            faction = rpCard.faction;
+            currentZone = localZone;
+            ownerActorNumber = rpCard.ownerActorID;
+
+            RP_instanceID = rpCard.instanceID;
+            gameObject.name = rpCard.devName; // dunno about this
+
+            var ccc = gameObject.GetComponent<CharacterCardController>();
+            if (ccc != null)
             {
-                return false;
+                ccc.power = rpCard.power;
+                ccc.initiative = rpCard.initiative;
+                ccc.armour = rpCard.armour;
+                ccc.life = rpCard.life;
             }
         }
+
 
     }
 
