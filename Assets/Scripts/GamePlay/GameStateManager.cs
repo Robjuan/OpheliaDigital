@@ -33,9 +33,9 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void Awake()
         {
-            bool regP = PhotonPeer.RegisterType(typeof(RP_Player), KeyStrings.RP_Player, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
-            bool regC = PhotonPeer.RegisterType(typeof(RP_Card), KeyStrings.RP_Card, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
-            bool regB = PhotonPeer.RegisterType(typeof(RP_Board), KeyStrings.RP_Board, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
+            bool regP = PhotonPeer.RegisterType(typeof(RP_Player), KeyStrings.Byte_RP_Player, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
+            bool regC = PhotonPeer.RegisterType(typeof(RP_Card), KeyStrings.Byte_RP_Card, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
+            bool regB = PhotonPeer.RegisterType(typeof(RP_Board), KeyStrings.Byte_RP_Board, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
             if (!(regC&&regP&&regB))
             {
                 Debug.LogError("custom types could not be registered");
@@ -76,7 +76,11 @@ namespace Com.WhiteSwan.OpheliaDigital
                 
                 rp_player.turnOrder = turnSeq[0];
                 turnSeq.RemoveAt(0);
+                var thisPlayerZoneMap = NetworkExtensions.SetZoneMap(rp_player.turnOrder);
 
+                ht = new Hashtable();
+                ht.Add(KeyStrings.ZoneMap, thisPlayerZoneMap);
+                player.SetCustomProperties(ht);
 
                 ht = new Hashtable();
                 ht.Add(KeyStrings.ActorPrefix + player.ActorNumber.ToString(), rp_player);
@@ -91,8 +95,8 @@ namespace Com.WhiteSwan.OpheliaDigital
                     RP_Card newCard = new RP_Card();
                     GameObject prefabRef = (GameObject)Resources.Load(card);
 
-                    // need to put card in particular player's deck
-                    newCard.zoneLocation = (CardsZone.RP_ZoneType.Deck, player.ActorNumber);
+                    // put card in particular player's deck
+                    newCard.zone = thisPlayerZoneMap.FirstOrDefault(x => x.Value == CardsZone.LocalZoneType.MyDeck).Key;
 
                     newCard.instanceID = uniqueInstanceID;
                     uniqueInstanceID++;
@@ -131,7 +135,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             board.currentRound = 0;
             Debug.Log(board);
             ht = new Hashtable();
-            ht.Add(KeyStrings.RP_BoardString, board);
+            ht.Add(KeyStrings.RP_Board, board);
             PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
 
 
@@ -147,6 +151,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             //DealCards(initialCardCount);
         }
 
+        
         public bool UpdateCardLocation(CardController cardToMove, CardsZone source, CardsZone destination)
         {
 
@@ -165,7 +170,13 @@ namespace Com.WhiteSwan.OpheliaDigital
             return true;
         }
 
-
+        /*
+        public void PushUpdateMessageToRoomProperties(UpdateMessage updateMessage)
+        {
+            Hashtable ht = new Hashtable();
+            //ht[key] = updateMessage;
+            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+        }*/
 
         public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
         {
@@ -193,10 +204,10 @@ namespace Com.WhiteSwan.OpheliaDigital
                     if(everyoneReady)
                     {
                         // go to the next phase
-                        RP_Board board = (RP_Board)PhotonNetwork.CurrentRoom.CustomProperties[KeyStrings.RP_BoardString]; // everything else is the same
+                        RP_Board board = (RP_Board)PhotonNetwork.CurrentRoom.CustomProperties[KeyStrings.RP_Board]; // everything else is the same
                         board.currentPhase = KeyStrings.PreGameSetupPhase; // todo: dynamic next-phasing
                         Hashtable ht = new Hashtable();
-                        ht.Add(KeyStrings.RP_BoardString, board);
+                        ht.Add(KeyStrings.RP_Board, board);
                         PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
                     }
 
@@ -223,6 +234,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             {
                 // CAS failure
                 Debug.LogError("failed to check and set customproperties");
+                Debug.LogError(opResponse.ToStringFull());
             }
         }
     }

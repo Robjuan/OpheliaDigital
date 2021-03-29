@@ -1639,6 +1639,34 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 576a724b0a265e04ca5609672064aed7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1801199795 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
+    type: 3}
+  m_PrefabInstance: {fileID: 1317493949}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1801199796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1801199795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ObservedComponentsFoldoutOpen: 1
+  Group: 0
+  prefixField: -1
+  observableSearch: 2
+  Synchronization: 3
+  OwnershipTransfer: 0
+  ObservedComponents: []
+  viewIdField: 3
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
 --- !u!1 &1813340082
 GameObject:
   m_ObjectHideFlags: 0

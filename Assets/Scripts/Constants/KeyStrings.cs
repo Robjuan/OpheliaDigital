@@ -11,6 +11,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public const string ChosenDeck = "chosendeck";
         public const string CardList = "cardlist";
+        public const string ZoneMap = "zonemap";
 
         public const string UnityInstanceID = "unityinstanceid";
 
@@ -32,11 +33,11 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         // bytecodes for customtypes
         // RESERVED BY PHOTON: W, V, Q, P
-        public const byte RP_Player = (byte)'L';
-        public const byte RP_Card = (byte)'C';
-        public const byte RP_Board = (byte)'B';
+        public const byte Byte_RP_Player = (byte)'L';
+        public const byte Byte_RP_Card = (byte)'C';
+        public const byte Byte_RP_Board = (byte)'B';
 
-        public const string RP_BoardString = "rpboard";
+        public const string RP_Board = "rpboard";
 
         // gameplay state management
         public const string CardLoadComplete = "cardloadcomplete";

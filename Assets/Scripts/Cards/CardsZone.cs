@@ -9,21 +9,25 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class CardsZone : MonoBehaviour
     {
         [System.Serializable]
-        public enum LocalZoneType
+        public enum LocalZoneType : byte // byte for network
         {
-            MyHand
+            MyHand = 0
             ,MyDeck
+            ,MyFZ
             ,OppHand
             ,OppDeck
+            ,OppFZ
+            ,NeutralBoardLeft
+            ,NeutralBoardRight
+            ,MyBoardLeft
+            ,MyBoardCentre
+            ,MyBoardRight
+            ,OppBoardLeft
+            ,OppBoardCentre
+            ,OppBoardRight
+            ,RemovedFromGame
         }
         public LocalZoneType localZoneType;
-
-        public enum RP_ZoneType
-        {
-            Deck
-            ,Hand
-        }
-        public RP_ZoneType rpZoneType;
 
         [HideInInspector]
         public int ownerActorNumber; // will match PUN ActorNumber, or -1 if not owned

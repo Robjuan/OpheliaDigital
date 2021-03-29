@@ -101,9 +101,9 @@ namespace Com.WhiteSwan.OpheliaDigital
                 Debug.Log("my rp_player changed");
             }
 
-            if (propertiesThatChanged.ContainsKey(KeyStrings.RP_BoardString))
+            if (propertiesThatChanged.ContainsKey(KeyStrings.RP_Board))
             {
-                RP_Board board = (RP_Board)propertiesThatChanged[KeyStrings.RP_BoardString];
+                RP_Board board = (RP_Board)propertiesThatChanged[KeyStrings.RP_Board];
                 var retval = ChangePhase(board.currentPhase);
                 if (!retval)
                 {
@@ -121,17 +121,12 @@ namespace Com.WhiteSwan.OpheliaDigital
                     if (key.Contains(KeyStrings.CardIdentPrefix))
                     {
                         RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
-                        //Debug.Log(rpCard.ToString());
-                        foreach (GameObject card in allCards)
-                        {
-                            Debug.Log(card.GetComponent<CardController>().RP_instanceID);
-                        }
                         GameObject localCardCont = allCards.Find(x => x.GetComponent<CardController>().RP_instanceID == rpCard.instanceID);
                         Debug.Log(localCardCont);
                         var localCardCC = localCardCont.GetComponent<CardController>();
                         if (localCardCC != null)
                         {
-                            localCardCC.UpdateFromRP_Card(rpCard, ResolveRPZoneToLocal(rpCard.zoneLocation));
+                            localCardCC.UpdateFromRP_Card(rpCard, ResolveRPZoneToLocal(rpCard.zone));
                         }
 
                     }
@@ -140,36 +135,15 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         }
 
-        private CardsZone ResolveRPZoneToLocal((CardsZone.RP_ZoneType remoteZoneType, int actorNumber) RPZone)
+        private CardsZone ResolveRPZoneToLocal(int RPZone)
         {
-            foreach(CardsZone zone in zones)
+            Dictionary<int, CardsZone.LocalZoneType> zoneMap = NetworkExtensions.GetZoneMap();
+            foreach (CardsZone zone in zones)
             {
-                // one of my zones
-                if(RPZone.actorNumber == PhotonNetwork.LocalPlayer.ActorNumber)
+                if (zoneMap[RPZone] == zone.localZoneType)
                 {
-                    //if (RPZone.label == KeyStrings.Zone_Deck && zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
-                    if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Deck && zone.localZoneType == CardsZone.LocalZoneType.MyDeck)
-                    {
-                        return zone;
-                    }
-                    else if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Hand && zone.localZoneType == CardsZone.LocalZoneType.MyHand)
-                    {
-                        return zone;
-                    }
-                } 
-                else // opp or neutral zone
-                {
-                    if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Deck && zone.localZoneType == CardsZone.LocalZoneType.OppDeck)
-                    {
-                        return zone;
-                    }
-                    else if (RPZone.remoteZoneType == CardsZone.RP_ZoneType.Hand && zone.localZoneType == CardsZone.LocalZoneType.OppHand)
-                    {
-                        return zone;
-                    }
-                }
-
-                
+                    return zone;
+                }                
             }
             Debug.LogError("unable to resolve RPZone to local zone");
             return null;
@@ -194,7 +168,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             foreach (string key in PhotonNetwork.CurrentRoom.CustomProperties.Keys)
             {
                 if(key.Contains(KeyStrings.CardIdentPrefix))
-                {
+                {                    
                     RP_Card rpCard = (RP_Card)PhotonNetwork.CurrentRoom.CustomProperties[key];
                     GameObject localCard = (GameObject)Instantiate(Resources.Load(rpCard.devName));
                     var localCardCC = localCard.GetComponent<CardController>();
@@ -203,7 +177,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                     localCardCC.RP_instanceID = rpCard.instanceID;
                     allCards.Add(localCard);
 
-                    var localZone = ResolveRPZoneToLocal(rpCard.zoneLocation);
+                    var localZone = ResolveRPZoneToLocal(rpCard.zone);
 
                     localZone.AddCard(localCardCC);
                     
@@ -225,6 +199,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
             if(phaseKey == KeyStrings.PreGameSetupPhase)
             {
+                loaded = true; // ie, loadphase finished
                 lastSetPhase = phaseKey;
                 DoPreGameSetupPhase();
                 return true;

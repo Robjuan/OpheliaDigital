@@ -9,7 +9,7 @@ namespace Com.WhiteSwan.OpheliaDigital
     {
         public CardController.Faction faction;
 
-        public (CardsZone.RP_ZoneType remoteZoneType, int actorNumber) zoneLocation;
+        public int zone;
 
         public int ownerActorID;
 
@@ -24,7 +24,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public override string ToString()
         {
-            return devName + "_" + instanceID + " oid:" + ownerActorID + " rzt" + zoneLocation.remoteZoneType; 
+            return devName + "_" + instanceID + " oid:" + ownerActorID + " rz:" + zone; 
         }
     }
 }

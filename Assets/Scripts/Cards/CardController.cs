@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using System.Linq;
+using Photon.Pun;
 using TMPro;
 
 namespace Com.WhiteSwan.OpheliaDigital
@@ -69,14 +70,15 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void OnMouseDown()
         {
-            Debug.Log("clicked");
+            Debug.Log(displayName + ":" + RP_instanceID + " clicked");
         }
 
         public RP_Card GetRP_Card()
         {
             RP_Card rpCard = new RP_Card();
             rpCard.faction = faction;
-            rpCard.zoneLocation = (currentZone.rpZoneType, ownerActorNumber);
+            Dictionary<int, CardsZone.LocalZoneType> zoneMap = NetworkExtensions.GetZoneMap();
+            rpCard.zone = zoneMap.FirstOrDefault(x => x.Value == currentZone.localZoneType).Key;
             rpCard.ownerActorID = ownerActorNumber;
             rpCard.instanceID = RP_instanceID;
             rpCard.devName = gameObject.name; // dunno about this
