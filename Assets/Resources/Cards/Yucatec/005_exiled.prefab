@@ -1,36 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &253671313460356473
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8272824336328103496}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 0
-  basePower: 5
-  baseInitiative: 5
-  baseArmour: 0
-  baseLife: 14
-  slotType: 1
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 'Banish (Claim): Remove a card in either forgotten zone from the game.'
-  specialText: 'Honor the Gods (Special): Remove 15 damage from Yucatec characters
-    on the field, then sacrifice a friendly Yucatec character: Look at your opponent''s
-    hand, and choose a card. Your opponent discards that card.'
-  passiveText: 
-  devName: 005_exiled
---- !u!1001 &4409735722804893548
+--- !u!1001 &8272042047572466392
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -39,13 +9,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 005_exiled
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: claimText
+      value: 'Banish (Claim): Remove a card in either forgotten zone from the game.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: Camazotz, the Exiled
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: specialText
+      value: 'Honor the Gods (Special): Remove 15 damage from Yucatec characters
+        on the field, then sacrifice a friendly Yucatec character: Look at your opponent''s
+        hand, and choose a card. Your opponent discards that card.'
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -129,9 +121,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &8272824336328103496 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 4409735722804893548}
-  m_PrefabAsset: {fileID: 0}

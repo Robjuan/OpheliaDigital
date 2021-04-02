@@ -163,38 +163,27 @@ namespace Com.WhiteSwan.OpheliaDigital
                 GameObject newCard = (GameObject)PrefabUtility.InstantiatePrefab(cardPrefab);
                 newCard.name = card.devName;
                 
-                CardController newCardCardController = newCard.GetComponent<CardController>();
-                newCardCardController.displayName = card.Name;
-                newCardCardController.faction = faction;
+                CardController newCard_CC = newCard.GetComponent<CardController>();
+                newCard_CC.displayName = card.Name;
+                newCard_CC.faction = faction;
 
-                CharacterCardController.SlotType newCardSlot;
+                CardController.SlotType newCardSlot;
 
-                if (card.SlotType == "Turning Point")
+                if (System.Enum.TryParse<CardController.SlotType>(card.SlotType, out newCardSlot))
                 {
-                    TurningPointCardController newCardTPC = newCard.AddComponent<TurningPointCardController>();
+                    // these two TP only
+                    newCard_CC.effectText = card.Effect;
 
-                    newCardTPC.effectText = card.Effect;
-                    newCardTPC.characterCountRequirement = card.Cost;
+                    newCard_CC.SetBaseStats(card.Cost, card.Power, card.Initiative, card.Armour, card.Life);
 
-
-                } else if (System.Enum.TryParse<CharacterCardController.SlotType>(card.SlotType, out newCardSlot))
-                {
-                    CharacterCardController newCardCC = newCard.AddComponent<CharacterCardController>();
-
-                    newCardCC.baseLevel = card.Cost;
-                    newCardCC.basePower = card.Power;
-                    newCardCC.baseInitiative = card.Initiative;
-                    newCardCC.baseArmour = card.Armour;
-                    newCardCC.baseLife = card.Life;
-
-                    newCardCC.claimText = card.Claim;
-                    newCardCC.specialText = card.Special;
-                    newCardCC.passiveText = card.Passive;
+                    newCard_CC.claimText = card.Claim;
+                    newCard_CC.specialText = card.Special;
+                    newCard_CC.passiveText = card.Passive;
 
                     // do we need to store this?
-                    newCardCC.devName = card.devName;
+                    newCard_CC.devName = card.devName;
 
-                    newCardCC.slotType = newCardSlot;
+                    newCard_CC.slotType = newCardSlot;
 
                 } else
                 {

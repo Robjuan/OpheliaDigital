@@ -1,7 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
+using Photon.Pun;
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
@@ -29,6 +30,8 @@ namespace Com.WhiteSwan.OpheliaDigital
         }
         public LocalZoneType localZoneType;
 
+        private int remoteZoneID;
+
         [HideInInspector]
         public int ownerActorNumber; // will match PUN ActorNumber, or -1 if not owned
 
@@ -54,15 +57,26 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private List<CardController> cards = new List<CardController>();
 
-
-        public void AddCard(CardController thisCard)
+        private void Awake()
         {
+            GameEvents.current.onCardAdded += AddCard;
+            GameEvents.current.onCardRemoved += RemoveCard;
+        }
 
-            //thisCard.GetCurrentZone().RemoveCard(thisCard);
+        public void InitialiseRemoteID()
+        {
+            remoteZoneID = LocalGameManager.current.ResolveLocalZoneToRemote(this);
+        }
+
+        public void AddCard(CardController thisCard, int newZone, int previousZone)
+        {
+            if(newZone != remoteZoneID)
+            {
+                // it's not being added here
+                return;
+            }
 
             thisCard.externallySetProperties = containedCardProperties; // todo: reference or copy here?
-            thisCard.SetCurrentZone(this);
-
             cards.Add(thisCard);
 
             if (moveOnZoneAdd)
@@ -71,10 +85,17 @@ namespace Com.WhiteSwan.OpheliaDigital
                 thisCard.transform.position = startingLocation.position + (stackingOffset * cards.Count);
                 thisCard.transform.rotation = startingLocation.rotation;
             }
+
+            
         }
 
-        public void RemoveCard(CardController thisCard)
+        public void RemoveCard(CardController thisCard, int previousZone)
         {
+            if(previousZone != remoteZoneID)
+            {
+                // not being removed from here
+                return;
+            }
             if(cards.Contains(thisCard))
             {
                 cards.Remove(thisCard);

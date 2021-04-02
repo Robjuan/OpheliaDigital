@@ -265,7 +265,7 @@
    "Passive": "",
    "Power": "",
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "045_tp_glimpse"
@@ -283,7 +283,7 @@
    "Passive": "",
    "Power": "",
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "051_tp_feasting"
@@ -355,7 +355,7 @@
    "Passive": "",
    "Power": "",
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "050_tp_tome"

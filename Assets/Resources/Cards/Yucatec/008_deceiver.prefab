@@ -1,38 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &7833513389986766594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6044216059225199237}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 0
-  basePower: 4
-  baseInitiative: 3
-  baseArmour: 1
-  baseLife: 12
-  slotType: 1
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 
-  specialText: 'Feather Weather (Special) Place the poison token on any number of
-    characters: Vucub-Caquix, the Deceiver gains 2 Power and 1 Initiative for each
-    token placed until the end of the turn.'
-  passiveText: 'Flight of Fancy (Passive): Each damage you remove from friendly Yucatec
-    characters when paying the cost of an Honor the Gods ability may be counted as
-    2.'
-  devName: 008_deceiver
---- !u!1001 &2025811531500721057
+--- !u!1001 &6784226834049063543
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -41,13 +9,37 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 008_deceiver
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: slotType
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: displayName
       value: Vucub-Caquix, the Deceiver
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: passiveText
+      value: 'Flight of Fancy (Passive): Each damage you remove from friendly Yucatec
+        characters when paying the cost of an Honor the Gods ability may be counted
+        as 2.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: specialText
+      value: 'Feather Weather (Special) Place the poison token on any number of characters:
+        Vucub-Caquix, the Deceiver gains 2 Power and 1 Initiative for each token
+        placed until the end of the turn.'
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -131,9 +123,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &6044216059225199237 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2025811531500721057}
-  m_PrefabAsset: {fileID: 0}

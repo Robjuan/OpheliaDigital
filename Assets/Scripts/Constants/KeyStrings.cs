@@ -31,16 +31,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public const string AvailableDecks = "availabledecks";
 
-        // bytecodes for customtypes
-        // RESERVED BY PHOTON: W, V, Q, P
-        public const byte Byte_RP_Player = (byte)'L';
-        public const byte Byte_RP_Card = (byte)'C';
-        public const byte Byte_RP_Board = (byte)'B';
-
-        public const string RP_Board = "rpboard";
 
         // gameplay state management
-        public const string CardLoadComplete = "cardloadcomplete";
         public const string CurrentPhase = "currentphase";
         public const string ActorPrefix = "actor_";
         public const string CardIdentPrefix = "card_uid_";
@@ -52,16 +44,13 @@ namespace Com.WhiteSwan.OpheliaDigital
         // todo: maybe move these to their own file
 
 
-        //TODO: these should come from json 
+        //TODO: these should come from json ?
         public const string Mattervoid = "Mattervoid";
         public const string Mechanicus = "Mechanicus";
         public const string Yucatec = "Yucatec";
 
         public const string LoadPhase = "np";
         public const string PreGameSetupPhase = "pgsp";
-
-        public const string Zone_Hand = "hand";
-        public const string Zone_Deck = "deck";
 
 
         #endregion

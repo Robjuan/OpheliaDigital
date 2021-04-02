@@ -337,7 +337,7 @@
    "Passive": "",
    "Power": null,
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "030_tp_crisiscall"
@@ -355,7 +355,7 @@
    "Passive": "",
    "Power": null,
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "023_tp_magnumopus"
@@ -373,7 +373,7 @@
    "Passive": "",
    "Power": null,
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "029_tp_willway"

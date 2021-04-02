@@ -1,35 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1018331085787866517
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3981743565171307052}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 0
-  basePower: 4
-  baseInitiative: 8
-  baseArmour: 0
-  baseLife: 8
-  slotType: 0
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 'Dispossession (Claim): Choose an enemy character: It is considered
-    to be haunted by Cemetery Wanderer until the beginning of your next turn.'
-  specialText: 
-  passiveText: 'Spooked (Passive): Enemy characters being haunted lose all abilities.'
-  devName: 053_wanderer
---- !u!1001 &8700250846787695368
+--- !u!1001 &3059984959387155831
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -38,13 +9,29 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 053_wanderer
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: claimText
+      value: 'Dispossession (Claim): Choose an enemy character: It is considered
+        to be haunted by Cemetery Wanderer until the beginning of your next turn.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: Cemetery Wanderer
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: passiveText
+      value: 'Spooked (Passive): Enemy characters being haunted lose all abilities.'
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -128,9 +115,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &3981743565171307052 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8700250846787695368}
-  m_PrefabAsset: {fileID: 0}

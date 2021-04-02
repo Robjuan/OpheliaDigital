@@ -21,7 +21,21 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class GameStateManager : MonoBehaviourPunCallbacks
     {
 
-        public LocalGameManager localGameManager;
+        public static GameStateManager current
+        {
+            get
+            {
+                if (_current == null)
+                    _current = FindObjectOfType(typeof(GameStateManager)) as GameStateManager;
+
+                return _current;
+            }
+            set
+            {
+                _current = value;
+            }
+        }
+        private static GameStateManager _current;
 
         [Header("Game Rule Constants")]
         public int initialCardCount = 9;
@@ -31,28 +45,64 @@ namespace Com.WhiteSwan.OpheliaDigital
         [HideInInspector]
         public List<PlayerController> playerControllers = new List<PlayerController>();
 
+        private List<int> turnOrder;
+        private BoardController boardController;
+
+        public Dictionary<int, CardsZone.LocalZoneType> localPlayerZoneMap;
+
         private void Awake()
         {
-            bool regP = PhotonPeer.RegisterType(typeof(RP_Player), KeyStrings.Byte_RP_Player, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
-            bool regC = PhotonPeer.RegisterType(typeof(RP_Card), KeyStrings.Byte_RP_Card, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
-            bool regB = PhotonPeer.RegisterType(typeof(RP_Board), KeyStrings.Byte_RP_Board, UtilityExtensions.Serialize, UtilityExtensions.Deserialize);
-            if (!(regC&&regP&&regB))
-            {
-                Debug.LogError("custom types could not be registered");
-            }
-
-            if (localGameManager == null)
-            {
-                Debug.LogError("manager setup no good");
-            }
+            current = this;
 
             if (PhotonNetwork.IsMasterClient)
             {
-                SetupGameStateRoomProperties();
+                SetupTurnOrder();
             }
         }
         
-        private void SetupGameStateRoomProperties()
+        private void SetupTurnOrder()
+        {
+            turnOrder = Enumerable.Range(0, PhotonNetwork.CurrentRoom.PlayerCount).ToList();
+            turnOrder.Shuffle();
+            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+            {
+                var newPC = SetupPlayerController(player);
+                newPC.turnOrder = turnOrder[0];
+                turnOrder.RemoveAt(0);
+                var tzm = ZoneResolver.GenerateZoneMap(newPC.turnOrder); // when these are all done, setupgamestate will fire
+                photonView.RPC(StoreZoneMap_RPC_string, player, ZoneResolver.ConvertZoneMapForTransport(tzm));
+
+            }
+            PhotonNetwork.SendAllOutgoingCommands(); // do it now
+            LocalGameManager.current.SetupPlayerDisplay();
+        }
+
+
+        private const string StoreZoneMap_RPC_string = "StoreZoneMap_RPC";
+        [PunRPC]
+        public void StoreZoneMap_RPC(Dictionary<int, byte> dictIn)
+        {
+            // cache locally
+            localPlayerZoneMap = ZoneResolver.ConvertZoneMapForLocal(dictIn);
+            // store in customproperties just in case -- also signals that load is done and we can progress
+            Hashtable ht = new Hashtable();
+            ht.Add(KeyStrings.ZoneMap, ZoneResolver.ConvertZoneMapForTransport(localPlayerZoneMap));
+            PhotonNetwork.LocalPlayer.SetCustomProperties(ht);
+        }
+
+        private PlayerController SetupPlayerController(Player punPlayer)
+        {
+            var newPlayer = PhotonNetwork.InstantiateRoomObject("PlayerController", Vector3.zero, Quaternion.identity);
+            var newPC = newPlayer.GetComponent<PlayerController>();
+            newPC.punPlayer = punPlayer;
+            newPC.points = 0;
+
+            LocalGameManager.current.playerControllers.Add(newPC);
+
+            return newPC;
+        }
+
+        private void SetupGameState()
         {
             if(!PhotonNetwork.IsMasterClient)
             {
@@ -64,126 +114,60 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             int uniqueInstanceID = 0;
 
-            var turnSeq = Enumerable.Range(0, PhotonNetwork.CurrentRoom.PlayerCount).ToList();
-            turnSeq.Shuffle();
-
-            foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+            foreach (PlayerController player in LocalGameManager.current.playerControllers)
             {
-
-                RP_Player rp_player = new RP_Player();
-                rp_player.points = 0;
-                rp_player.punActorID = player.ActorNumber; // todo: do we need this?
-                
-                rp_player.turnOrder = turnSeq[0];
-                turnSeq.RemoveAt(0);
-                var thisPlayerZoneMap = NetworkExtensions.SetZoneMap(rp_player.turnOrder);
-
-                ht = new Hashtable();
-                ht.Add(KeyStrings.ZoneMap, thisPlayerZoneMap);
-                player.SetCustomProperties(ht);
-
-                ht = new Hashtable();
-                ht.Add(KeyStrings.ActorPrefix + player.ActorNumber.ToString(), rp_player);
-                PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-
-                var cardArray = (string[])player.CustomProperties[KeyStrings.CardList];
+                var cardArray = (string[])player.punPlayer.CustomProperties[KeyStrings.CardList];
                 List<string> cardList = cardArray.ToList();
-                
-
+              
                 foreach(string card in cardList)
                 {
-                    RP_Card newCard = new RP_Card();
-                    GameObject prefabRef = (GameObject)Resources.Load(card);
 
+                    GameObject newCard = PhotonNetwork.InstantiateRoomObject(card, Vector3.zero, Quaternion.identity); // will be immediately moved when we put it in the deck
+                    CardController newCardCC = newCard.GetComponent<CardController>();
                     // put card in particular player's deck
-                    newCard.zone = thisPlayerZoneMap.FirstOrDefault(x => x.Value == CardsZone.LocalZoneType.MyDeck).Key;
 
-                    newCard.instanceID = uniqueInstanceID;
-                    uniqueInstanceID++;
-                    newCard.devName = card;
-
-                    CardController prefabCC = prefabRef.GetComponent<CardController>();
-                    newCard.faction = prefabCC.faction;
-
-                    CharacterCardController prefabCCC = prefabRef.GetComponent<CharacterCardController>();
-                    if (prefabCCC != null)
+                    // hardcoding these values here because the zonemap is not ready when we're here.
+                    // values come from ZoneResolver.
+                    int thisPlayerDeck;
+                    if(player.turnOrder == 0)
                     {
-                        // character card
-                        newCard.power = prefabCCC.basePower;
-                        newCard.initiative = prefabCCC.baseInitiative;
-                        newCard.armour = prefabCCC.baseArmour;
-                        newCard.life = prefabCCC.baseLife;
+                        thisPlayerDeck = 2;
                     }
                     else
                     {
-                        // tp card
-                        TurningPointCardController prefabTPC = prefabRef.GetComponent<TurningPointCardController>();                        
-                        // tp cards will onyl require zone tracking
+                        thisPlayerDeck = 5;
                     }
 
-                    ht = new Hashtable();
-                    ht.Add(KeyStrings.CardIdentPrefix + uniqueInstanceID.ToString(), newCard);
-                    PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                    newCardCC.SetCurrentZone(thisPlayerDeck);
+
+                    newCardCC.instanceID = uniqueInstanceID;
+                    uniqueInstanceID++;
+                    newCardCC.devName = card;
 
                 }
 
             }
 
+            GameObject board = PhotonNetwork.InstantiateRoomObject("BoardController", Vector3.zero, Quaternion.identity);
+            boardController = board.GetComponent<BoardController>();
+            boardController.currentPhase = KeyStrings.LoadPhase;
+            boardController.currentRound = 0;
 
-            RP_Board board = new RP_Board();
-            board.currentPhase = KeyStrings.LoadPhase;
-            board.currentRound = 0;
-            Debug.Log(board);
-            ht = new Hashtable();
-            ht.Add(KeyStrings.RP_Board, board);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-
-
-            ht = new Hashtable();
-            ht.Add(KeyStrings.CardLoadComplete, true);
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+            boardController.UpdatePhase(KeyStrings.PreGameSetupPhase);
 
         }
 
+
+        private const string LGM_InitZones_RPCString = "LGM_InitZones";
+        [PunRPC]
+        private void LGM_InitZones()
+        {
+            LocalGameManager.current.InitAllZoneIds();
+        }
 
         public void SetupGame()
         {
             //DealCards(initialCardCount);
-        }
-
-        
-        public bool UpdateCardLocation(CardController cardToMove, CardsZone source, CardsZone destination)
-        {
-
-            RP_Card existingLocalCard = cardToMove.GetRP_Card();
-
-            Hashtable expected_ht = new Hashtable();
-            expected_ht.Add(KeyStrings.CardIdentPrefix + cardToMove.RP_instanceID, existingLocalCard);
-
-            destination.AddCard(cardToMove);
-
-            Hashtable ht = new Hashtable();
-            ht.Add(KeyStrings.CardIdentPrefix + cardToMove.RP_instanceID,cardToMove.GetRP_Card());
-
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht, expected_ht);
-            
-            return true;
-        }
-
-        /*
-        public void PushUpdateMessageToRoomProperties(UpdateMessage updateMessage)
-        {
-            Hashtable ht = new Hashtable();
-            //ht[key] = updateMessage;
-            PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
-        }*/
-
-        public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
-        {
-            if (propertiesThatChanged.ContainsKey(KeyStrings.CardLoadComplete))
-            {
-                localGameManager.PrepareCards();
-            }
         }
 
         public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
@@ -204,38 +188,30 @@ namespace Com.WhiteSwan.OpheliaDigital
                     if(everyoneReady)
                     {
                         // go to the next phase
-                        RP_Board board = (RP_Board)PhotonNetwork.CurrentRoom.CustomProperties[KeyStrings.RP_Board]; // everything else is the same
-                        board.currentPhase = KeyStrings.PreGameSetupPhase; // todo: dynamic next-phasing
-                        Hashtable ht = new Hashtable();
-                        ht.Add(KeyStrings.RP_Board, board);
-                        PhotonNetwork.CurrentRoom.SetCustomProperties(ht);
+                        boardController.UpdatePhase(KeyStrings.PreGameSetupPhase); // todo: dynamic next-phasing
                     }
 
+                }
+                if (changedProps.ContainsKey(KeyStrings.ZoneMap))
+                {
+                    photonView.RPC(LGM_InitZones_RPCString, targetPlayer);
+
+                    bool everyoneReady = true;
+                    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                    {
+                        if (player.CustomProperties.ContainsKey(KeyStrings.ZoneMap) && player.CustomProperties[KeyStrings.PhaseReady] != null) // if any player is not ready
+                        {
+                            everyoneReady = false;
+                            break;
+                        }
+                    }
+                    if (everyoneReady)
+                    {
+                        SetupGameState();
+                    }
                 }
             }
         }
 
-        public override void OnEnable()
-        {
-            base.OnEnable();
-            PhotonNetwork.NetworkingClient.OpResponseReceived += NetworkingClientOnOpResponseReceived;
-        }
-
-        public override void OnDisable()
-        {
-            base.OnDisable();
-            PhotonNetwork.NetworkingClient.OpResponseReceived -= NetworkingClientOnOpResponseReceived;
-        }
-
-        private void NetworkingClientOnOpResponseReceived(OperationResponse opResponse)
-        {
-            if (opResponse.OperationCode == OperationCode.SetProperties &&
-                opResponse.ReturnCode == ErrorCode.InvalidOperation)
-            {
-                // CAS failure
-                Debug.LogError("failed to check and set customproperties");
-                Debug.LogError(opResponse.ToStringFull());
-            }
-        }
     }
 }

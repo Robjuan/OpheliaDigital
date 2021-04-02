@@ -1,22 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &206766811393820615
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5322146912999197937}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da10d0a572d45a14d8b0c1a730a1e6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCountRequirement: 3
-  effectText: Place all enemy characters under friendly Mattervoid characters. When
-    a Mattervoid character leaves the field; return characters under it to their
-    owner's hand.
---- !u!1001 &441474581118291413
+--- !u!1001 &955243271476740843
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -25,8 +9,25 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 045_tp_glimpse
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: slotType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: effectText
+      value: Place all enemy characters under friendly Mattervoid characters. When
+        a Mattervoid character leaves the field; return characters under it to their
+        owner's hand.
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -115,9 +116,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &5322146912999197937 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 441474581118291413}
-  m_PrefabAsset: {fileID: 0}

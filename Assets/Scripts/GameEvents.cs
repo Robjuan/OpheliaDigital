@@ -33,6 +33,33 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
+        public event Action<string> onPhaseChange;
+        public void PhaseChange(string newPhase)
+        {
+            if (onPhaseChange != null)
+            {
+                onPhaseChange(newPhase);
+            }
+        }
+
+        public event Action<CardController, int, int> onCardAdded;
+        public void CardAdded(CardController card, int newZone, int previousZone)
+        {
+            if (onCardAdded != null)
+            {
+                onCardAdded(card, newZone, previousZone);
+            }
+        }
+        public event Action<CardController, int> onCardRemoved;
+        public void CardRemoved(CardController card, int previousZone)
+        {
+            if (onCardRemoved != null)
+            {
+                onCardRemoved(card, previousZone);
+            }
+        }
+
+
 
     }
 }

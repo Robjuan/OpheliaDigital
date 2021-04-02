@@ -1,40 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &3865700649310730842
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5282648000899240780}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 0
-  basePower: 4
-  baseInitiative: 8
-  baseArmour: 0
-  baseLife: 8
-  slotType: 1
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 'Siren''s Song (Claim): Return 2 Mattervoid characters from your forgotten
-    zone to the bottom of your deck: Convert a * Unsung character and move it to
-    an open slot on either side of the board. At the end of the turn, return it to
-    its owner''s hand.
-
-'
-  specialText: "Portal Mastery (Special): Move Phasewalker of Nol\xE1n to an open
-    slot."
-  passiveText: 
-  devName: 057_connor
---- !u!1001 &482943987681792616
+--- !u!1001 &8343182386741287033
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -43,13 +9,38 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 057_connor
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: claimText
+      value: 'Siren''s Song (Claim): Return 2 Mattervoid characters from your forgotten
+        zone to the bottom of your deck: Convert a * Unsung character and move it
+        to an open slot on either side of the board. At the end of the turn, return
+        it to its owner''s hand.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: "Phasewalker of Nol\xE1n"
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: specialText
+      value: "Portal Mastery (Special): Move Phasewalker of Nol\xE1n to an open slot."
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -133,9 +124,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &5282648000899240780 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 482943987681792616}
-  m_PrefabAsset: {fileID: 0}

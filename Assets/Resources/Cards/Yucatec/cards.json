@@ -280,7 +280,7 @@
    "Passive": "",
    "Power": null,
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "021_tp_bloodpact"
@@ -299,7 +299,7 @@
    "Passive": "",
    "Power": null,
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "019_tp_gaze"
@@ -394,7 +394,7 @@
    "Passive": "",
    "Power": null,
    "Restriction": "",
-   "SlotType": "Turning Point",
+   "SlotType": "TurningPoint",
    "Special": "",
    "Status": "",
    "devName": "020_tp_immolation"

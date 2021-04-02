@@ -1,30 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &1271581147125822255
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938061799300622381}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da10d0a572d45a14d8b0c1a730a1e6fc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  characterCountRequirement: 3
-  effectText: 'Until the end of the round, replace the effects of the poison token
-    with the following:
-
-
-    - This character''s Initiative and Armour becomes 0.
-
-    -
-    This character cannot be moved, except by another card''s effect.
-
-    - At the
-    end of each turn; place 2 damage on this character.'
---- !u!1001 &7438373193684658441
+--- !u!1001 &718979127480730997
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -33,8 +9,33 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 019_tp_gaze
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: slotType
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: effectText
+      value: 'Until the end of the round, replace the effects of the poison token
+        with the following:
+
+
+        - This character''s Initiative and Armour becomes
+        0.
+
+        - This character cannot be moved, except by another card''s effect.
+
+        -
+        At the end of each turn; place 2 damage on this character.'
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -123,9 +124,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &2938061799300622381 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 7438373193684658441}
-  m_PrefabAsset: {fileID: 0}

@@ -1,36 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &8042557079392678811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4504143726074411777}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 0
-  basePower: 8
-  baseInitiative: 6
-  baseArmour: 2
-  baseLife: 16
-  slotType: 1
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 'Research (Claim): Draw 3 cards, then return 3 cards in your hand each
-    to either the top or bottom of your deck.'
-  specialText: 'Fusion Blaster (Special): Detach an equipped card: Deal 4 damage
-    to an enemy character.'
-  passiveText: 
-  devName: 038_notironman
---- !u!1001 &8177851358055103013
+--- !u!1001 &2294600990511797473
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -39,13 +9,35 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 038_notironman
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: claimText
+      value: 'Research (Claim): Draw 3 cards, then return 3 cards in your hand each
+        to either the top or bottom of your deck.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: Skywinder Warsuit
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: specialText
+      value: 'Fusion Blaster (Special): Detach an equipped card: Deal 4 damage to
+        an enemy character.'
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -129,9 +121,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &4504143726074411777 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 8177851358055103013}
-  m_PrefabAsset: {fileID: 0}

@@ -12,6 +12,23 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class CardController : MonoBehaviour
     {
 
+        PhotonView photonView;
+
+        [Header("Technical Refs")]
+        [SerializeField]
+        private TMP_Text cardNameTMP;
+        public int ownerActorNumber;
+        public string devName;
+
+        public enum SlotType
+        {
+            Unsung
+            ,Historic
+            ,Fabled
+            ,TurningPoint
+            ,Unique
+        }
+        
         [Flags]
         public enum Faction
         {
@@ -22,31 +39,63 @@ namespace Com.WhiteSwan.OpheliaDigital
             ,All = ~0
         }
 
-        [SerializeField]
-        private TMP_Text cardNameTMP;
-
-        public string displayName;
-
+        [Header("Gameplay Properties")]
+        public SlotType slotType;
         public Faction faction;
 
-        //public PlayerController owner;
-        public int ownerActorNumber;
+        // for setting in prefab generator (todo: getters if needed)
+        private int baseLevel, basePower, baseInitiative, baseArmour, baseLife;
+        public void SetBaseStats(int level, int power, int initiative, int armor, int life)
+        {
+            baseLevel = level;
+            basePower = power;
+            baseInitiative = initiative;
+            baseArmour = armor;
+            baseLife = life;
+        }
 
-        public int RP_instanceID; // set by GSM, allows resolution of card <-> RP_Card
-        /// </summary>
 
-        private CardsZone currentZone;
+        public int level; // stars for characters, cost for TPs
+        public int power;
+        public int initiative;
+        public int armour;
+        public int life;
 
+        public int currentDamage;
+
+        // probably just for reference and to be loaded from the json
+        public string claimText;
+        public string specialText;
+        public string passiveText;
+        public string effectText; // only TPs
+
+        private int currentZone = -1; // server based int, use with ZoneResolver to get local ref
+        public string displayName;
+        
+
+        public int instanceID; // set by GSM
+
+        
         // this is a struct defined in cardszone
         // this struct is a number of properties that are set based on the card's current zone
         // todo: this must support no zone
         public CardsZone.ExternallySetCardProperties externallySetProperties;
-    
+
         // will build these cards out by composition
-        // each card type will be it's own component (CharacterCardController / TurningPointCardController)
         // each effect will be it's own component 
-        
-            
+
+        private void Awake()
+        {
+            level = baseLevel;
+            power = basePower;
+            initiative = baseInitiative;
+            armour = baseArmour;
+            life = baseLife;
+
+            gameObject.GetComponent<CardController>().ResetCardNameText();
+            photonView = gameObject.GetComponent<PhotonView>();
+        }
+
         public void ResetCardNameText()
         {
             cardNameTMP.text = displayName;
@@ -57,64 +106,30 @@ namespace Com.WhiteSwan.OpheliaDigital
             cardNameTMP.text = text;
         }
 
-        // this should only be called from CardsZone.AddCard
-        public void SetCurrentZone(CardsZone newZone)
+
+        public void SetCurrentZone(int newZone)
         {
-            //Debug.Log(this + "setcurrentzone: " + newZone);
-            this.currentZone = newZone;
+            photonView.RPC(SetCurrentZone_RPC_string, RpcTarget.AllViaServer, newZone);
         }
-        public CardsZone GetCurrentZone()
+
+        public const string SetCurrentZone_RPC_string = "SetCurrentZone_RPC";
+        [PunRPC]
+        public void SetCurrentZone_RPC(int newZone)
         {
-            return this.currentZone;
+            GameEvents.current.CardAdded(this, newZone, currentZone);
+            GameEvents.current.CardRemoved(this, currentZone);
+            currentZone = newZone;           
+        }
+
+        public int GetCurrentZone()
+        {
+            return currentZone;
         }
 
         private void OnMouseDown()
         {
-            Debug.Log(displayName + ":" + RP_instanceID + " clicked");
+            Debug.Log(displayName + ":" + instanceID + " clicked");
         }
-
-        public RP_Card GetRP_Card()
-        {
-            RP_Card rpCard = new RP_Card();
-            rpCard.faction = faction;
-            Dictionary<int, CardsZone.LocalZoneType> zoneMap = NetworkExtensions.GetZoneMap();
-            rpCard.zone = zoneMap.FirstOrDefault(x => x.Value == currentZone.localZoneType).Key;
-            rpCard.ownerActorID = ownerActorNumber;
-            rpCard.instanceID = RP_instanceID;
-            rpCard.devName = gameObject.name; // dunno about this
-
-            var ccc = gameObject.GetComponent<CharacterCardController>();
-            if (ccc != null)
-            {
-                rpCard.power = ccc.power;
-                rpCard.initiative = ccc.initiative;
-                rpCard.armour = ccc.armour;
-                rpCard.life = ccc.life;
-            }
-
-            return rpCard;
-            
-        }
-
-        public void UpdateFromRP_Card(RP_Card rpCard, CardsZone localZone)
-        {
-            faction = rpCard.faction;
-            currentZone = localZone;
-            ownerActorNumber = rpCard.ownerActorID;
-
-            RP_instanceID = rpCard.instanceID;
-            gameObject.name = rpCard.devName; // dunno about this
-
-            var ccc = gameObject.GetComponent<CharacterCardController>();
-            if (ccc != null)
-            {
-                ccc.power = rpCard.power;
-                ccc.initiative = rpCard.initiative;
-                ccc.armour = rpCard.armour;
-                ccc.life = rpCard.life;
-            }
-        }
-
 
     }
 

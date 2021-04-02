@@ -1,38 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &5822515523336411958
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6287714301326713437}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 2
-  basePower: 4
-  baseInitiative: 7
-  baseArmour: 0
-  baseLife: 12
-  slotType: 0
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 'Oracular Messenger C: Search your deck for a Prophet character, and
-    add it to your hand. Resolve the added card''s Claim effect.'
-  specialText: 'Honor the Gods S: If you have 5 Prophet characters with different
-    names in your forgotten zone, remove 10 damage from Yucatec characters on the
-    field and sacrifice Ah Kin Mai, the Owl: Play a * * * Yucatec character from
-    your deck or forgotten zone into an open slot.'
-  passiveText: 
-  devName: 011_owl
---- !u!1001 &1782876204983985017
+--- !u!1001 &2719429421771967690
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -41,13 +9,32 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 011_owl
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: claimText
+      value: 'Oracular Messenger C: Search your deck for a Prophet character, and
+        add it to your hand. Resolve the added card''s Claim effect.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: Ah Kin Mai, the Owl
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: specialText
+      value: 'Honor the Gods S: If you have 5 Prophet characters with different names
+        in your forgotten zone, remove 10 damage from Yucatec characters on the field
+        and sacrifice Ah Kin Mai, the Owl: Play a * * * Yucatec character from your
+        deck or forgotten zone into an open slot.'
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -131,9 +118,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &6287714301326713437 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 1782876204983985017}
-  m_PrefabAsset: {fileID: 0}

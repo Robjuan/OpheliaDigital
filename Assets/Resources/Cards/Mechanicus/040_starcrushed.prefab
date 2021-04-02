@@ -1,38 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &4495254938979943880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6010842418012256610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2959aa7ea6291b1479de2ce6f0e0ae9b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  baseLevel: 0
-  basePower: 7
-  baseInitiative: 4
-  baseArmour: 2
-  baseLife: 14
-  slotType: 1
-  level: 0
-  power: 0
-  initiative: 0
-  armour: 0
-  life: 0
-  currentDamage: 0
-  claimText: 
-  specialText: 'Sierra Hotel (Special): Place 5 damage on Starcrushed Overdrive:
-    Starcrushed Overdrive gains 3 Initiative and 3 Power until the end of the turn.
-    You may use this ability up to twice per turn.'
-  passiveText: 'Barrel Roll (Passive): When Starcrushed Overdrive defeats an enemy
-    character; you may move Starcrushed Overdrive to an open slot. It may attack
-    a second time this contest phase.'
-  devName: 040_starcrushed
---- !u!1001 &2060031742962677830
+--- !u!1001 &5694166881800276981
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -41,13 +9,37 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: devName
+      value: 040_starcrushed
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: faction
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: slotType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: displayName
       value: Starcrushed Overdrive
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: passiveText
+      value: 'Barrel Roll (Passive): When Starcrushed Overdrive defeats an enemy
+        character; you may move Starcrushed Overdrive to an open slot. It may attack
+        a second time this contest phase.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: specialText
+      value: 'Sierra Hotel (Special): Place 5 damage on Starcrushed Overdrive: Starcrushed
+        Overdrive gains 3 Initiative and 3 Power until the end of the turn. You may
+        use this ability up to twice per turn.'
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -131,9 +123,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b23e5dc862d8d494985081daff480bf6, type: 3}
---- !u!1 &6010842418012256610 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5763620856289411364, guid: b23e5dc862d8d494985081daff480bf6,
-    type: 3}
-  m_PrefabInstance: {fileID: 2060031742962677830}
-  m_PrefabAsset: {fileID: 0}

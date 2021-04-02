@@ -4,25 +4,27 @@ using UnityEngine;
 using System.IO;
 
 using Photon.Pun;
+using Photon.Realtime;
 using Hashtable = ExitGames.Client.Photon.Hashtable;
 
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
-    public static class NetworkExtensions
+    public static class ZoneResolver
     {
-        public static Dictionary<int, CardsZone.LocalZoneType> GetZoneMap()
+        public static Dictionary<int, CardsZone.LocalZoneType> GetZoneMap(Player player)
         {
-            var dictIn = (Dictionary<int, byte>)PhotonNetwork.LocalPlayer.CustomProperties[KeyStrings.ZoneMap];
-            Dictionary<int, CardsZone.LocalZoneType> dictOut = new Dictionary<int, CardsZone.LocalZoneType>();
-            foreach (int key in dictIn.Keys)
+            if(player.IsLocal && GameStateManager.current.localPlayerZoneMap != null)
             {
-                dictOut.Add(key, (CardsZone.LocalZoneType)dictIn[key]);
+                return GameStateManager.current.localPlayerZoneMap;
             }
-            return dictOut;
+            else
+            {
+                return ConvertZoneMapForLocal((Dictionary<int, byte>)player.CustomProperties[KeyStrings.ZoneMap]);
+            }
         }
 
-        public static Dictionary<int, CardsZone.LocalZoneType> SetZoneMap(int turnOrder)
+        public static Dictionary<int, CardsZone.LocalZoneType> GenerateZoneMap(int turnOrder)
         {
             // todo: we will have to redo zones a lot if >2 players are allowed
             Dictionary<int, CardsZone.LocalZoneType> zoneMap = new Dictionary<int, CardsZone.LocalZoneType>();
@@ -46,7 +48,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             if (turnOrder != 0) // if we're not the first player, mirror the zone mappings
             {
                 var diffZoneMap = zoneMap; // TODO: altering collection while looping over it sometimes breaks
-                foreach (int key in diffZoneMap.Keys)
+                foreach (int key in new List<int>(diffZoneMap.Keys))
                 {
                     switch (zoneMap[key])
                     {
@@ -101,17 +103,30 @@ namespace Com.WhiteSwan.OpheliaDigital
                 }
 
             }
+
+            return zoneMap;
+        }
+
+        public static Dictionary<int, byte> ConvertZoneMapForTransport(Dictionary<int, CardsZone.LocalZoneType> zoneMap)
+        {
             Dictionary<int, byte> zoneMapForTransport = new Dictionary<int, byte>();
-            foreach(int key in zoneMap.Keys)
+            foreach (int key in zoneMap.Keys)
             {
                 zoneMapForTransport.Add(key, (byte)zoneMap[key]);
             }
 
-            Hashtable ht = new Hashtable();
-            ht.Add(KeyStrings.ZoneMap, zoneMapForTransport);
-            PhotonNetwork.LocalPlayer.SetCustomProperties(ht);
-
-            return zoneMap;
+            return zoneMapForTransport;
         }
-    }
+        
+
+        public static Dictionary<int, CardsZone.LocalZoneType> ConvertZoneMapForLocal(Dictionary<int, byte> zoneMap)
+        {
+            Dictionary<int, CardsZone.LocalZoneType> dictOut = new Dictionary<int, CardsZone.LocalZoneType>();
+            foreach (int key in zoneMap.Keys)
+            {
+                dictOut.Add(key, (CardsZone.LocalZoneType)zoneMap[key]);
+            }
+            return dictOut;
+        }
+}
 }

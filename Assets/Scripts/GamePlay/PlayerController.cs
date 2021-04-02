@@ -18,8 +18,9 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private PlayerDisplay selfDisplay;
 
-        public CardsZone deck;
-        public CardsZone hand;
+        public int turnOrder;
+        public int points;
+
 
         public string GetName()
         {

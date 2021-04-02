@@ -997,7 +997,7 @@ PrefabInstance:
     - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: viewIdField
-      value: 1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -1330,7 +1330,7 @@ PrefabInstance:
     - target: {fileID: 5106754437245524573, guid: 378afd248ca0c3b49889a08eb38f7451,
         type: 3}
       propertyPath: viewIdField
-      value: 2
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6936095595756359667, guid: 378afd248ca0c3b49889a08eb38f7451,
         type: 3}
@@ -1664,7 +1664,7 @@ MonoBehaviour:
   Synchronization: 3
   OwnershipTransfer: 0
   ObservedComponents: []
-  viewIdField: 3
+  viewIdField: 6
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!1 &1813340082
