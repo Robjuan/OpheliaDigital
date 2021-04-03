@@ -34,6 +34,11 @@ PrefabInstance:
       propertyPath: specialText
       value: "Yucat\xE1n S: Activate the Claim ability of a friendly Yucatec character."
       objectReference: {fileID: 0}
+    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.lineCount

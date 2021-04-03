@@ -44,11 +44,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         [SerializeField]
         private GameObject readyButton;
 
-        [HideInInspector]
-        public List<PlayerController> playerControllers = new List<PlayerController>();
-
-        private List<GameObject> allCards = new List<GameObject>();
-
         [Header("Display Controls")]
         public RectTransform playerDisplayPlace;
         public RectTransform opponentDisplayPlace;
@@ -57,7 +52,6 @@ namespace Com.WhiteSwan.OpheliaDigital
 
 
         private string lastSetPhase;
-        private bool loaded = false;
 
         private void Awake()
         {
@@ -90,7 +84,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void SetupPlayerDisplay()
         {
-            foreach(PlayerController player in playerControllers)
+            foreach (PlayerController player in GameStateManager.current.playerControllers)
             {
                 if (player.punPlayer.IsLocal)
                 {
@@ -110,6 +104,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             {
                 zone.InitialiseRemoteID();
             }
+
         }
 
 
@@ -140,7 +135,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             {
                 if (phaseKey == KeyStrings.PreGameSetupPhase)
                 {
-                    loaded = true; // ie, loadphase finished
                     lastSetPhase = phaseKey;
                     DoPreGameSetupPhase();
                 }
@@ -164,8 +158,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             if(myDeck.GetTopCard() != null)
             {
                 myDeck.GetTopCard().SetCurrentZone(ResolveLocalZoneToRemote(myHand));
-                Debug.LogWarning("draw card not implemented");
-                //gameStateManager.UpdateCardLocation(myDeck.GetTopCard(), myDeck, myHand);
                 return true;
             }
             else

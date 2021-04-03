@@ -20,8 +20,10 @@ namespace Com.WhiteSwan.OpheliaDigital
 {
     public class DraftTurnManager : MonoBehaviourPunCallbacks
     {
-        //[SerializeField]
-        //private CardStringLoader cardStringLoader;
+        // RPCs
+        public const string StartTurn_string = "StartTurn";
+        public const string EndTurn_string = "EndCurrentTurn_MasterClient";
+        public const string DeactivateReadyButton_string = "DeactivateReadyButton";
 
         [SerializeField]
         private GameObject deckSelectionPlace;
@@ -94,7 +96,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void StartDraft()
         {
-            base.photonView.RPC(RPCStrings.DeactivateReadyButton, RpcTarget.All);
+            base.photonView.RPC(DeactivateReadyButton_string, RpcTarget.All);
             SetSelectionOrder();
         }
 
@@ -123,14 +125,14 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private void SetActiveTurnPlayer(int turnOrder)
         {
-            base.photonView.RPC(RPCStrings.StartTurn, turnOrderPlayers[turnOrder]);
+            base.photonView.RPC(StartTurn_string, turnOrderPlayers[turnOrder]);
         }
 
         public void EndCurrentTurn()
         {
             // called by onDeckSelected event
             DeactivatePreconSelection();
-            base.photonView.RPC(RPCStrings.EndTurn, RpcTarget.MasterClient);
+            base.photonView.RPC(EndTurn_string, RpcTarget.MasterClient);
         }
 
         [PunRPC]
@@ -258,28 +260,30 @@ namespace Com.WhiteSwan.OpheliaDigital
 
                     }
                 }
-            }
 
-            // if player cardlist set
-            if (changedProps.ContainsKey(KeyStrings.CardList) && changedProps[KeyStrings.CardList] != null)
-            {
-                bool everyoneCardListSet = true;
-                foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
+                // if player cardlist set
+                if (changedProps.ContainsKey(KeyStrings.CardList) && changedProps[KeyStrings.CardList] != null)
                 {
-                    // if any player does not have their cardlist set
-                    if (!player.CustomProperties.ContainsKey(KeyStrings.CardList) || player.CustomProperties[KeyStrings.CardList] == null) 
+                    bool everyoneCardListSet = true;
+                    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
                     {
-                        everyoneCardListSet = false;
-                        break;
+                        // if any player does not have their cardlist set
+                        if (!player.CustomProperties.ContainsKey(KeyStrings.CardList) || player.CustomProperties[KeyStrings.CardList] == null)
+                        {
+                            everyoneCardListSet = false;
+                            break;
+                        }
                     }
-                }
 
-                if (everyoneCardListSet)
-                {                    
-                    PhotonNetwork.LoadLevel("GameScene");
-                }
+                    if (everyoneCardListSet)
+                    {
+                        PhotonNetwork.LoadLevel("GameScene");
+                    }
 
+                }
             }
+
+            
 
             // if i've chosen my deck
             if (targetPlayer == PhotonNetwork.LocalPlayer && changedProps.ContainsKey(KeyStrings.ChosenDeck))

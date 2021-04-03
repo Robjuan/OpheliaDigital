@@ -7,7 +7,21 @@ namespace Com.WhiteSwan.OpheliaDigital
 {
     public class GameEvents : MonoBehaviour
     {
-        public static GameEvents current;
+        public static GameEvents current
+        {
+            get
+            {
+                if (_current == null)
+                    _current = FindObjectOfType(typeof(GameEvents)) as GameEvents;
+
+                return _current;
+            }
+            set
+            {
+                _current = value;
+            }
+        }
+        private static GameEvents _current;
         void Awake()
         {
             current = this;

@@ -16,7 +16,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string UnityInstanceID = "unityinstanceid";
 
         public const string PhaseReady = "phaseready";
-
+        public const string SceneLoaded = "sceneloaded";
         #endregion
 
         #region room properties

@@ -44,5 +44,10 @@ namespace Com.WhiteSwan.OpheliaDigital
             selfDisplay.playerController = this;
         }
 
+        public override string ToString()
+        {
+            return "PC name: " + GetName() + ", AN: " + punPlayer.ActorNumber;
+        }
+
     }
 }

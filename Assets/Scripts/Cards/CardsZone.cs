@@ -30,7 +30,9 @@ namespace Com.WhiteSwan.OpheliaDigital
         }
         public LocalZoneType localZoneType;
 
+        [SerializeField]
         private int remoteZoneID;
+        public bool initDone = false;
 
         [HideInInspector]
         public int ownerActorNumber; // will match PUN ActorNumber, or -1 if not owned
@@ -66,22 +68,32 @@ namespace Com.WhiteSwan.OpheliaDigital
         public void InitialiseRemoteID()
         {
             remoteZoneID = LocalGameManager.current.ResolveLocalZoneToRemote(this);
+            initDone = true;
+            //Debug.Log("init lzt: " + localZoneType + ", remoteID: " + remoteZoneID + "uid: " + GetInstanceID()) ;
         }
 
         public void AddCard(CardController thisCard, int newZone, int previousZone)
         {
+            if(!initDone)
+            {
+                Debug.LogError("attempting to add to non init zone, rid:" + remoteZoneID + "uid: " + GetInstanceID());
+                return;
+            }
             if(newZone != remoteZoneID)
             {
                 // it's not being added here
                 return;
             }
 
+            //Debug.Log("adding card to rid: " + remoteZoneID);
             thisCard.externallySetProperties = containedCardProperties; // todo: reference or copy here?
             cards.Add(thisCard);
 
             if (moveOnZoneAdd)
             {
                 //todo: animate this somehow (call a function on the card?)
+                // todo: make stacking offset work more dynamically for hands
+                // define card size in code?
                 thisCard.transform.position = startingLocation.position + (stackingOffset * cards.Count);
                 thisCard.transform.rotation = startingLocation.rotation;
             }

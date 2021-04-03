@@ -45,6 +45,11 @@ PrefabInstance:
         named card, deal 3 damage to an enemy character, or 5 damage to 5 different
         enemy characters, then return the revealed card to the bottom of your deck.'
       objectReference: {fileID: 0}
+    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.lineCount

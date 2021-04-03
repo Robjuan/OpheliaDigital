@@ -9,7 +9,7 @@ using TMPro;
 namespace Com.WhiteSwan.OpheliaDigital
 {
 
-    public class CardController : MonoBehaviour
+    public class CardController : MonoBehaviour, IPunInstantiateMagicCallback
     {
 
         PhotonView photonView;
@@ -131,6 +131,18 @@ namespace Com.WhiteSwan.OpheliaDigital
             Debug.Log(displayName + ":" + instanceID + " clicked");
         }
 
+        public void OnPhotonInstantiate(PhotonMessageInfo info)
+        {
+            // set on instantiation in GameStateManager
+            object[] initData = info.photonView.InstantiationData;
+            int startZone = (int)initData[0];
+
+            instanceID = (int)initData[1];
+            devName = (string)initData[2];
+
+            // this callback gets fired on each object locally when instantiation is done, so skip the rpc->all
+            SetCurrentZone_RPC(startZone);
+        }
     }
 
 

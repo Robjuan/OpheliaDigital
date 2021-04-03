@@ -36,6 +36,11 @@ PrefabInstance:
         and sacrifice Ah Kin Mai, the Owl: Play a * * * Yucatec character from your
         deck or forgotten zone into an open slot.'
       objectReference: {fileID: 0}
+    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: m_textInfo.lineCount

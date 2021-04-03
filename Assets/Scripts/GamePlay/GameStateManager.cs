@@ -37,11 +37,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         }
         private static GameStateManager _current;
 
-        [Header("Game Rule Constants")]
-        public int initialCardCount = 9;
-        public int roundCardDrawMax = 3;
-
-        // filled by LocalGameManager in Start()
         [HideInInspector]
         public List<PlayerController> playerControllers = new List<PlayerController>();
 
@@ -49,14 +44,18 @@ namespace Com.WhiteSwan.OpheliaDigital
         private BoardController boardController;
 
         public Dictionary<int, CardsZone.LocalZoneType> localPlayerZoneMap;
+        private bool zoneMapsDone = false;
 
         private void Awake()
         {
             current = this;
 
-            if (PhotonNetwork.IsMasterClient)
+            if (!PhotonNetwork.IsMasterClient)
             {
-                SetupTurnOrder();
+                // signal that we're ready (mc will see this and fire SetupTurnOrder)
+                Hashtable ht = new Hashtable();
+                ht.Add(KeyStrings.SceneLoaded, true);
+                PhotonNetwork.LocalPlayer.SetCustomProperties(ht);
             }
         }
         
@@ -67,13 +66,15 @@ namespace Com.WhiteSwan.OpheliaDigital
             foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
             {
                 var newPC = SetupPlayerController(player);
+                playerControllers.Add(newPC);
+                Debug.Log(newPC.ToString()); 
                 newPC.turnOrder = turnOrder[0];
                 turnOrder.RemoveAt(0);
-                var tzm = ZoneResolver.GenerateZoneMap(newPC.turnOrder); // when these are all done, setupgamestate will fire
-                photonView.RPC(StoreZoneMap_RPC_string, player, ZoneResolver.ConvertZoneMapForTransport(tzm));
+                var tzm = ZoneResolver.GenerateZoneMap(newPC.turnOrder); 
+                photonView.RPC(StoreZoneMap_RPC_string, player, ZoneResolver.ConvertZoneMapForTransport(tzm)); // when these are all done, setupgamestate will fire
 
             }
-            PhotonNetwork.SendAllOutgoingCommands(); // do it now
+            PhotonNetwork.SendAllOutgoingCommands(); // do it now (necessary???)
             LocalGameManager.current.SetupPlayerDisplay();
         }
 
@@ -84,10 +85,14 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             // cache locally
             localPlayerZoneMap = ZoneResolver.ConvertZoneMapForLocal(dictIn);
+            LocalGameManager.current.InitAllZoneIds();
+
             // store in customproperties just in case -- also signals that load is done and we can progress
             Hashtable ht = new Hashtable();
             ht.Add(KeyStrings.ZoneMap, ZoneResolver.ConvertZoneMapForTransport(localPlayerZoneMap));
             PhotonNetwork.LocalPlayer.SetCustomProperties(ht);
+
+            
         }
 
         private PlayerController SetupPlayerController(Player punPlayer)
@@ -97,8 +102,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             newPC.punPlayer = punPlayer;
             newPC.points = 0;
 
-            LocalGameManager.current.playerControllers.Add(newPC);
-
             return newPC;
         }
 
@@ -106,7 +109,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             if(!PhotonNetwork.IsMasterClient)
             {
-                Debug.LogWarning("only MC can setup gamestate RPs");
+                Debug.LogError("only MC can setup gamestate");
                 return;
             }
 
@@ -114,36 +117,36 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             int uniqueInstanceID = 0;
 
-            foreach (PlayerController player in LocalGameManager.current.playerControllers)
+            foreach (PlayerController player in playerControllers)
             {
+
                 var cardArray = (string[])player.punPlayer.CustomProperties[KeyStrings.CardList];
                 List<string> cardList = cardArray.ToList();
-              
-                foreach(string card in cardList)
+
+                // hardcoding these values here because the zonemap is not ready when we're here.
+                // values come from ZoneResolver.
+                int thisPlayerDeck;
+                if (player.turnOrder == 0)
                 {
+                    thisPlayerDeck = 2;
+                }
+                else
+                {
+                    thisPlayerDeck = 5;
+                }
 
-                    GameObject newCard = PhotonNetwork.InstantiateRoomObject(card, Vector3.zero, Quaternion.identity); // will be immediately moved when we put it in the deck
-                    CardController newCardCC = newCard.GetComponent<CardController>();
-                    // put card in particular player's deck
-
-                    // hardcoding these values here because the zonemap is not ready when we're here.
-                    // values come from ZoneResolver.
-                    int thisPlayerDeck;
-                    if(player.turnOrder == 0)
-                    {
-                        thisPlayerDeck = 2;
-                    }
-                    else
-                    {
-                        thisPlayerDeck = 5;
-                    }
-
-                    newCardCC.SetCurrentZone(thisPlayerDeck);
-
-                    newCardCC.instanceID = uniqueInstanceID;
+                foreach (string card in cardList)
+                {
+                    var justAboveBoard = new Vector3(0, 0, -5);
                     uniqueInstanceID++;
-                    newCardCC.devName = card;
 
+                    object[] initData = new object[3];
+                    initData[0] = thisPlayerDeck;
+                    initData[1] = uniqueInstanceID;
+                    initData[2] = card;
+
+                    GameObject newCard = PhotonNetwork.InstantiateRoomObject(card, justAboveBoard, Quaternion.identity, 0, initData); // will be immediately moved when we put it in the deck
+                    CardController newCardCC = newCard.GetComponent<CardController>();
                 }
 
             }
@@ -157,23 +160,15 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         }
 
-
-        private const string LGM_InitZones_RPCString = "LGM_InitZones";
-        [PunRPC]
-        private void LGM_InitZones()
-        {
-            LocalGameManager.current.InitAllZoneIds();
-        }
-
-        public void SetupGame()
-        {
-            //DealCards(initialCardCount);
-        }
-
         public override void OnPlayerPropertiesUpdate(Player targetPlayer, Hashtable changedProps)
         {
             if (PhotonNetwork.IsMasterClient)
             {
+                if (changedProps.ContainsKey(KeyStrings.SceneLoaded))
+                {
+                    SetupTurnOrder();
+                }
+
                 if (changedProps.ContainsKey(KeyStrings.PhaseReady))
                 {
                     bool everyoneReady = true;
@@ -192,14 +187,15 @@ namespace Com.WhiteSwan.OpheliaDigital
                     }
 
                 }
-                if (changedProps.ContainsKey(KeyStrings.ZoneMap))
+                // don't do this ever again (will otherwise again and see ready on phasechange etc)
+                if (changedProps.ContainsKey(KeyStrings.ZoneMap) && !zoneMapsDone)
                 {
-                    photonView.RPC(LGM_InitZones_RPCString, targetPlayer);
-
+                    Debug.Log("checking zonemaps");
                     bool everyoneReady = true;
                     foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
                     {
-                        if (player.CustomProperties.ContainsKey(KeyStrings.ZoneMap) && player.CustomProperties[KeyStrings.PhaseReady] != null) // if any player is not ready
+                        
+                        if (player.CustomProperties[KeyStrings.ZoneMap] == null) // if any player is not ready
                         {
                             everyoneReady = false;
                             break;
@@ -207,6 +203,8 @@ namespace Com.WhiteSwan.OpheliaDigital
                     }
                     if (everyoneReady)
                     {
+                        Debug.Log("firing setupgamestate");
+                        zoneMapsDone = true;
                         SetupGameState();
                     }
                 }
