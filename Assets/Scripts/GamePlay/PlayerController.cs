@@ -12,7 +12,7 @@ namespace Com.WhiteSwan.OpheliaDigital
     {
 
         public GameObject playerDisplayPrefab;
-        public Player punPlayer;
+        public int punActorNumber;
 
         // filled at instantiation
         public List<GameObject> ownedCards = new List<GameObject>();
@@ -27,13 +27,13 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public string GetName()
         {
-            if(punPlayer != null)
+            if(PhotonNetwork.CurrentRoom.Players.ContainsKey(punActorNumber))
             {
-                return punPlayer.NickName;
+                return PhotonNetwork.CurrentRoom.Players[punActorNumber].NickName;
             }
             else
             {
-                Debug.LogWarningFormat("no punplayer found on {0}", this);
+                Debug.LogWarningFormat("no pun ActorNumber found on playerController");
                 return "null PunPlayer name";
             }
             
@@ -49,11 +49,15 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public override string ToString()
         {
-            return "PC name: " + GetName() + ", AN: " + punPlayer.ActorNumber;
+            return "PC name: " + GetName() + ", AN: " + punActorNumber;
         }
 
         public void OnPhotonInstantiate(PhotonMessageInfo info)
         {
+            object[] initData = info.photonView.InstantiationData;
+            punActorNumber = (int)initData[0];
+            points = 0;
+
             GameStateManager.current.playerControllers.Add(this);
         }
     }

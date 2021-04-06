@@ -46,6 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerDisplayPrefab: {fileID: 861786010391903599, guid: 30314f6ddd094a147823978ebc0a8912,
     type: 3}
+  punActorNumber: 0
   ownedCards: []
   turnOrder: 0
   points: 0

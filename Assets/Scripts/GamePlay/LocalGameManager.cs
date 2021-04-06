@@ -97,7 +97,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             foreach (PlayerController player in GameStateManager.current.playerControllers)
             {
-                if (player.punPlayer.IsLocal)
+                if (PhotonNetwork.LocalPlayer.ActorNumber == player.punActorNumber)
                 {
                     player.SetupDisplay(playerDisplayPlace);
                 }

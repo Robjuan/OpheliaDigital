@@ -62,7 +62,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         private bool zoneMapsDone = false;
 
         [HideInInspector]
-        public List<IChainable> chain; // objects must implement IChainable
+        public List<IChainable> chain = new List<IChainable>(); // objects must implement IChainable
 
 
         private void Awake()
@@ -101,11 +101,19 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             PlayerController firstPlayer = playerControllers.Where(z => z.turnOrder == playerControllers.Min(x => x.turnOrder)).First();
-            photonView.RPC(UpdatePrioPlayer_string, RpcTarget.AllViaServer, firstPlayer.punPlayer.ActorNumber);
+            photonView.RPC(UpdatePrioPlayer_string, RpcTarget.AllViaServer, firstPlayer.punActorNumber);
 
-            PhotonNetwork.SendAllOutgoingCommands(); // do it now (necessary???)
+            //PhotonNetwork.SendAllOutgoingCommands(); // do it now (necessary???)
+            photonView.RPC(SetupPlayerDisplay_string, RpcTarget.AllViaServer);
+        }
+
+        private const string SetupPlayerDisplay_string = "SetupPlayerDisplay";
+        [PunRPC]
+        public void SetupPlayerDisplay()
+        {
             LocalGameManager.current.SetupPlayerDisplay();
         }
+
 
         private const string UpdatePrioPlayer_string = "UpdatePrioPlayer";
         [PunRPC]
@@ -113,7 +121,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         {
             priorityPlayerAN = ppAN;
             GameEvents.current.PriorityChange(priorityPlayerAN);
-            // if ppAN is me, call ReceivePriority()
         }
 
         private const string AddToChain_string = "AddToChain";
@@ -135,7 +142,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         // called when we GIVE priority to someone
         public void PassPriority()
         {
-            
             if(chain.Count == 0)
             {
                 // nothing on the chain and we're passing prio - that means Phase End
@@ -143,28 +149,53 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             // this will get the first player who doesn't currently have prio (won't scale to > 2 players) 
-            PlayerController newPP = playerControllers.Where(x => x.punPlayer.ActorNumber != PhotonNetwork.LocalPlayer.ActorNumber).First();
-            UpdatePrioPlayer(newPP.punPlayer.ActorNumber);
+            foreach (var player in playerControllers)
+            {
+                Debug.LogWarning(player);
+            }
+            PlayerController newPP = playerControllers.Where(x => x.punActorNumber != PhotonNetwork.LocalPlayer.ActorNumber).First();
+            photonView.RPC(UpdatePrioPlayer_string, RpcTarget.AllViaServer, newPP.punActorNumber);
 
         }
 
         public void ReceivePriority(int newPrioPlayer)
         {
-            if(newPrioPlayer != PhotonNetwork.LocalPlayer.ActorNumber)
+            int myAN = PhotonNetwork.LocalPlayer.ActorNumber;
+            if (newPrioPlayer != myAN)
             {
                 // not my prio to receive
                 return;
             }
-
-            /*if most recently added chain is mine (ie i have just added and am giving opporunity)
-             *  - pass to opp
-             * if most recent is opps (ie i am doing nothing and passing back to them)
-             *  - execute top
-             *  
-             *  - do recheck
-             *  
-             * */
+            if(chain.Count > 0)
+            {
+                IChainable mostRecent = chain.Last();
+                if (mostRecent.ownerAN == myAN)
+                {
+                    // they have given back to me without doing anything
+                    ResolveChain();
+                }
+                else
+                {
+                    // they have added to the chain 
+                }
+            }
+            else
+            {
+                Debug.Log("<color=blue>received prio with nothing on chain</color>");
+            }
+            
         }
+
+        private void ResolveChain()
+        {
+            // work backwards through the list
+            for (int i = chain.Count - 1; i >= 0; i--) // remove 1 to convert count to index
+            {
+                chain[i].Resolve();
+                // todo: check for things that have triggered as a result of a chain item resolving
+            }
+        }
+
 
         private const string StoreZoneMap_RPC_string = "StoreZoneMap_RPC";
         [PunRPC]
@@ -182,10 +213,11 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         private PlayerController SetupPlayerController(Player punPlayer)
         {
-            var newPlayer = PhotonNetwork.InstantiateRoomObject("PlayerController", Vector3.zero, Quaternion.identity);
+            object[] initData = new object[1];
+            initData[0] = punPlayer.ActorNumber;
+
+            var newPlayer = PhotonNetwork.InstantiateRoomObject("PlayerController", Vector3.zero, Quaternion.identity, 0, initData);
             var newPC = newPlayer.GetComponent<PlayerController>();
-            newPC.punPlayer = punPlayer;
-            newPC.points = 0;
 
             return newPC;
         }
@@ -202,8 +234,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             foreach (PlayerController player in playerControllers)
             {
-
-                var cardArray = (string[])player.punPlayer.CustomProperties[KeyStrings.CardList];
+                Player punPlayer = PhotonNetwork.CurrentRoom.Players[player.punActorNumber];
+                var cardArray = (string[])punPlayer.CustomProperties[KeyStrings.CardList];
                 List<string> cardList = cardArray.ToList();
 
                 // hardcoding these values here because the zonemap is not ready when we're here.
