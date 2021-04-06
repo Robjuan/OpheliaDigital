@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7190568154395511059
+--- !u!1001 &57801514315970753
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -19,14 +19,34 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: baseLife
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: slotType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: basePower
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
       propertyPath: claimText
       value: 'Tinker (Claim): Equip a Mechanicus character in your forgotten zone
         to a friendly Mechanicus character.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseArmour
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -45,10 +65,10 @@ PrefabInstance:
         named card, deal 3 damage to an enemy character, or 5 damage to 5 different
         enemy characters, then return the revealed card to the bottom of your deck.'
       objectReference: {fileID: 0}
-    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
+      propertyPath: baseInitiative
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}

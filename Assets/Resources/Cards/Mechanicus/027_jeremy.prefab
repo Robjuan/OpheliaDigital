@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7375338731445105325
+--- !u!1001 &2789817893918851903
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -19,8 +19,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: baseLife
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: slotType
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseLevel
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: basePower
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -28,6 +43,11 @@ PrefabInstance:
       value: 'Backstabber (Claim): Choose a non-Mechanicus character: Until the end
         of the turn, the chosen character loses all abilities and has its Power,
         Initiative and Armour reduced to 0.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseArmour
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -47,10 +67,10 @@ PrefabInstance:
         of your deck. If you reveal the named card, equip it to JBL-3S, Greystar''s
         Agent.'
       objectReference: {fileID: 0}
-    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
+      propertyPath: baseInitiative
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}

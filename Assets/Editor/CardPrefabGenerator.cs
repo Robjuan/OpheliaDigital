@@ -2,11 +2,12 @@
 using System.Runtime.Serialization;
 using System.IO;
 using System;
-
+using System.Linq;
 
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using System.Reflection;
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
@@ -56,13 +57,21 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
+        private Type[] GetAllEffectTypes()
+        {
+            string nameSpace = "Com.WhiteSwan.OpheliaDigital";
+            var assem = Assembly.Load("Assembly-CSharp");
+
+            return assem.GetTypes()
+                      .Where(t => String.Equals(t.Namespace, nameSpace, StringComparison.Ordinal) && t.Name.Contains("Effect_"))
+                      .ToArray();
+        }
 
 
-        
         private void GeneratePrefabs(string targetPath)
         {
             // confirmation dialog
-            if(overwrite)
+            if (overwrite)
             {
                 bool check = EditorUtility.DisplayDialog("Overwrite Prefabs?", "Are you sure you want to overwrite existing prefabs? This is permanent.", "Proceed", "Cancel");
                 if(!check)
@@ -176,9 +185,11 @@ namespace Com.WhiteSwan.OpheliaDigital
 
                     newCard_CC.SetBaseStats(card.Cost, card.Power, card.Initiative, card.Armour, card.Life);
 
+                    // todo: remove these when effects are more implemented
                     newCard_CC.claimText = card.Claim;
                     newCard_CC.specialText = card.Special;
                     newCard_CC.passiveText = card.Passive;
+                    newCard_CC.effectText = card.Effect;
 
                     // do we need to store this?
                     newCard_CC.devName = card.devName;
@@ -190,6 +201,39 @@ namespace Com.WhiteSwan.OpheliaDigital
                     Debug.LogError("Invalid slottype, skipping");
                     errorCount += 1;
                     continue;
+                }
+
+                // check over every Effect Type defined, check their custom attribute to see if they are for this card
+
+                foreach (Type t in GetAllEffectTypes())
+                {
+                    newCard.AddComponent(t);
+                }
+                foreach (var comp in newCard.GetComponents<CardEffectBase>())
+                {
+                    if (!comp.GetType().CustomAttributes.First().AttributeType.Name.Contains("064_ophelia"))
+                    {
+                        DestroyImmediate(comp);
+                    }
+                    else
+                    {
+                        if(comp.effectType == GamePlayConstants.EffectType.Claim && newCard_CC.claimText != "")
+                        {
+                            comp.fullText = newCard_CC.claimText;
+                        }
+                        if (comp.effectType == GamePlayConstants.EffectType.Passive && newCard_CC.passiveText != "")
+                        {
+                            comp.fullText = newCard_CC.passiveText;
+                        }
+                        if (comp.effectType == GamePlayConstants.EffectType.Special && newCard_CC.specialText != "")
+                        {
+                            comp.fullText = newCard_CC.specialText;
+                        }
+                        if (comp.effectType == GamePlayConstants.EffectType.TurningPoint && newCard_CC.effectText != "")
+                        {
+                            comp.fullText = newCard_CC.effectText;
+                        }
+                    }
                 }
 
 

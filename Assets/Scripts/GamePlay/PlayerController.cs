@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 using Photon.Realtime;
+using Photon.Pun;
 
 namespace Com.WhiteSwan.OpheliaDigital
 {
     // instantiated by LocalGameManager at runtime
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IPunInstantiateMagicCallback
     {
 
         public GameObject playerDisplayPrefab;
@@ -20,6 +21,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public int turnOrder;
         public int points;
+
+        private bool hasPriority;
 
 
         public string GetName()
@@ -49,5 +52,9 @@ namespace Com.WhiteSwan.OpheliaDigital
             return "PC name: " + GetName() + ", AN: " + punPlayer.ActorNumber;
         }
 
+        public void OnPhotonInstantiate(PhotonMessageInfo info)
+        {
+            GameStateManager.current.playerControllers.Add(this);
+        }
     }
 }

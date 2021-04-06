@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &4331908662668540622
+--- !u!1001 &7354692718942867737
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -19,6 +19,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: baseLife
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: basePower
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: claimText
       value: 'Decadence (Claim): Send the top card of your deck to the forgotten
         zone. Both players draw a card.'
@@ -33,6 +43,11 @@ PrefabInstance:
       propertyPath: passiveText
       value: 'Afterthought (Passive): When Royal Spectre is sacrificed by a Mattervoid
         character; draw a card.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseInitiative
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}

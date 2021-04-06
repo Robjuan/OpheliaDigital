@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &8097651627829563788
+--- !u!1001 &5932711444214108214
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -16,6 +16,16 @@ PrefabInstance:
         type: 3}
       propertyPath: faction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseLife
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: basePower
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
@@ -36,6 +46,11 @@ PrefabInstance:
       value: 'Afterthought (Passive): When Thoughtfiend is sacrificed by a Mattervoid
         character; you may convert and play a * character from your opponent''s forgotten
         zone into an open slot.'
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: baseInitiative
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}

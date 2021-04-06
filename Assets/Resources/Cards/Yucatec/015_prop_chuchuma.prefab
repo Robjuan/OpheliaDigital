@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6086241623566825103
+--- !u!1001 &2373628076972415773
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -19,6 +19,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: baseLife
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: basePower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: claimText
       value: 'Fate Twist (Claim): Move up to 3 damage from a friendly Yucatec character
         to any other character.'
@@ -34,10 +44,10 @@ PrefabInstance:
       value: 'Red Rivers (Passive): At the end of each turn; you may move 1 damage
         from any character to another.'
       objectReference: {fileID: 0}
-    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
+      propertyPath: baseInitiative
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}

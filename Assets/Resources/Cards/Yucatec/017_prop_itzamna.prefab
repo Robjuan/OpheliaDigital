@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &6250598763297686651
+--- !u!1001 &1740497660026464601
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -19,6 +19,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: baseLife
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
+      propertyPath: basePower
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: claimText
       value: 'Itzamna''s Light C: Choose a friendly Yucatec character: Until the
         beginning of your next turn, it cannot be defeated or be dealt damage.'
@@ -34,10 +44,10 @@ PrefabInstance:
       value: 'Empower P: All other friendly damaged Yucatec characters gain 1 Power.
         All other friendly undamaged Yucatec characters gain 2 Power.'
       objectReference: {fileID: 0}
-    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
+      propertyPath: baseInitiative
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}

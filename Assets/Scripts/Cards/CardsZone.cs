@@ -39,6 +39,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         [Header("Display Properties")]
         public Transform startingLocation;
+        public bool dynamicStacking;
         public Vector3 stackingOffset;
         public bool moveOnZoneAdd;
 
@@ -91,13 +92,41 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             if (moveOnZoneAdd)
             {
-                //todo: animate this somehow (call a function on the card?)
-                // todo: make stacking offset work more dynamically for hands
-                // define card size in code?
+                MoveCard(thisCard);
+            }
+        }
+
+        public void MoveCard(CardController thisCard)
+        {
+            //todo: animate this somehow (call a function on the card?)
+            if(!dynamicStacking)
+            {
                 thisCard.transform.position = startingLocation.position + (stackingOffset * cards.Count);
                 thisCard.transform.rotation = startingLocation.rotation;
             }
+            else
+            {
+                var cardWidth = thisCard.GetComponent<Renderer>().bounds.size.x;
+                var halfCardWidth = (cardWidth / 2);
+                float padding_x = cardWidth / 15; //
 
+                // move current card set half width left
+                startingLocation.position = new Vector3(startingLocation.position.x - (halfCardWidth + padding_x)
+                                                        , startingLocation.position.y, startingLocation.position.z);
+
+                // get the spot at the far right of the card set for the new card
+                var newCardLocaiton = new Vector3(startingLocation.position.x + (cards.Count * (cardWidth + padding_x)) + halfCardWidth 
+                                                        , startingLocation.position.y, startingLocation.position.z);
+
+                // put the card there
+                thisCard.transform.position = newCardLocaiton;
+
+                // attach the card so it moves with the set
+                thisCard.transform.SetParent(startingLocation);
+
+                thisCard.transform.rotation = startingLocation.rotation;
+            } 
+                
             
         }
 
@@ -120,14 +149,25 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public CardController GetTopCard()
         {
-            if(cards.Count > 0)
+            return GetCardBelowTop(0);
+        }
+
+        public CardController GetCardBelowTop(int distance)
+        {
+            if (cards.Count == 0)
             {
-                return cards[cards.Count-1];
-            }
-            else
-            {
+                Debug.LogWarning("attempted get card when no cards in deck");
                 return null;
             }
+            if (distance > cards.Count - 1)
+            {
+                Debug.LogError("searching deeper than cards in deck");
+                return null;
+            }
+
+            var index = (cards.Count - 1) - distance;
+            return cards[index];
+
         }
 
     }

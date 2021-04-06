@@ -8,6 +8,14 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const int MaxTurnDrawCount = 3;
         public const int MaxHandSize = 8;
 
+        public enum EffectType
+        {
+            Claim
+            , Passive
+            , Special
+            , TurningPoint
+        }
+
     }
 }
 

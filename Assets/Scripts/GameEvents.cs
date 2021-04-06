@@ -56,6 +56,15 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
+        public event Action<int> onPriorityChange;
+        public void PriorityChange(int newPrioActorNumber)
+        {
+            if (onPriorityChange != null)
+            {
+                onPriorityChange(newPrioActorNumber);
+            }
+        }
+
         public event Action<CardController, int, int> onCardAdded;
         public void CardAdded(CardController card, int newZone, int previousZone)
         {

@@ -14,9 +14,9 @@ namespace Com.WhiteSwan.OpheliaDigital
     {
         public static Dictionary<int, CardsZone.LocalZoneType> GetZoneMap(Player player)
         {
-            if(player.IsLocal && GameStateManager.current.localPlayerZoneMap != null)
+            if(player.IsLocal && LocalGameManager.current.localPlayerZoneMap != null)
             {
-                return GameStateManager.current.localPlayerZoneMap;
+                return LocalGameManager.current.localPlayerZoneMap;
             }
             else
             {

@@ -34,6 +34,8 @@ namespace Com.WhiteSwan.OpheliaDigital
         private static LocalGameManager _current;
 
         public List<CardsZone> zones = new List<CardsZone>();
+        [HideInInspector]
+        public Dictionary<int, CardsZone.LocalZoneType> localPlayerZoneMap;
 
         // these are just for convenience internally here
         private CardsZone myDeck;
@@ -41,22 +43,31 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         [Header("Prefab Refs")]
         public GameObject playerControllerPrefab;
-        [SerializeField]
-        private GameObject readyButton;
 
         [Header("Display Controls")]
         public RectTransform playerDisplayPlace;
         public RectTransform opponentDisplayPlace;
         [SerializeField]
         private TMP_Text currentRoomDisplay;
+        [SerializeField]
+        private Button passPriorityButton; // eventually may need to build out a UI manager or something
 
+        private string passButtonText_Phase = "End Phase";
+        private string passButtonText_Priority = "Pass Priority";
+        private string passButtonText_Waiting = "Waiting For Opponent...";
 
         private string lastSetPhase;
+
+        public List<CardEffectBase> allEffects;
 
         private void Awake()
         {
             current = this;
             GameEvents.current.onPhaseChange += ChangePhase;
+            GameEvents.current.onPriorityChange += PriorityChange;
+            passPriorityButton.enabled = false;
+
+            allEffects = FindObjectsOfType<CardEffectBase>().ToList();
         }
 
         private void Start()
@@ -110,7 +121,7 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public CardsZone ResolveRemoteZoneToLocal(int RemoteZone)
         {
-            Dictionary<int, CardsZone.LocalZoneType> zoneMap = GameStateManager.current.localPlayerZoneMap;
+            Dictionary<int, CardsZone.LocalZoneType> zoneMap = localPlayerZoneMap;
             foreach (CardsZone zone in zones)
             {
                 if (zoneMap[RemoteZone] == zone.localZoneType)
@@ -124,10 +135,51 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public int ResolveLocalZoneToRemote(CardsZone localZone)
         {
-            Dictionary<int, CardsZone.LocalZoneType> zoneMap = GameStateManager.current.localPlayerZoneMap;
+            Dictionary<int, CardsZone.LocalZoneType> zoneMap = localPlayerZoneMap;
             return zoneMap.FirstOrDefault(x => x.Value == localZone.localZoneType).Key;
         }
         
+        public void PriorityChange(int newPrioAN)
+        {
+            if(newPrioAN == -1)
+            {
+                Debug.LogError("changing prio player to -1 (unset)");
+                return;
+            }
+            if(newPrioAN == PhotonNetwork.LocalPlayer.ActorNumber)
+            {
+                // priority is now mine
+
+                // display "pass priority button"
+                passPriorityButton.interactable = true;
+
+                // is the chain empty?
+                if(GameStateManager.current.chain.Count == 0)
+                {
+                    passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_Phase;
+                } else
+                {
+                    passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_Priority;
+                }
+                
+
+                // todo: highlight available actions
+            }
+            else // someone else's turn
+            { 
+                // todo: better visuals
+                passPriorityButton.interactable = false;
+                passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_Waiting;
+            }
+        }
+
+        public void PassPriority()
+        {
+            // im done
+            GameStateManager.current.PassPriority();
+
+        }
+
         public void ChangePhase(string phaseKey)
         {
             // don't restart the current phase
@@ -138,34 +190,33 @@ namespace Com.WhiteSwan.OpheliaDigital
                     lastSetPhase = phaseKey;
                     DoPreGameSetupPhase();
                 }
+                Debug.LogWarning("attemping to change to current phase: " + phaseKey);
             }
         }
 
         private void DoPreGameSetupPhase()
         {
             Debug.Log("doing pregame");
-            // draw cards 
-            // aka request GSM to move 6 cards
-            for (int i = 0; i < GamePlayConstants.InitialDrawCount; i++)
-            {
-                DrawCard();
-            }
-
+            // draw cards     
+            DrawCards(GamePlayConstants.InitialDrawCount);
+            passPriorityButton.enabled = true;
         }
 
-        private bool DrawCard()
+        private bool DrawCards(int numCards)
         {
-            if(myDeck.GetTopCard() != null)
+            for (int i = 0; i < numCards; i++)
             {
-                myDeck.GetTopCard().SetCurrentZone(ResolveLocalZoneToRemote(myHand));
-                return true;
-            }
-            else
-            {
-                Debug.LogWarning("tried to draw with no cards in deck");
-                return false;
-            }
+                var tryCard = myDeck.GetCardBelowTop(i);
+                if(tryCard != null)
+                {
+                    tryCard.SetCurrentZone(ResolveLocalZoneToRemote(myHand));
+                } else
+                {
+                    return false;
+                }
 
+            }
+            return true;
         }
     }
 }

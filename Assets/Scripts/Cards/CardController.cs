@@ -44,6 +44,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         public Faction faction;
 
         // for setting in prefab generator (todo: getters if needed)
+        [SerializeField]
         private int baseLevel, basePower, baseInitiative, baseArmour, baseLife;
         public void SetBaseStats(int level, int power, int initiative, int armor, int life)
         {
@@ -64,6 +65,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         public int currentDamage;
 
         // probably just for reference and to be loaded from the json
+        // to be removed when effects are more implemented
         public string claimText;
         public string specialText;
         public string passiveText;
@@ -94,6 +96,17 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             gameObject.GetComponent<CardController>().ResetCardNameText();
             photonView = gameObject.GetComponent<PhotonView>();
+        }
+
+        public void SetEffectInstanceIDs()
+        {
+            int startingVal = instanceID;
+            int i = 1;
+            foreach (CardEffectBase comp in GetComponents<CardEffectBase>())
+            {
+                comp.instanceID = startingVal * 1000 + i;
+                i++;
+            }
         }
 
         public void ResetCardNameText()
@@ -142,6 +155,8 @@ namespace Com.WhiteSwan.OpheliaDigital
 
             // this callback gets fired on each object locally when instantiation is done, so skip the rpc->all
             SetCurrentZone_RPC(startZone);
+
+            SetEffectInstanceIDs();
         }
     }
 

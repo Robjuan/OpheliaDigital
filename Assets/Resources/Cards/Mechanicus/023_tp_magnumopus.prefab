@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7950144346184898267
+--- !u!1001 &2610069459358982363
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -24,6 +24,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
+      propertyPath: baseLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: -9138941550739007292, guid: b23e5dc862d8d494985081daff480bf6,
+        type: 3}
       propertyPath: effectText
       value: "Remove all damage from a friendly Mechanicus character, and equip Magnum
         Opus to it. At the beginning of each contest phase, choose 2 of the following
@@ -37,11 +42,6 @@ PrefabInstance:
         type: 3}
       propertyPath: displayName
       value: Magnum Opus
-      objectReference: {fileID: 0}
-    - target: {fileID: 1559346657999101695, guid: b23e5dc862d8d494985081daff480bf6,
-        type: 3}
-      propertyPath: ObservedComponents.Array.size
-      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3989570896418321838, guid: b23e5dc862d8d494985081daff480bf6,
         type: 3}
