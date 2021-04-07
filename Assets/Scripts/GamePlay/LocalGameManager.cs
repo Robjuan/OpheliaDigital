@@ -56,7 +56,7 @@ namespace Com.WhiteSwan.OpheliaDigital
         private string passButtonText_Priority = "Pass Priority";
         private string passButtonText_Waiting = "Waiting For Opponent...";
 
-        private string lastSetPhase;
+        private BoardController.Phase lastSetPhase;
 
         public List<CardEffectBase> allEffects;
 
@@ -159,6 +159,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                     passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_Phase;
                 } else
                 {
+                    // change the button here based on the chain item
                     passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_Priority;
                 }
                 
@@ -180,18 +181,16 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         }
 
-        public void ChangePhase(string phaseKey)
+        public void ChangePhase(BoardController.Phase newPhase)
         {
-            // don't restart the current phase
-            if (phaseKey != lastSetPhase)
+            switch (newPhase)
             {
-                if (phaseKey == KeyStrings.PreGameSetupPhase)
-                {
-                    lastSetPhase = phaseKey;
+                case BoardController.Phase.PreGameSetupPhase:
+                    Debug.Log("changing to PGSP");
                     DoPreGameSetupPhase();
-                }
-                Debug.LogWarning("attemping to change to current phase: " + phaseKey);
+                    break;
             }
+            lastSetPhase = newPhase;
         }
 
         private void DoPreGameSetupPhase()

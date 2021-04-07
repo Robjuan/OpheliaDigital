@@ -15,7 +15,6 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public const string UnityInstanceID = "unityinstanceid";
 
-        public const string PhaseReady = "phaseready";
         public const string SceneLoaded = "sceneloaded";
         #endregion
 
@@ -33,7 +32,6 @@ namespace Com.WhiteSwan.OpheliaDigital
 
 
         // gameplay state management
-        public const string CurrentPhase = "currentphase";
         public const string ActorPrefix = "actor_";
         public const string CardIdentPrefix = "card_uid_";
 
@@ -48,10 +46,6 @@ namespace Com.WhiteSwan.OpheliaDigital
         public const string Mattervoid = "Mattervoid";
         public const string Mechanicus = "Mechanicus";
         public const string Yucatec = "Yucatec";
-
-        public const string LoadPhase = "np";
-        public const string PreGameSetupPhase = "pgsp";
-
 
         #endregion
     }

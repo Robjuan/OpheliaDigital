@@ -22,20 +22,6 @@ namespace Com.WhiteSwan.OpheliaDigital
     public class GameStateManager : MonoBehaviourPunCallbacks
     {
 
-        public enum Phases : int
-        { 
-            LoadPhase = -1
-            ,PreGameSetupPhase = 0
-            ,RoundStart = 1
-            ,TurnStart = 2 
-            ,ActionOne = 3
-            ,Contest = 4
-            ,ActionTwo = 5
-            ,End = 6
-            ,TurnEnd = 7
-            ,RoundEnd = 8
-        }
-
         public static GameStateManager current
         {
             get
@@ -54,11 +40,11 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         [HideInInspector]
         public List<PlayerController> playerControllers = new List<PlayerController>();
+        [HideInInspector]
+        public BoardController boardController;
 
         private List<int> turnOrder;
-        private BoardController boardController;
         private int priorityPlayerAN = -1;
-
         private bool zoneMapsDone = false;
 
         [HideInInspector]
@@ -96,7 +82,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                 newPC.turnOrder = turnOrder[0];
                 turnOrder.RemoveAt(0);
                 var tzm = ZoneResolver.GenerateZoneMap(newPC.turnOrder); 
-                photonView.RPC(StoreZoneMap_RPC_string, player, ZoneResolver.ConvertZoneMapForTransport(tzm)); // when these are all done, setupgamestate will fire
+                photonView.RPC(StoreZoneMap_string, player, ZoneResolver.ConvertZoneMapForTransport(tzm)); // when these are all done, setupgamestate will fire
 
             }
 
@@ -149,10 +135,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             // this will get the first player who doesn't currently have prio (won't scale to > 2 players) 
-            foreach (var player in playerControllers)
-            {
-                Debug.LogWarning(player);
-            }
             PlayerController newPP = playerControllers.Where(x => x.punActorNumber != PhotonNetwork.LocalPlayer.ActorNumber).First();
             photonView.RPC(UpdatePrioPlayer_string, RpcTarget.AllViaServer, newPP.punActorNumber);
 
@@ -181,7 +163,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
             else
             {
-                Debug.Log("<color=blue>received prio with nothing on chain</color>");
+                Debug.Log("<color=teal>received prio with nothing on chain</color>");
             }
             
         }
@@ -197,9 +179,9 @@ namespace Com.WhiteSwan.OpheliaDigital
         }
 
 
-        private const string StoreZoneMap_RPC_string = "StoreZoneMap_RPC";
+        private const string StoreZoneMap_string = "StoreZoneMap";
         [PunRPC]
-        public void StoreZoneMap_RPC(Dictionary<int, byte> dictIn)
+        public void StoreZoneMap(Dictionary<int, byte> dictIn)
         {
             // cache locally
             LocalGameManager.current.localPlayerZoneMap = ZoneResolver.ConvertZoneMapForLocal(dictIn);
@@ -266,11 +248,8 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             GameObject board = PhotonNetwork.InstantiateRoomObject("BoardController", Vector3.zero, Quaternion.identity);
-            boardController = board.GetComponent<BoardController>();
-            boardController.currentPhase = KeyStrings.LoadPhase;
-            boardController.currentRound = 0;
 
-            boardController.UpdatePhase(KeyStrings.PreGameSetupPhase);
+            boardController.UpdatePhase(BoardController.Phase.PreGameSetupPhase);
 
         }
 
@@ -301,26 +280,6 @@ namespace Com.WhiteSwan.OpheliaDigital
                         zoneMapsDone = true;
                         SetupGameState();
                     }
-                }
-
-                if (changedProps.ContainsKey(KeyStrings.PhaseReady))
-                {
-                    bool everyoneReady = true;
-                    foreach (Player player in PhotonNetwork.CurrentRoom.Players.Values)
-                    {
-                        if (player.CustomProperties.ContainsKey(KeyStrings.PhaseReady) && (bool)player.CustomProperties[KeyStrings.PhaseReady] == false) // if any player is not ready
-                        {
-                            everyoneReady = false;
-                            break;
-                        }
-                    }
-                    if(everyoneReady)
-                    {
-                        // get next valid phase
-                        // go to the next phase
-                        boardController.UpdatePhase(KeyStrings.PreGameSetupPhase); // todo: dynamic next-phasing
-                    }
-
                 }
                 
             }

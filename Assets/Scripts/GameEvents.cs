@@ -47,8 +47,8 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
         }
 
-        public event Action<string> onPhaseChange;
-        public void PhaseChange(string newPhase)
+        public event Action<BoardController.Phase> onPhaseChange;
+        public void PhaseChange(BoardController.Phase newPhase)
         {
             if (onPhaseChange != null)
             {
