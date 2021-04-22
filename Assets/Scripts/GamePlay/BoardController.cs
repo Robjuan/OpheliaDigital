@@ -31,15 +31,14 @@ namespace Com.WhiteSwan.OpheliaDigital
             UpdatePhase(GetNextValidPhase());
         }
 
-        public Phase GetNextValidPhase()
+        public Phase GetNextValidPhase() // do not set the value of currentPhase in here at all
         {
             switch((int)currentPhase)
             {
                 case int p when p < 6: // if we're in the main part of the turn
-                    return currentPhase++;
+                    return currentPhase+1;
                 case int p when p == 6:
-                    currentPhase = Phase.TurnStart; // start a new turn    
-                    return currentPhase; 
+                    return Phase.TurnStart;  // start a new turn  
                 default:
                     Debug.LogWarning("end round not yet implemented");
                     return currentPhase;
@@ -52,6 +51,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             if(newPhase != currentPhase)
             {
                 this.GetComponent<PhotonView>().RPC(UpdatePhase_RPC_string, RpcTarget.AllViaServer, (int)newPhase);
+                currentPhase = newPhase;
             }
             else
             {

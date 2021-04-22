@@ -51,14 +51,16 @@ namespace Com.WhiteSwan.OpheliaDigital
         private TMP_Text currentRoomDisplay;
         [SerializeField]
         private Button passPriorityButton; // eventually may need to build out a UI manager or something
+        [SerializeField]
+        private TMP_Text phaseDisplayText;
 
-        private string passButtonText_Phase = "End Phase";
+        private string passButtonText_EndPhase = "End Phase";
         private string passButtonText_Priority = "Pass Priority";
         private string passButtonText_Waiting = "Waiting For Opponent...";
 
-        private BoardController.Phase lastSetPhase;
-
         public List<CardEffectBase> allEffects;
+
+        private bool selfCardPlayedThisTurn; // for passing and ending turn
 
         private void Awake()
         {
@@ -152,11 +154,15 @@ namespace Com.WhiteSwan.OpheliaDigital
 
                 // display "pass priority button"
                 passPriorityButton.interactable = true;
+                foreach(var thing in GameStateManager.current.chain)
+                {
+                    Debug.Log(thing);
+                }
 
                 // is the chain empty?
                 if(GameStateManager.current.chain.Count == 0)
                 {
-                    passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_Phase;
+                    passPriorityButton.GetComponentInChildren<TMP_Text>().text = passButtonText_EndPhase;
                 } else
                 {
                     // change the button here based on the chain item
@@ -177,6 +183,18 @@ namespace Com.WhiteSwan.OpheliaDigital
         public void PassPriority()
         {
             // im done
+
+            // TODO: UI CONTROLLER
+            // if i haven't played a card this round, and we're in the final 
+            if (GameStateManager.current.boardController.currentPhase == BoardController.Phase.ActionTwo && !selfCardPlayedThisTurn)
+            {
+                Debug.LogWarning("this is your last opportunity to play a Character Card - otherwise you will pass at end of turn");
+            }
+            if (GameStateManager.current.boardController.currentPhase == BoardController.Phase.End && !selfCardPlayedThisTurn)
+            {
+                Debug.LogWarning("this is your last opportunity to play a Turning Point Card - otherwise you will pass at end of turn");
+            }
+
             GameStateManager.current.PassPriority();
 
         }
@@ -190,6 +208,7 @@ namespace Com.WhiteSwan.OpheliaDigital
                     DoPreGameSetupPhase();
                     break;
             }
+            phaseDisplayText.text = newPhase.ToString();
             lastSetPhase = newPhase;
         }
 

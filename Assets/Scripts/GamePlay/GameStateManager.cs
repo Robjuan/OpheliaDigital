@@ -89,7 +89,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             PlayerController firstPlayer = playerControllers.Where(z => z.turnOrder == playerControllers.Min(x => x.turnOrder)).First();
             photonView.RPC(UpdatePrioPlayer_string, RpcTarget.AllViaServer, firstPlayer.punActorNumber);
 
-            //PhotonNetwork.SendAllOutgoingCommands(); // do it now (necessary???)
             photonView.RPC(SetupPlayerDisplay_string, RpcTarget.AllViaServer);
         }
 
@@ -135,6 +134,7 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             // this will get the first player who doesn't currently have prio (won't scale to > 2 players) 
+            // will also break when there is only one player 
             PlayerController newPP = playerControllers.Where(x => x.punActorNumber != PhotonNetwork.LocalPlayer.ActorNumber).First();
             photonView.RPC(UpdatePrioPlayer_string, RpcTarget.AllViaServer, newPP.punActorNumber);
 
@@ -174,6 +174,9 @@ namespace Com.WhiteSwan.OpheliaDigital
             for (int i = chain.Count - 1; i >= 0; i--) // remove 1 to convert count to index
             {
                 chain[i].Resolve();
+                
+                chain.RemoveAt(i);
+
                 // todo: check for things that have triggered as a result of a chain item resolving
             }
         }
@@ -248,7 +251,6 @@ namespace Com.WhiteSwan.OpheliaDigital
             }
 
             GameObject board = PhotonNetwork.InstantiateRoomObject("BoardController", Vector3.zero, Quaternion.identity);
-
             boardController.UpdatePhase(BoardController.Phase.PreGameSetupPhase);
 
         }

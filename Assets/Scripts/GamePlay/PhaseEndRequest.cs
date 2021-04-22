@@ -15,8 +15,6 @@ namespace Com.WhiteSwan.OpheliaDigital
 
         public void Resolve()
         {
-            Debug.LogWarning(GameStateManager.current);
-            Debug.LogWarning(GameStateManager.current.boardController);
             GameStateManager.current.boardController.GoToNextPhase();
          
         }
